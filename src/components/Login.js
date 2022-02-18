@@ -5,26 +5,25 @@ const BASE_URL = 'http://localhost:3000'
 
 export default class Login extends React.Component {
   state = {
-    name: '',
+    email: '',
     password: ''
   }
 
   // This function will set the state to be what is typed in the form
   handleInput = (ev) => {
     // determines which part of the form sets what part of the state
-    switch(ev.target.name) {  
-      case 'name':
-        this.setState({name: ev.target.value})
-        break;
-      case 'password':
-        this.setState({password: ev.target.value})
+    if (ev.target.name === 'email') {
+      this.setState({email: ev.target.value})
+      
+    } else if (ev.target.name === 'password') {
+      this.setState({password: ev.target.value})
     }
   }
 
   // This function will deliver an axios post request and ask it to validate
   // via knock and jwt
   handleSubmit = (ev) => {
-    const request = {'name': this.state.name, 'password': this.state.password} // object to be passed through POST
+    const request = {'email': this.state.email, 'password': this.state.password} // object to be passed through POST
 
     axios.post(`${BASE_URL}/user_token`, {auth: request})
     .then(result => {
@@ -45,13 +44,13 @@ export default class Login extends React.Component {
       <form onSubmit = {this.handleSubmit}>
         <label>Login Form</label>
         <br />
-        <input 
-          name = "name"
-          type = "text"
-          placeholder = 'Username:' 
+        <input onChange = {this.handleInput}
+          name = "email"
+          type = "email"
+          placeholder = 'Email:' 
         />
         <br />
-        <input 
+        <input onChange = {this.handleInput}
           name = "password"
           type = "password"
           placeholder = 'Password:' 
