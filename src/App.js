@@ -69,7 +69,7 @@ export default class App extends React.Component{
         </header>
         <Route exact path = '/my_profile' component = {MyProfile}/>
         <Route 
-          exact path = '/Login' 
+          exact path = '/login' 
           render={(props) => <Login setCurrentUser = {this.setCurrentUser}{...props}/>}
         />
 
