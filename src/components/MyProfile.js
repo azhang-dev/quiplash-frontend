@@ -1,5 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-export default class MyProfile extends React.Component {
-  
+class MyProfile extends Component {
+    render() {
+        return (
+            <div>
+                
+            </div>
+        );
+    }
 }
+
+export default MyProfile;
