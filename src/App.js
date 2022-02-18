@@ -23,7 +23,7 @@ export default class App extends React.Component{
   //function to set the state to the current logged in user
   setCurrentUser = () => {
     let token = "Bearer " + localStorage.getItem("jwt");
-    axios.get( `${BASE_URL}/users/current`, {
+    const res = axios.get( `${BASE_URL}/users/current`, {
       headers: {
         'Authorization' : token
       }
