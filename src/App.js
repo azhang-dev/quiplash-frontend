@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import {Route, Link, HashRouter as Router} from 'react-router-dom';
 
 import Login from './components/Login'
@@ -31,14 +31,14 @@ export default class App extends React.Component{
     .then(res => {
       this.setState({currentUser: res.data})
     })
-    .catch(err => console.warn(err))
+    .catch(err => console.warn(err));
   }
 
   //function to log the user out.
   handleLogout = () => {
     this.setState({currentUser: undefined})
     localStorage.removeItem("jwt");
-    axios.defaults.headers.common['Authorization'] = undefined;
+    axios.defaults.headers.common['Authorization'] = undefined
   }
 
   render(){
@@ -60,7 +60,7 @@ export default class App extends React.Component{
               :
               (
                 <ul>
-                  <li><Link to = '/login'>My Profile</Link></li>
+                  <li><Link to = '/login'>Log In</Link></li>
                 </ul>
               )
             }
