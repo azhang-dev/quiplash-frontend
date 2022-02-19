@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react';
+import {w3cwebsocket as W3CWebsocket } from "websocket";
+
 
 class HostGame extends React.Component {
 
@@ -14,4 +16,3 @@ class HostGame extends React.Component {
 }
 
 export default HostGame
-
