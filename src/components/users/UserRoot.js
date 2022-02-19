@@ -9,7 +9,7 @@ import CurrentAnswer from './CurrentAnswer'
 class UserRoot extends Component {
 
     state = {
-        inLobby: false,
+        inLobby: true,
         questionTime: true,
         roundCounter: 0.5,
         round: 1

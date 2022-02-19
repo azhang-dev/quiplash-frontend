@@ -6,8 +6,8 @@ class HostLobby extends Component {
         const startGame = () => {
             // this.props.sendData()
             console.log('this is being called')
-            return <Lobby changeState={startGame} />
-            console.log('this is NOT being called')
+            // return <Lobby changeState={startGame} />
+            // console.log('this is NOT being called')
         }
         return (
             <div>
