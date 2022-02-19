@@ -21,7 +21,7 @@ class HostLobby extends Component {
             return <Lobby changeState={startGame} />
             // this.props.history.push("/host/game")
 
-            console.log('this is NOT being called')
+            // console.log('this is NOT being called')
             }
         }
         return (

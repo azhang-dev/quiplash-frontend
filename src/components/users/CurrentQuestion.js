@@ -7,7 +7,7 @@ class CurrentQuestion extends Component {
     }
 
     componentDidMount(){
-        // console.log("QUESTION MOUNTED")
+        console.log("QUESTION MOUNTED")
         // this.changeQuestionState()
     };
 
@@ -33,6 +33,13 @@ class CurrentQuestion extends Component {
     loggingForChangeOfQuestionState = () => {
         console.log("QUESTION STATE HAS BEEN CHANGED TO", this.state.question);
     };
+
+
+    // handle input ? 
+
+    // axios post onSubmit... how can we tell if blank? 
+
+
 
     render() {
         return (
