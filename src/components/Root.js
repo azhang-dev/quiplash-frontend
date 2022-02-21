@@ -5,6 +5,7 @@ import Lobby from './users/Lobby'
 import HostLobby from './host/HostLobby'
 import GameStart from './GameStart'
 import HostGame from './host/HostGame'
+import HostRoot from './host/HostRoot'
 
 import Login from './Login'
 import MyProfile from './MyProfile'
@@ -89,7 +90,7 @@ class Root extends Component {
                     <Route exact path="/play" component={UserRoot}/> 
                     <Route exact path="/play/lobby" component={Lobby}/> 
                     {/* <Route exact path="/play/lobby/:id" component={Lobby}/>  */}
-                    <Route exact path="/host/lobby" component={HostLobby}/>
+                    <Route exact path="/host/lobby" component={HostRoot}/>
                     <Route exact path="/host/game" component={HostGame}/>
                     <Route exact path = '/my_profile' component = {MyProfile}/>
                     
