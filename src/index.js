@@ -13,8 +13,8 @@ ReactDOM.render(
     
   <ActionCableProvider url={API_WS_ROOT}>
     {/* <App />, */}
-    {/* <Root />, */}
-    <Test />
+    <Root />,
+    {/* <Test /> */}
   </ActionCableProvider>,
   document.getElementById('root')
 );
