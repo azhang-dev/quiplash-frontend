@@ -20,7 +20,7 @@ class CurrentAnswer extends Component {
         };
     };
 
-    componentWillUnmount(){
+    componentDidUnmount(){
         // console.log("Answer UNMOUNTED")
         console.log("AFTER UNMOUNT!!!!", this.props.round);
     };
