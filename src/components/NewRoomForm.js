@@ -2,7 +2,7 @@
 import React from 'react';
 import { API_ROOT, HEADERS } from '../constants';
 
-class NewConversationForm extends React.Component {
+class NewRoomForm extends React.Component {
   state = {
     title: ''
   };
@@ -23,9 +23,9 @@ class NewConversationForm extends React.Component {
 
   render = () => {
     return (
-      <div className="newConversationForm">
+      <div className="newRoomForm">
         <form onSubmit={this.handleSubmit}>
-          <label>New Conversation:</label>
+          <label>New Room:</label>
           <br />
           <input
             type="text"
@@ -39,4 +39,4 @@ class NewConversationForm extends React.Component {
   };
 }
 
-export default NewConversationForm;
+export default NewRoomForm;

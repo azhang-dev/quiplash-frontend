@@ -2,14 +2,14 @@
 import React from 'react';
 import { API_ROOT, HEADERS } from '../constants';
 
-class NewMessageForm extends React.Component {
+class NewGameForm extends React.Component {
   state = {
     text: '',
-    conversation_id: this.props.conversation_id
+    room_id: this.props.room_id
   };
 
   componentWillReceiveProps = nextProps => {
-    this.setState({ conversation_id: nextProps.conversation_id });
+    this.setState({ room_id: nextProps.room_id });
   };
 
   handleChange = e => {
@@ -19,7 +19,7 @@ class NewMessageForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    fetch(`${API_ROOT}/messages`, {
+    fetch(`${API_ROOT}/games`, {
       method: 'POST',
       headers: HEADERS,
       body: JSON.stringify(this.state)
@@ -29,9 +29,9 @@ class NewMessageForm extends React.Component {
 
   render = () => {
     return (
-      <div className="newMessageForm">
+      <div className="newGameForm">
         <form onSubmit={this.handleSubmit}>
-          <label>New Message:</label>
+          <label>New Game:</label>
           <br />
           <input
             type="text"
@@ -45,4 +45,4 @@ class NewMessageForm extends React.Component {
   };
 }
 
-export default NewMessageForm;
+export default NewGameForm;
