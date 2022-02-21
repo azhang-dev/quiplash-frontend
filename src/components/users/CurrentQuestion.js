@@ -17,7 +17,7 @@ class CurrentQuestion extends Component {
         };
     };
 
-    componentWillUnmount(){
+    componentDidUnmount(){
         // console.log("QUESTION UNMOUNTED")
         console.log("AFTER UNMOUNT!!!!", this.props.round);
     };

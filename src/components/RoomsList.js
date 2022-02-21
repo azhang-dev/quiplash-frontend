@@ -11,6 +11,8 @@ class RoomsList extends React.Component {
     activeRoom: null
   };
 
+
+
   componentDidMount = () => {
     fetch(`${API_ROOT}/rooms`)
       .then(res => res.json())
@@ -18,7 +20,24 @@ class RoomsList extends React.Component {
   };
 
   handleClick = id => {
+    console.log('handleclick', id);
     this.setState({ activeRoom: id });
+  };
+
+  getRoomId = (roomsArray, room_id)=>{
+    return roomsArray.filter(el => room_id !== el.id)
+ }
+
+  handleClickDelete = id => {
+    fetch(`${API_ROOT}/rooms/${id}`,{
+      method: "Delete",
+    })
+    const roomsCopy = [...this.state.rooms]
+    const roomUpdate = this.getRoomId(roomsCopy, id);
+    this.setState({rooms: roomUpdate})
+    
+    
+    
   };
 
   handleReceivedRoom = response => {
@@ -53,7 +72,8 @@ class RoomsList extends React.Component {
           />
         ) : null}
         <h2>Rooms</h2>
-        <ul>{mapRooms(rooms, this.handleClick)}</ul>
+        <ul>
+          {mapRooms(rooms, this.handleClick, this.handleClickDelete)}</ul>
         <NewRoomForm />
         {activeRoom ? (
           <GamesArea
@@ -78,11 +98,13 @@ const findActiveRoom = (rooms, activeRoom) => {
   );
 };
 
-const mapRooms = (rooms, handleClick) => {
+const mapRooms = (rooms, handleClick, handleClickDelete) => {
   return rooms.map(room => {
     return (
-      <li key={room.id} onClick={() => handleClick(room.id)}>
-        {room.title}
+      <li key={room.id}>
+        
+        <p onClick={() => handleClick(room.id)}>{room.title} </p>
+        <button onClick={() => handleClickDelete(room.id)}>Delete</button>
       </li>
     );
   });

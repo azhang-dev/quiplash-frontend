@@ -8,7 +8,7 @@ class NewGameForm extends React.Component {
     room_id: this.props.room_id
   };
 
-  componentWillReceiveProps = nextProps => {
+  ReceiveProps = nextProps => {
     this.setState({ room_id: nextProps.room_id });
   };
 
