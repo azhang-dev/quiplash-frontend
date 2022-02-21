@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import UserRoot from './users/UserRoot'
 import Lobby from './users/Lobby'
+
 import HostLobby from './host/HostLobby'
 import HostGame from './host/HostGame'
 import HostRoot from './host/HostRoot'
 import RoomsList from './RoomsList'
+
 
 
 import Login from './Login'
@@ -93,7 +95,8 @@ class Root extends Component {
                     <Route exact path="/host/game" component={HostGame}/>
                     <Route exact path = '/my_profile' component = {MyProfile}/>
                     <Route exact path="/lobbies" component={RoomsList}/>
-                    {/* <Route exact path="/lobby/:id" component={HostRoot}/>  */}
+                    {/* <Route exact path="/host/lobby" components={HostRoot}/> */}
+                    <Route exact path="/host/lobby/:id" component={HostLobby}/> 
                 </Router>
 
 
