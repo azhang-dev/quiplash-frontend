@@ -111,7 +111,7 @@ const mapRooms = (rooms, handleClick, handleClickDelete) => {
         
         <p>{room.title}</p>
         <Link className="btn btn-primary" to={`/lobby/${room.id}`} onClick={() => handleClick(room.id)}>Go to lobby</Link> 
-        <button onClick={() => handleClickDelete(room.id)}>Delete</button>
+        <button className="btn btn-primary" onClick={() => handleClickDelete(room.id)}>Delete</button>
       </li>
     );
   });
