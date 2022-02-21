@@ -6,8 +6,13 @@ class HostLobby extends Component {
 
     state= {
         lobbyPlayers: [],
-        currentUsers: []
+        currentUsers: [],
+        currentLobby: "",
     };
+
+    componentDidMount(){
+        this.setState({currentLobby: this.props.match.params.id})
+    }
 
     roomCode(){
         console.log('Roomcode plzz');
@@ -29,7 +34,7 @@ class HostLobby extends Component {
        
         return (
             <div>
-                <h1>Host lobby</h1>
+                <h1>Host lobby {this.state.currentLobby}</h1>
                 <button onClick={this.startGame}>CLICK ME :)</button>
             </div>
         )
