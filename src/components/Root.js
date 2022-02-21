@@ -7,6 +7,7 @@ import GameStart from './GameStart'
 import HostGame from './host/HostGame'
 import HostRoot from './host/HostRoot'
 
+
 import Login from './Login'
 import MyProfile from './MyProfile'
 
@@ -97,7 +98,6 @@ class Root extends Component {
                     
                 </Router>
 
-                <ConversationsList />
 
             </div>
         );

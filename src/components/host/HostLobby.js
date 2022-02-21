@@ -34,7 +34,6 @@ class HostLobby extends Component {
             </div>
         )
     };
-    
 }
 
 export default HostLobby;
