@@ -5,7 +5,8 @@ import { API_ROOT, HEADERS } from '../../constants';
 class HostLobby extends Component {
 
     state= {
-        lobbyPlayers: []
+        lobbyPlayers: [],
+        currentUsers: []
     };
 
     roomCode(){
