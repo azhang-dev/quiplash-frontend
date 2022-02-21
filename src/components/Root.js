@@ -3,7 +3,6 @@ import axios from 'axios'
 import UserRoot from './users/UserRoot'
 import Lobby from './users/Lobby'
 import HostLobby from './host/HostLobby'
-import GameStart from './GameStart'
 import HostGame from './host/HostGame'
 import HostRoot from './host/HostRoot'
 
@@ -88,7 +87,6 @@ class Root extends Component {
                     <Link to="/host/game">Host GAME(test)</Link>
 
 
-                    <Route exact path="/" component = {GameStart} />
                     <Route exact path="/play" component={UserRoot}/> 
                     <Route exact path="/play/lobby/" component={UserRoot}/> 
                     {/* <Route exact path="/play/lobby/:id" component={Lobby}/>  */}

@@ -24,7 +24,6 @@ class NewRoomForm extends React.Component {
   render = () => {
     return (
       <div className="newRoomForm">
-        
         <form onSubmit={this.handleSubmit}>
           <label>Create Room</label>
           <br />

@@ -4,6 +4,7 @@ import { API_ROOT } from '../constants';
 import NewRoomForm from './NewRoomForm';
 import GamesArea from './GamesArea';
 import Cable from './Cable';
+import {Link} from 'react-router-dom'
 
 class RoomsList extends React.Component {
   state = {
@@ -32,6 +33,7 @@ class RoomsList extends React.Component {
     fetch(`${API_ROOT}/rooms/${id}`,{
       method: "Delete",
     })
+    console.log(id);
     const roomsCopy = [...this.state.rooms]
     const roomUpdate = this.getRoomId(roomsCopy, id);
     this.setState({rooms: roomUpdate})
@@ -75,6 +77,10 @@ class RoomsList extends React.Component {
         <ul>
           {mapRooms(rooms, this.handleClick, this.handleClickDelete)}</ul>
         <NewRoomForm />
+        
+      
+
+
         {activeRoom ? (
           <GamesArea
             room={findActiveRoom(
@@ -103,7 +109,8 @@ const mapRooms = (rooms, handleClick, handleClickDelete) => {
     return (
       <li key={room.id}>
         
-        <p onClick={() => handleClick(room.id)}>{room.title} </p>
+        <p>{room.title}</p>
+        <Link className="btn btn-primary" to={`/lobby/${room.id}`} onClick={() => handleClick(room.id)}>Go to lobby</Link> 
         <button onClick={() => handleClickDelete(room.id)}>Delete</button>
       </li>
     );
