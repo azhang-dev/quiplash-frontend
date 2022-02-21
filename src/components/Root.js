@@ -97,7 +97,7 @@ class Root extends Component {
                     
                 </Router>
 
-                <ConversationsList />
+                
 
             </div>
         );
