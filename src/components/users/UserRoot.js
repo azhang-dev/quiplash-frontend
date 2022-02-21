@@ -9,13 +9,14 @@ import CurrentAnswer from './CurrentAnswer'
 class UserRoot extends Component {
 
     state = {
-        inLobby: true,
+        inLobby: false,
         questionTime: true,
         roundCounter: 0.5,
         round: 1
     }
 
     componentDidMount(){
+        console.log(this.state.inLobby)
         // console.log('mounted')
         this.timer()
     }

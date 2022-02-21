@@ -12,7 +12,7 @@ class GameStart extends React.Component{
                 <h1>Quiplash Clone</h1>
                     <Link to="/play/lobby">
                         <button>
-                            Start Game
+                            Join Lobby
                         </button>
                     </Link>
                     </Router>
