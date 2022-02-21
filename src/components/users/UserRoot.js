@@ -9,16 +9,23 @@ import CurrentAnswer from './CurrentAnswer'
 class UserRoot extends Component {
 
     state = {
-        inLobby: false,
+        inLobby: true,
         questionTime: true,
         roundCounter: 0.5,
         round: 1
     }
 
     componentDidMount(){
+        // console.log(this.state.inLobby)
         // console.log('mounted')
         this.timer()
     }
+
+    switchLobbyState = () => {
+
+        this.setState({inLobby: false})
+    }
+
 
     timer = () => {
         if (!this.state.inLobby){
