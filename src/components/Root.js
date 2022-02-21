@@ -5,6 +5,8 @@ import Lobby from './users/Lobby'
 import HostLobby from './host/HostLobby'
 import GameStart from './GameStart'
 import HostGame from './host/HostGame'
+import ConversationsList from './ConversationsList';
+
 
 
 import {HashRouter as Router, Route, Link} from 'react-router-dom'
@@ -32,6 +34,9 @@ class Root extends Component {
                     <Route exact path="/host/lobby" component={HostLobby}/>
                     <Route exact path="/host/game" component={HostGame}/>
                 </Router>
+
+                <ConversationsList />
+
             </div>
         );
     }
