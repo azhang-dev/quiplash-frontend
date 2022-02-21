@@ -8,7 +8,7 @@ class Lobby extends Component {
         console.log('MOUNTED!!')
         // this.timer = setInterval(()=> this.getStatus(),1000)
     }
-    componentWillUnmount(){
+    componentDidUnmount(){
         console.log('UNMOUNTED!!')
     }
 
