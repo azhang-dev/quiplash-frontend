@@ -83,7 +83,8 @@ class Root extends Component {
                     <Link to="/">GameStart</Link> |&nbsp; 
                     <Link to="/play">Root player page</Link> |&nbsp; 
                     <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp; 
-                    <Link to="/host/lobby">Host PAGE</Link>
+                    <Link to="/host/lobby">Host PAGE</Link>|&nbsp; 
+                    <Link to="/host/game">Host GAME(test)</Link>
 
 
                     <Route exact path="/" component = {GameStart} />
@@ -95,6 +96,9 @@ class Root extends Component {
                     <Route exact path = '/my_profile' component = {MyProfile}/>
                     
                 </Router>
+
+                <ConversationsList />
+
             </div>
         );
     }

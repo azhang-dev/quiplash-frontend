@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+
+
 class Lobby extends Component {
     state = {
         game: false
@@ -30,6 +32,8 @@ class Lobby extends Component {
         return (
             <div>
                 <h1>Lobby page (users)</h1>
+
+              
             </div>
         );
     }
