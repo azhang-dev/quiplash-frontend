@@ -81,6 +81,23 @@ class RoomsList extends React.Component {
     this.props.routeToLobby(newIndex)
   }
 
+  mapRooms = (rooms, handleClick, handleClickDelete) => {
+    return rooms.map(room => {
+      return (
+        <li key={room.id}>
+          
+          {/*  <p>{room.title}</p>
+           <Link className="btn btn-primary" to={`/lobby/${room.id}`} onClick={() => handleClick(room.id)}>Go to lobby</Link> 
+           <button className="btn btn-primary" onClick={() => handleClickDelete(room.id)}>Delete</button> */}
+          <p onClick={() => handleClick(room.id)}>Lobby {room.id} </p>
+          <button onClick={() => this.props.routeToLobby(room.id)}>Join</button>
+          <button onClick={() => handleClickDelete(room.id)}>Delete</button>
+        </li>
+      );
+    });
+  
+  };
+
 
   render = () => {
     const { rooms, activeRoom } = this.state;
@@ -112,7 +129,7 @@ class RoomsList extends React.Component {
 
         <h2>Rooms</h2>
         <ul>
-          {mapRooms(rooms, this.handleClick, this.handleClickDelete)}</ul>
+          {this.mapRooms(rooms, this.handleClick, this.handleClickDelete)}</ul>
 
         <NewRoomForm goToLobbyPage={this.goToLobby}/>
 
@@ -139,19 +156,3 @@ const findActiveRoom = (rooms, activeRoom) => {
   );
 };
 
-const mapRooms = (rooms, handleClick, handleClickDelete) => {
-  return rooms.map(room => {
-    return (
-      <li key={room.id}>
-        
-        {/*  <p>{room.title}</p>
-         <Link className="btn btn-primary" to={`/lobby/${room.id}`} onClick={() => handleClick(room.id)}>Go to lobby</Link> 
-         <button className="btn btn-primary" onClick={() => handleClickDelete(room.id)}>Delete</button> */}
-        <p onClick={() => handleClick(room.id)}>Lobby {room.id} </p>
-
-        <button onClick={() => handleClickDelete(room.id)}>Delete</button>
-      </li>
-    );
-  });
-
-};
