@@ -11,7 +11,7 @@ import { API_WS_ROOT } from './constants';
 
 ReactDOM.render(
     
-  <ActionCableProvider url={API_WS_ROOT}>
+  <ActionCableProvider url={`${API_WS_ROOT}?token=${localStorage.getItem("jwt")}`}>
     {/* <App />, */}
     <Root />
     {/* <Test /> */}
