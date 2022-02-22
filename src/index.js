@@ -12,9 +12,9 @@ import { API_WS_ROOT } from './constants';
 ReactDOM.render(
     
   <ActionCableProvider url={API_WS_ROOT}>
-    {/* <App />,
-    <Root />, */}
-    <Test />
+    {/* <App />, */}
+    <Root />
+    {/* <Test /> */}
   </ActionCableProvider>,
   document.getElementById('root')
 );
