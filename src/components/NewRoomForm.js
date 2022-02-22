@@ -19,7 +19,7 @@ class NewRoomForm extends React.Component {
       body: JSON.stringify(this.state)
     });
     this.setState({ title: '' });
-    
+    this.props.goToLobbyPage()
   };
 
   render = () => {

@@ -5,6 +5,9 @@ import NewRoomForm from './NewRoomForm';
 import GamesArea from './GamesArea';
 import Cable from './Cable';
 
+const TestComponent = (props) => {
+  return <h1>TEST</h1>
+}
 class RoomsList extends React.Component {
   state = {
     rooms: [],
@@ -46,6 +49,9 @@ class RoomsList extends React.Component {
       rooms: [...this.state.rooms, room]
     });
   };
+  handleConnectedRoom = (...args) => {
+    console.log("handle connected",args)
+  }
 
   handleReceivedGame = response => {
     const { game } = response;
@@ -57,6 +63,14 @@ class RoomsList extends React.Component {
     this.setState({ rooms });
   };
 
+  goToLobby = () => {
+    let lastIndex = this.state.rooms[this.state.rooms.length - 1]
+    console.log(lastIndex.id )
+    let newIndex = lastIndex.id + 1
+    this.props.routeToLobby(newIndex)
+  }
+
+
   render = () => {
     const { rooms, activeRoom } = this.state;
     return (
@@ -64,17 +78,25 @@ class RoomsList extends React.Component {
         <ActionCableConsumer
           channel={{ channel: 'RoomsChannel' }}
           onReceived={this.handleReceivedRoom}
-        />
+          onConnected={this.handleConnectedRoom}
+          onInitialized={this.handleConnectedRoom}
+          > 
+          
+          <TestComponent cable={this.props}/> 
+          
+        </ActionCableConsumer>
         {this.state.rooms.length ? (
           <Cable
             rooms={rooms}
             handleReceivedGame={this.handleReceivedGame}
-          />
+          >
+
+            </Cable>
         ) : null}
         <h2>Rooms</h2>
         <ul>
           {mapRooms(rooms, this.handleClick, this.handleClickDelete)}</ul>
-        <NewRoomForm />
+        <NewRoomForm goToLobbyPage={this.goToLobby}/>
         {activeRoom ? (
           <GamesArea
             room={findActiveRoom(
