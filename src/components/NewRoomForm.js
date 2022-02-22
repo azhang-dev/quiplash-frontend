@@ -3,14 +3,17 @@ import React from 'react';
 import { API_ROOT, HEADERS } from '../constants';
 
 class NewRoomForm extends React.Component {
-  // state = {
-  //   title: ''
-  // };
+  state = {
+    host_id: this.props.currentUser
+  };
 
   // handleChange = e => {
   //   this.setState({ title: e.target.value });
   // };
 
+  componentDidMount() {
+    console.log("Checking props", this.props)
+  }
   handleSubmit = e => {
     e.preventDefault()
     fetch(`${API_ROOT}/rooms`, {
