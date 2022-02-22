@@ -9,7 +9,6 @@ import HostRoot from './host/HostRoot'
 import RoomsList from './RoomsList'
 
 
-
 import Login from './Login'
 import MyProfile from './MyProfile'
 
@@ -55,6 +54,7 @@ class Root extends Component {
                 <Router>
                 <header>
                     <nav>
+                    <div class="grid grid-cols-3 divide-y">
                         { // This is a tenary expression that displays a login/sign up link if !currentUser
                         // or a logout/myProfile link if currentUser === true
                         this.state.currentUser !== undefined
@@ -77,16 +77,17 @@ class Root extends Component {
                         exact path = '/login' 
                         render={(props) => <Login setCurrentUser = {this.setCurrentUser}{...props}/>}
                         />
+                    </div>
                     </nav>
-                    <hr />
                 </header>
+                <hr/>
+                    
                     <h1>TESTING PAGE: ROOT</h1>
                     <Link to="/">GameStart</Link> |&nbsp; 
                     <Link to="/play">Root player page</Link> |&nbsp; 
                     <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp; 
                     <Link to="/host/lobby">Host PAGE</Link>|&nbsp; 
                     <Link to="/host/game">Host GAME(test)</Link>
-
 
                     <Route exact path="/play" component={UserRoot}/> 
                     <Route exact path="/play/lobby/" component={UserRoot}/> 
@@ -98,8 +99,6 @@ class Root extends Component {
                     {/* <Route exact path="/host/lobby" components={HostRoot}/> */}
                     <Route exact path="/host/lobby/:id" component={HostLobby}/> 
                 </Router>
-
-
             </div>
         );
     }

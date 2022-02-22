@@ -22,8 +22,6 @@ class RoomsList extends React.Component {
     latestRoom: []
   };
 
-
-
   componentDidMount = () => {
     fetch(`${API_ROOT}/rooms`)
       .then(res => res.json())
@@ -128,10 +126,14 @@ const mapRooms = (rooms, handleClick, handleClickDelete) => {
     return (
       <li key={room.id}>
         
+        {/*  <p>{room.title}</p>
+         <Link className="btn btn-primary" to={`/lobby/${room.id}`} onClick={() => handleClick(room.id)}>Go to lobby</Link> 
+         <button className="btn btn-primary" onClick={() => handleClickDelete(room.id)}>Delete</button> */}
         <p onClick={() => handleClick(room.id)}>Lobby {room.id} </p>
 
         <button onClick={() => handleClickDelete(room.id)}>Delete</button>
       </li>
     );
   });
+
 };
