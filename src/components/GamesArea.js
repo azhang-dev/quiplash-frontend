@@ -2,6 +2,8 @@
 import React from 'react';
 import NewGameForm from './NewGameForm';
 
+
+
 const GamesArea = ({
   room: { id, title, games },
 }) => {
@@ -9,7 +11,7 @@ const GamesArea = ({
     <div className="gamesArea">
       <h2>{title}</h2>
       <ul>{orderedGames(games)}</ul>
-      <NewGameForm room_id={id} />
+      {/* <NewGameForm room_id={id} /> */}
     </div>
   );
 };
