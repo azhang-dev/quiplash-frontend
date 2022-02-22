@@ -2,7 +2,7 @@ import React from 'react';
 import { ActionCableConsumer } from 'react-actioncable-provider';
 import { API_ROOT } from '../constants';
 import NewRoomForm from './NewRoomForm';
-import GamesArea from './GamesArea';
+// import GamesArea from './GamesArea';
 import Cable from './Cable';
 
 const TestComponent = (props) => {
@@ -18,15 +18,15 @@ const TestComponent = (props) => {
 class RoomsList extends React.Component {
   state = {
     rooms: [],
-    activeRoom: null
+    activeRoom: null,
+    latestRoom: []
   };
-
-
 
   componentDidMount = () => {
     fetch(`${API_ROOT}/rooms`)
       .then(res => res.json())
       .then(rooms => this.setState({ rooms }));
+      console.log("ROOMS", this.state.rooms)
   };
 
   handleClick = id => {
@@ -45,8 +45,6 @@ class RoomsList extends React.Component {
     const roomsCopy = [...this.state.rooms]
     const roomUpdate = this.getRoomId(roomsCopy, id);
     this.setState({rooms: roomUpdate})
-    
-    
     
   };
 
@@ -104,15 +102,10 @@ class RoomsList extends React.Component {
         <h2>Rooms</h2>
         <ul>
           {mapRooms(rooms, this.handleClick, this.handleClickDelete)}</ul>
+
         <NewRoomForm goToLobbyPage={this.goToLobby}/>
-        {activeRoom ? (
-          <GamesArea
-            room={findActiveRoom(
-              rooms,
-              activeRoom
-            )}
-          />
-        ) : null}
+
+        
       </div>
     );
   };
@@ -133,10 +126,14 @@ const mapRooms = (rooms, handleClick, handleClickDelete) => {
     return (
       <li key={room.id}>
         
+        {/*  <p>{room.title}</p>
+         <Link className="btn btn-primary" to={`/lobby/${room.id}`} onClick={() => handleClick(room.id)}>Go to lobby</Link> 
+         <button className="btn btn-primary" onClick={() => handleClickDelete(room.id)}>Delete</button> */}
         <p onClick={() => handleClick(room.id)}>Lobby {room.id} </p>
 
         <button onClick={() => handleClickDelete(room.id)}>Delete</button>
       </li>
     );
   });
+
 };

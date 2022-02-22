@@ -16,7 +16,7 @@ class NewRoomForm extends React.Component {
     fetch(`${API_ROOT}/rooms`, {
       method: 'POST',
       headers: HEADERS,
-      // body: JSON.stringify(this.state)
+      body: JSON.stringify(this.state)
     });
     // this.setState({ title: '' });
     this.props.goToLobbyPage()
