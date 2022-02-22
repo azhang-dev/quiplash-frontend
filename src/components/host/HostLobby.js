@@ -15,22 +15,19 @@ class HostLobby extends Component {
         this.setState({currentLobby: this.props.match.params.id})
     }
 
-
-
-
-
     playersConnection(){
         let connectedPlayers = [];
         for (let i = 0; i < 8; i++){
-            let classNames = "connected-players"
-            let lobbyPlayer = this.state.lobbyPlayers[i];
-            if (!lobbyPlayer) {
-                classNames += "empty-player-slot";
-                lobbyPlayer = { id: i, name: "Join Game"}
+            let lobbyStatus = "connected-players"
+            let players = this.state.lobbyPlayers[i];
+            if (!players) {
+                lobbyStatus += "empty-player-slot";
+                players = { id: i, name: "Join Game"}
+                console.log(i);
             }
             connectedPlayers.push(
-                <div className={classNames} key={lobbyPlayer.id}>
-                    {lobbyPlayer.name}
+                <div className={lobbyStatus} key={players.id}>
+                    {players.name}
                 </div>,
             );
         }
