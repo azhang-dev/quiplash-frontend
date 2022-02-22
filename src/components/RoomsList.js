@@ -6,7 +6,14 @@ import GamesArea from './GamesArea';
 import Cable from './Cable';
 
 const TestComponent = (props) => {
-  return <h1>TEST</h1>
+  const clickHandler = () => {
+    if (props.cable){
+      console.log(props.cable.send)
+      // props.cable.send("rooms_channel", {action: "hello"})
+      props.cable.send({command: "message", identifier: '{"channel":"RoomsChannel"}',action: "test action name", data: "test data name"})
+    }
+  }
+  return <button onClick={clickHandler}>TEST</button>
 }
 class RoomsList extends React.Component {
   state = {
@@ -76,9 +83,10 @@ class RoomsList extends React.Component {
           onReceived={this.handleReceivedRoom}
           onConnected={this.handleConnectedRoom}
           onInitialized={this.handleConnectedRoom}
+          ref={ (obj) => this.actionControllerObj = obj }
           > 
           
-          <TestComponent cable={this.props}/> 
+          <TestComponent cable={this.actionControllerObj?.props?.cable}/> 
           
         </ActionCableConsumer>
         {this.state.rooms.length ? (
