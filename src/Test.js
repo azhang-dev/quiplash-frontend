@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import RoomsList from './components/RoomsList';
-import Root from './components/Root'
+import HostRoot from './components/host/HostRoot'
 
 class Test extends Component {
   render() {
     return (
       <div className="App">
-        <Root />
+        <HostRoot />
       </div>
     );
   }

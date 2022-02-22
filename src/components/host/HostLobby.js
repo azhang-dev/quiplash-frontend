@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Lobby from '../users/Lobby'
 import { API_ROOT, HEADERS } from '../../constants';
+import "./HostLobby.css";
 
 class HostLobby extends Component {
 
@@ -14,12 +15,35 @@ class HostLobby extends Component {
         this.setState({currentLobby: this.props.match.params.id})
     }
 
-    roomCode(){
-        console.log('Roomcode plzz');
+
+
+
+
+    playersConnection(){
+        let connectedPlayers = [];
+        for (let i = 0; i < 8; i++){
+            let classNames = "connected-players"
+            let lobbyPlayer = this.state.lobbyPlayers[i];
+            if (!lobbyPlayer) {
+                classNames += "empty-player-slot";
+                lobbyPlayer = { id: i, name: "Join Game"}
+            }
+            connectedPlayers.push(
+                <div className={classNames} key={lobbyPlayer.id}>
+                    {lobbyPlayer.name}
+                </div>,
+            );
+        }
+        return connectedPlayers
     }
+
+
+
+   
     startGame = () => {
         // this.props.sendData()
         console.log("BUTTON CLICKED!")
+        this.props.history.push("/hostgame")
         // if(this.state.lobbyPlayers.length < 3 ){
         //     console.log(" you need to have more players to ");
         // }else{
@@ -35,7 +59,11 @@ class HostLobby extends Component {
         return (
             <div>
                 <h1>Host lobby {this.state.currentLobby}</h1>
-                <button onClick={this.startGame}>CLICK ME :)</button>
+                <button className ="btn btn-outline-secondary" onClick={this.startGame}>Game Start</button>
+                <p>Join the game by {this.props.match.params.id} </p>
+                <div className = "connected-player">{this.playersConnection()}
+
+                </div>
             </div>
         )
     };
