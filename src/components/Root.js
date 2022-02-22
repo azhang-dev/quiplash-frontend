@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import UserRoot from './users/UserRoot'
 import Lobby from './users/Lobby'
+
 import HostLobby from './host/HostLobby'
 import HostGame from './host/HostGame'
 import HostRoot from './host/HostRoot'
+import RoomsList from './RoomsList'
+
+
 
 import Login from './Login'
 import MyProfile from './MyProfile'
@@ -12,8 +16,6 @@ import MyProfile from './MyProfile'
 import {HashRouter as Router, Route, Link} from 'react-router-dom'
 
 const BASE_URL = 'http://localhost:3000'
-
-
 
 class Root extends Component {
     //App state
@@ -87,12 +89,14 @@ class Root extends Component {
 
 
                     <Route exact path="/play" component={UserRoot}/> 
-                    <Route exact path="/play/lobby" component={UserRoot}/> 
+                    <Route exact path="/play/lobby/" component={UserRoot}/> 
                     {/* <Route exact path="/play/lobby/:id" component={Lobby}/>  */}
                     <Route exact path="/host/lobby" component={HostRoot}/>
                     <Route exact path="/host/game" component={HostGame}/>
                     <Route exact path = '/my_profile' component = {MyProfile}/>
-                    
+                    <Route exact path="/lobbies" component={RoomsList}/>
+                    {/* <Route exact path="/host/lobby" components={HostRoot}/> */}
+                    <Route exact path="/host/lobby/:id" component={HostLobby}/> 
                 </Router>
 
 
