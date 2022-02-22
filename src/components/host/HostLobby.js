@@ -35,6 +35,7 @@ class HostLobby extends Component {
         return (
             <div>
                 <h1>Host lobby {this.state.currentLobby}</h1>
+                <p>CODE to enter game {}</p>
                 <button onClick={this.startGame}>CLICK ME :)</button>
             </div>
         )
