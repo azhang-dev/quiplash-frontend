@@ -57,7 +57,7 @@ class HostLobby extends Component {
             <div>
                 <h1>Host lobby {this.state.currentLobby}</h1>
                 <button className ="btn btn-outline-secondary" onClick={this.startGame}>Game Start</button>
-                <p>Join the game by {this.props.match.params.id} </p>
+                <p>Go to ---URL--- and enter code: "{this.props.match.params.id}" to join </p>
                 <div className = "connected-player">{this.playersConnection()}
 
                 </div>
