@@ -9,7 +9,7 @@ class HostRoot extends Component {
     lobbyRoute = (id) => {
         // console.log(id)
         // console.log(id)
-        this.props.history.push(`/host/lobby${id}`)
+        this.props.history.push(`/host/lobby/${id}`)
     }
 
     render() {
