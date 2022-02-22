@@ -2,7 +2,7 @@ import React from 'react';
 import { ActionCableConsumer } from 'react-actioncable-provider';
 import { API_ROOT } from '../constants';
 import NewRoomForm from './NewRoomForm';
-// import GamesArea from './GamesArea';
+import GamesArea from './GamesArea';
 import Cable from './Cable';
 
 const TestComponent = (props) => {
@@ -58,15 +58,21 @@ class RoomsList extends React.Component {
     console.log("handle connected",args)
   }
 
+
+// !!!!!!!!!!!
   handleReceivedGame = response => {
     const { game } = response;
+    console.log("RESPONSE FROM HANDLE RECEIVED GAME!!", game)
     const rooms = [...this.state.rooms];
     const room = rooms.find(
       room => room.id === game.room_id
     );
+    console.log("THIS IS THE ROOM???", room)
     room.games = [...room.games, game];
     this.setState({ rooms });
   };
+// !!!!!!!!!!!!
+
 
   goToLobby = () => {
     let lastIndex = this.state.rooms[this.state.rooms.length - 1]
@@ -92,19 +98,31 @@ class RoomsList extends React.Component {
           
         </ActionCableConsumer>
         {this.state.rooms.length ? (
+
+          // !!!!!!!!!!!!!!!!!!!
           <Cable
             rooms={rooms}
             handleReceivedGame={this.handleReceivedGame}
           >
 
-            </Cable>
+          </Cable>
         ) : null}
+          {/* !!!!!!!!!!!!!!!!!!!!!!!!!! */}
+
+
         <h2>Rooms</h2>
         <ul>
           {mapRooms(rooms, this.handleClick, this.handleClickDelete)}</ul>
 
         <NewRoomForm goToLobbyPage={this.goToLobby}/>
 
+        {activeRoom 
+        ? 
+        (<GamesArea
+            room={ findActiveRoom( rooms, activeRoom ) }
+          />
+        ) 
+        : null}
         
       </div>
     );

@@ -18,7 +18,7 @@ class NewGameForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
+    console.log(e)
     fetch(`${API_ROOT}/games`, {
       method: 'POST',
       headers: HEADERS,
@@ -26,6 +26,9 @@ class NewGameForm extends React.Component {
     });
     this.setState({ text: '' });
   };
+// NOTE: when starting a game, we need to have the room_id set into the state and send the body JSON (create game) to the backend.
+
+
 
   render = () => {
     return (

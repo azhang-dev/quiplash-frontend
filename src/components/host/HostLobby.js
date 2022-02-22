@@ -13,6 +13,7 @@ class HostLobby extends Component {
 
     componentDidMount(){
         this.setState({currentLobby: this.props.match.params.id})
+        console.log("")
     }
 
 
