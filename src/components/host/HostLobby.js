@@ -84,7 +84,7 @@ class HostLobby extends Component {
        
         return (
             <div>
-                <h1>Host lobby {this.state.currentLobby}</h1>
+                <h2>Host lobby {this.state.currentLobby}</h2>
                 {
                 this.state.currentUser.id === this.state.hostID
                 ?

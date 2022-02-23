@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import UserRoot from './users/UserRoot'
+import "./Root.css";
+
 
 import HostLobby from './host/HostLobby'
 import HostGame from './host/HostGame'
@@ -52,19 +54,18 @@ class Root extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
               <Router>
                 <header>
-                  <nav>
-                    <div class="grid grid-cols-3 divide-y" className ="login-container" >
+                  <nav className="navbar">
                         { // This is a tenary expression that displays a login/sign up link if !currentUser
                         // or a logout/myProfile link if currentUser === true
                         this.state.currentUser !== undefined
                         ?
                         (
                             <ul>
-                            <li className="nav-links"> G'day {this.state.currentUser.name} |</li>
-                            <li><Link to = 'my_profile' className="nav-links">My Profile</Link></li>
+                            <li className="nav-links"> G'day {this.state.currentUser.name} </li>
+                            <li><Link to = 'my_profile' className="nav-links">My Profile</Link> </li>
                             <li><Link onClick = {this.handleLogout} to = '/' className="nav-links">Logout</Link></li>
                             </ul>
                         )
@@ -81,12 +82,11 @@ class Root extends Component {
                         render={(props) => <Login setCurrentUser = {this.setCurrentUser}{...props}/>}
                         />
                         <Route exact path="/signup" component={SignUp}/> 
-                    </div>
                   </nav>
                 </header>
                 <hr/>
                     
-                    <h1>TESTING PAGE: ROOT</h1>
+                    <h1>Quiplash Clone</h1>
                     <Link to="/">GameStart</Link> |&nbsp; 
                     <Link to="/play">Root player page</Link> |&nbsp; 
                     <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp; 
@@ -94,6 +94,7 @@ class Root extends Component {
                     <Link to="/host/game">Host GAME(test)</Link>
                     <Link to="/user/join/:id">User Join Game(test)</Link>
 
+                    <div className ="body-content">
                     <Route exact path="/play" component={UserRoot}/> 
                     <Route exact path="/play/lobby/" component={UserRoot}/> 
                     {/* <Route exact path="/play/lobby/:id" component={Lobby}/>  */}
@@ -103,7 +104,8 @@ class Root extends Component {
                     <Route exact path="/lobbies" component={RoomsList }/>
                     {/* <Route exact path="/host/lobby" components={HostRoot}/> */}
                     <Route exact path="/host/lobby/:id" component={HostLobby}/> 
-                    <Route exact path="/user/join/:id" component={JoinGame}/> 
+                    <Route exact path="/user/join/:id" component={()=> <JoinGame userName={this.state.currentUser.name} />} />
+                    </div>
                 </Router>
             </div>
         );
