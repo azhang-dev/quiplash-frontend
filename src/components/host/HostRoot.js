@@ -6,16 +6,20 @@ import {HashRouter as Router, Route} from 'react-router-dom'
 
 class HostRoot extends Component {
 
-    lobbyRoute = (id) => {
-        // console.log(id)
-        // console.log(id)
-        this.props.history.push(`/host/lobby/${id}`)
+
+
+    lobbyRoute = (res) => {
+        console.log("THIS IS OUR RESPONSE!!!!!!!!!!!!!!!!!!",res)
+        if (res.length === 0){
+
+        } else {
+            this.props.history.push(`/host/lobby/${res}`)
+        }
     }
 
     render() {
         return (
             <div>
-                <h1>Quiplash Clone</h1>
                 <RoomsList routeToLobby={this.lobbyRoute}/>
             </div>
         );

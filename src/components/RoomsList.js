@@ -6,6 +6,7 @@ import GamesArea from './GamesArea';
 import Cable from './Cable';
 import axios from 'axios';
 
+
 const TestComponent = (props) => {
   const clickHandler = () => {
     if (props.cable){
@@ -34,7 +35,7 @@ class RoomsList extends React.Component {
   };
 
   handleClick = id => {
-    console.log('handleclick', id);
+    // console.log('handleclick', id);
     this.setState({ activeRoom: id });
   };
 
@@ -57,9 +58,17 @@ class RoomsList extends React.Component {
 }
 
   handleClickDelete = id => {
-    fetch(`${API_ROOT}/rooms/${id}`,{
-      method: "Delete",
+    // fetch(`${API_ROOT}/rooms/${id}`,{
+    //   method: "Delete",
+    // });
+    let token = "Bearer " + localStorage.getItem("jwt");
+
+    const res = axios.delete( `${API_ROOT}/rooms/${id}`, 
+      {headers: {  'Authorization' : token } })
+    .then(res => {
     })
+    .catch(err => console.warn(err));
+
     const roomsCopy = [...this.state.rooms]
     const roomUpdate = this.getRoomId(roomsCopy, id);
     this.setState({rooms: roomUpdate})
@@ -72,9 +81,11 @@ class RoomsList extends React.Component {
     this.setState({
       rooms: [...this.state.rooms, room]
     });
+    this.setState({latestRoom: room}, () => {console.log("THIS IS THE LATEST ROOM",this.state.latestRoom)})
   };
+
   handleConnectedRoom = (...args) => {
-    console.log("handle connected",args)
+    // console.log("handle connected",args)
   }
 
 
@@ -82,23 +93,27 @@ class RoomsList extends React.Component {
   handleReceivedGame = response => {
     console.log("HANDLING RECEIVED!", response)
     const { game } = response;
-    console.log("RESPONSE FROM HANDLE RECEIVED GAME!!", game)
+    // console.log("RESPONSE FROM HANDLE RECEIVED GAME!!", game)
     const rooms = [...this.state.rooms];
     const room = rooms.find(
       room => room.id === game.room_id
-    );
+      );
     console.log("THIS IS THE ROOM???", room)
     room.games = [...room.games, game];
     this.setState({ rooms });
+    
+
+
   };
 // !!!!!!!!!!!!
 
 
   goToLobby = () => {
-    let lastIndex = this.state.rooms[this.state.rooms.length - 1]
-    console.log(lastIndex.id )
-    let newIndex = lastIndex.id + 1
-    this.props.routeToLobby(newIndex)
+    // let lastIndex = this.state.rooms[this.state.rooms.length - 1]
+    // console.log(lastIndex.id )
+    // let newIndex = lastIndex.id + 1
+
+    this.props.routeToLobby(this.state.latestRoom)
   }
 
   mapRooms = (rooms, handleClick, handleClickDelete) => {
@@ -110,7 +125,13 @@ class RoomsList extends React.Component {
            <Link className="btn btn-primary" to={`/lobby/${room.id}`} onClick={() => handleClick(room.id)}>Go to lobby</Link> 
            <button className="btn btn-primary" onClick={() => handleClickDelete(room.id)}>Delete</button> */}
           <p onClick={() => handleClick(room.id)}>Lobby {room.id} </p>
+
+
+
           <button onClick={() => this.props.routeToLobby(room.id)}>Join</button>
+
+
+
           <button onClick={() => handleClickDelete(room.id)}>Delete</button>
         </li>
       );
@@ -157,7 +178,9 @@ class RoomsList extends React.Component {
         <ul>
           {this.mapRooms(rooms, this.handleClick, this.handleClickDelete)}</ul>
 
-        <NewRoomForm goToLobbyPage={this.goToLobby}/>
+        <NewRoomForm 
+        // goToLobbyPage={this.goToLobby}
+        />
 
         {activeRoom 
         ? 

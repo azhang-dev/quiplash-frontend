@@ -13,7 +13,7 @@ class HostGame extends React.Component {
             case "show-instruction":
                 return(
                     <div>
-                        <h1>put silly answers on your device </h1>
+                        <h2>put silly answers on your device </h2>
                         
                     </div>
                 )

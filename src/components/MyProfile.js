@@ -27,9 +27,11 @@ export default class MyProfile extends React.Component {
 
   render(){
     return(
-      <div>
-        <h1>Hello {this.state.currentUser.name}</h1>
-        <h4>Your email is {this.state.currentUser.email}</h4>
+      <div className="myProfile">
+        <div className="myProfileDetail">
+        <h2>Hello {this.state.currentUser.name}<br/>
+        Your email is {this.state.currentUser.email}</h2>
+        </div>
       </div>
     );
   }//render

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { API_ROOT, HEADERS } from '../../constants';
 import "./HostLobby.css";
 import axios from 'axios';
+import { ActionCableConsumer } from 'react-actioncable-provider';
 import NewQuestionForm from './NewQuestionForm'
 
 class HostLobby extends Component {
@@ -9,12 +10,13 @@ class HostLobby extends Component {
     state= {
         lobbyPlayers: [],
         currentUsers: [],
-        currentLobby: "",
+        currentLobby: 0,
         currentUser: "",
         hostID: ""
     };
 
     componentDidMount(){
+        console.log("HOSTLOBBY HAS BEEN MOUNTED")
         this.setCurrentUser()
         
         this.getCurrentLobby()
@@ -65,7 +67,7 @@ class HostLobby extends Component {
             if (!players) {
                 lobbyStatus += "empty-player-slot";
                 players = { id: i, name: "Join Game"}
-                console.log(i);
+                // console.log(i);
             }
             connectedPlayers.push(
                 <div className={lobbyStatus} key={players.id}>
@@ -76,7 +78,17 @@ class HostLobby extends Component {
         return connectedPlayers
     }
 
-
+    handleReceivedRoom = (res) => {
+        let room = this.state.currentLobby
+        console.log("ROOM", room)
+        console.log("RECIEVED", res)
+        console.log("RES.GAME", res.game.room_id)
+        if (res.game.room_id === parseInt(room)){
+            console.log("THIS INFORMATION IS RELEVANT FOR ROOM:", room)
+        } else {
+            console.log("THIS INFORMATION IS NOT RELEVANT FOR OUR ROOM")
+        }
+    }
 
    
     startGame = () => {
@@ -98,6 +110,16 @@ class HostLobby extends Component {
         return (
             <div>
                 <h1>Host lobby {this.state.currentLobby.id}</h1>
+
+                <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
+
+                channel={{ channel: 'GamesChannel', room: this.props.match.params.id }}
+                onReceived={this.handleReceivedRoom}
+                >
+
+                </ActionCableConsumer>
+
+                <h2>Host lobby {this.state.currentLobby}</h2>
                 {
                 this.state.currentUser.id === this.state.currentLobby.host_id
                 ?

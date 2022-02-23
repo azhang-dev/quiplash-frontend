@@ -5,8 +5,8 @@ import RoomsList from '../RoomsList';
 
 class JoinGame extends Component {
     state = {
-        users: [],
-        roomsList: null
+        game: false,
+      
     }
     componentDidMount(){
         // this.setState({users: this..name})
@@ -17,15 +17,20 @@ class JoinGame extends Component {
     //     console.log('UNMOUNTED!!')
     // }
 
-
-    roomCode(e){
-        console.log('roomcode', e);
-        // this.setState({ roomCode: e.target.value})
+    getStatus() {
+        if (this.state.game === true){
+            console.log('YO')
+        } else {
+            console.log('game')
+        }
     }
 
-    handleClick(){
-        console.log('clicked')
+    startGame = () => {
+        console.log('game started')
+        this.setState({game:true})
     }
+
+   
 
     render() {
 
@@ -33,11 +38,7 @@ class JoinGame extends Component {
         return (
             <div>
                 <h2>Lobby page</h2>
-                <label calssName="join-game"> Room Code </label>
-                    <input text="text" onChange={this.roomCode}/>
-                <p>Player {this.props.userName} </p> 
-                <button onClick ={this.handleClick}>Join Game</button>
-                {/* <RoomsList /> */}
+               
 
 
               
