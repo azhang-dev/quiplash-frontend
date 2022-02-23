@@ -68,6 +68,9 @@ class HostLobby extends Component {
         // clearInterval(this.fetchLobbyUsers())
     }
 
+
+    
+
     setCurrentUser = () => {
         let token = "Bearer " + localStorage.getItem("jwt");
         const res = axios.get( `${API_ROOT}/users/current`, {
