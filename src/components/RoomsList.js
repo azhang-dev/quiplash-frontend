@@ -65,6 +65,7 @@ class RoomsList extends React.Component {
   };
 
   handleReceivedRoom = response => {
+    console.log("A NEW ROOM HAS BEEN CREATED", response)
     const { room } = response;
     this.setState({
       rooms: [...this.state.rooms, room]
@@ -77,6 +78,7 @@ class RoomsList extends React.Component {
 
 // !!!!!!!!!!!
   handleReceivedGame = response => {
+    console.log("HANDLING RECEIVED!", response)
     const { game } = response;
     console.log("RESPONSE FROM HANDLE RECEIVED GAME!!", game)
     const rooms = [...this.state.rooms];
@@ -119,7 +121,10 @@ class RoomsList extends React.Component {
     const { rooms, activeRoom } = this.state;
     return (
       <div className="roomsList">
-        <ActionCableConsumer
+
+
+        <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
+
           channel={{ channel: 'RoomsChannel' }}
           onReceived={this.handleReceivedRoom}
           onConnected={this.handleConnectedRoom}
@@ -130,6 +135,9 @@ class RoomsList extends React.Component {
           <TestComponent cable={this.actionControllerObj?.props?.cable}/> 
           
         </ActionCableConsumer>
+
+
+        
         {this.state.rooms.length ? (
 
           // !!!!!!!!!!!!!!!!!!!
