@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
+import { API_ROOT } from '../constants';
 
-const BASE_URL = 'http://localhost:3000'
+// const API_ROOT = 'http://localhost:3000'
 
 export default class MyProfile extends React.Component {
   state = {
@@ -13,7 +14,7 @@ export default class MyProfile extends React.Component {
 
   componentDidMount(){
     let token = "Bearer " + localStorage.getItem("jwt");
-    axios.get(`${BASE_URL}/users/current`, {
+    axios.get(`${API_ROOT}/users/current`, {
       headers: {
         'Authorization': token
       }
