@@ -52,7 +52,7 @@ class HostLobby extends Component {
         const res = axios.put(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
         .then(res => {
             console.log("update", res.data)
-            this.getCurrentLobby()
+            
         })
         .catch(err => console.warn(err));
         
@@ -110,6 +110,7 @@ class HostLobby extends Component {
         return (
             <div>
                 <h1>Host lobby {this.state.currentLobby.id}</h1>
+                <button onClick = {this.updateUsersInRoom}>UpdateUsersInRoom</button>
 
                 <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
 
@@ -119,7 +120,7 @@ class HostLobby extends Component {
 
                 </ActionCableConsumer>
 
-                <h2>Host lobby {this.state.currentLobby}</h2>
+                <h2>Host lobby {this.state.currentLobby.id}</h2>
                 {
                 this.state.currentUser.id === this.state.currentLobby.host_id
                 ?
@@ -131,7 +132,6 @@ class HostLobby extends Component {
                 <p>Go to ---URL--- and enter code: "{this.props.match.params.id}" to join </p>
                 <div className = "connected-player">{this.playersConnection()}
 
-                <button onClick = {this.updateUsersInRoom}>UpdateUsersInRoom</button>
 
                 </div>
             </div>
