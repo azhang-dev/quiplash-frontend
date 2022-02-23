@@ -16,7 +16,7 @@ class HostLobby extends Component {
 
     componentDidMount(){
         this.setCurrentUser()
-        this.updateUsersInRoom()
+        
         this.getCurrentLobby()
         console.log("this.state", this.state)
     }
@@ -31,6 +31,7 @@ class HostLobby extends Component {
         .then(res => {
           this.setState({currentUser: res.data})
           console.log("This.state", this.state)
+          
         })
         .catch(err => console.warn(err));
       }
@@ -49,6 +50,7 @@ class HostLobby extends Component {
         const res = axios.put(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
         .then(res => {
             console.log("update", res.data)
+            this.getCurrentLobby()
         })
         .catch(err => console.warn(err));
         
@@ -106,6 +108,8 @@ class HostLobby extends Component {
                 }
                 <p>Go to ---URL--- and enter code: "{this.props.match.params.id}" to join </p>
                 <div className = "connected-player">{this.playersConnection()}
+
+                <button onClick = {this.updateUsersInRoom}>UpdateUsersInRoom</button>
 
                 </div>
             </div>
