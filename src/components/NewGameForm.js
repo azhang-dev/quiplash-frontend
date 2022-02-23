@@ -5,8 +5,13 @@ import { API_ROOT, HEADERS } from '../constants';
 class NewGameForm extends React.Component {
   state = {
     text: '',
-    room_id: this.props.room_id
+    room_id: 0,
   };
+
+  componentDidMount(){
+    // console.log('MOUNTED GAME FORM',this.props.room_id)
+    this.setState({room_id: this.props.room_id})
+  }
 
   ReceiveProps = nextProps => {
     this.setState({ room_id: nextProps.room_id });

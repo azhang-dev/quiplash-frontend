@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import RoomsList from '../RoomsList';
 
 
 
 class JoinGame extends Component {
     state = {
         game: false,
-        // users: []
+        users: []
     }
     componentDidMount(){
-        // this.setState({users: this.props.match.params.id})
+        // this.setState({users: this..name})
         console.log('MOUNTED!!')
         // this.timer = setInterval(()=> this.getStatus(),1000)
     }
@@ -42,6 +43,7 @@ class JoinGame extends Component {
                 <label calssName="join-game"> Room Code </label>
                     <input text="text" onChange={this.roomCode}/>
                 <p>Player  </p> 
+                <RoomsList />
                 <button>Join Game</button>
 
 

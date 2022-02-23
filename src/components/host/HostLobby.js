@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { API_ROOT, HEADERS } from '../../constants';
 import "./HostLobby.css";
+import axios from 'axios';
 
 class HostLobby extends Component {
 
@@ -8,12 +9,27 @@ class HostLobby extends Component {
         lobbyPlayers: [],
         currentUsers: [],
         currentLobby: "",
+        host: "",
     };
 
     componentDidMount(){
         this.setState({currentLobby: this.props.match.params.id})
         console.log("")
     }
+
+    setHost = () => {
+        let token = "Bearer " + localStorage.getItem("jwt");
+        const res = axios.get( `${API_ROOT}/users/current`, {
+          headers: {
+            'Authorization' : token
+          }
+        })
+        .then(res => {
+          this.setState({host: res.data})
+          console.log("This.state", this.state)
+        })
+        .catch(err => console.warn(err));
+      }
 
     playersConnection(){
         let connectedPlayers = [];

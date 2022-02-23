@@ -4,6 +4,7 @@ import { API_ROOT } from '../constants';
 import NewRoomForm from './NewRoomForm';
 import GamesArea from './GamesArea';
 import Cable from './Cable';
+import axios from 'axios';
 
 const TestComponent = (props) => {
   const clickHandler = () => {
@@ -19,10 +20,13 @@ class RoomsList extends React.Component {
   state = {
     rooms: [],
     activeRoom: null,
-    latestRoom: []
+    latestRoom: [],
+    currentUser: undefined
   };
 
   componentDidMount = () => {
+    this.setCurrentUser()
+    console.log("roomListProps: ",this.props)
     fetch(`${API_ROOT}/rooms`)
       .then(res => res.json())
       .then(rooms => this.setState({ rooms }));
@@ -38,6 +42,20 @@ class RoomsList extends React.Component {
     return roomsArray.filter(el => room_id !== el.id)
  }
 
+ setCurrentUser = () => {
+  let token = "Bearer " + localStorage.getItem("jwt");
+  const res = axios.get( `${API_ROOT}/users/current`, {
+    headers: {
+      'Authorization' : token
+    }
+  })
+  .then(res => {
+    this.setState({currentUser: res.data})
+    console.log("This.state", this.state)
+  })
+  .catch(err => console.warn(err));
+}
+
   handleClickDelete = id => {
     fetch(`${API_ROOT}/rooms/${id}`,{
       method: "Delete",
@@ -49,6 +67,7 @@ class RoomsList extends React.Component {
   };
 
   handleReceivedRoom = response => {
+    console.log("A NEW ROOM HAS BEEN CREATED", response)
     const { room } = response;
     this.setState({
       rooms: [...this.state.rooms, room]
@@ -61,6 +80,7 @@ class RoomsList extends React.Component {
 
 // !!!!!!!!!!!
   handleReceivedGame = response => {
+    console.log("HANDLING RECEIVED!", response)
     const { game } = response;
     console.log("RESPONSE FROM HANDLE RECEIVED GAME!!", game)
     const rooms = [...this.state.rooms];
@@ -103,7 +123,10 @@ class RoomsList extends React.Component {
     const { rooms, activeRoom } = this.state;
     return (
       <div className="roomsList">
-        <ActionCableConsumer
+
+
+        <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
+
           channel={{ channel: 'RoomsChannel' }}
           onReceived={this.handleReceivedRoom}
           onConnected={this.handleConnectedRoom}
@@ -114,6 +137,9 @@ class RoomsList extends React.Component {
           <TestComponent cable={this.actionControllerObj?.props?.cable}/> 
           
         </ActionCableConsumer>
+
+
+        
         {this.state.rooms.length ? (
 
           // !!!!!!!!!!!!!!!!!!!

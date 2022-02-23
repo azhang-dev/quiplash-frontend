@@ -1,15 +1,35 @@
 
 import React from 'react';
 import { API_ROOT, HEADERS } from '../constants';
+import axios from 'axios';
 
 class NewRoomForm extends React.Component {
-  // state = {
-  //   title: ''
-  // };
+  state = {
+    host_id: "",
+  };
 
   // handleChange = e => {
   //   this.setState({ title: e.target.value });
   // };
+
+  componentDidMount() {
+    this.setCurrentUser();
+    console.log("Checking props", this.props)
+  }
+
+  setCurrentUser = () => {
+    let token = "Bearer " + localStorage.getItem("jwt");
+    const res = axios.get( `${API_ROOT}/users/current`, {
+      headers: {
+        'Authorization' : token
+      }
+    })
+    .then(res => {
+      this.setState({currentUser: res.data})
+      console.log("This.state", this.state)
+    })
+    .catch(err => console.warn(err));
+  }
 
   handleSubmit = e => {
     e.preventDefault()
