@@ -23,12 +23,10 @@ class HostLobby extends Component {
         
         this.getCurrentLobby()
         console.log("this.state", this.state)
-        setTimeout(this.fetchLobbyUsers, 4000)
-
-        if (this.state.currentUsers.length === 8){
-            
-        }
+        setInterval(this.fetchLobbyUsers, 4000)
     }
+
+
 
     fetchLobbyUsers = () => {
         // console.log("FETCHING")
@@ -47,7 +45,6 @@ class HostLobby extends Component {
             // console.log(this.state.currentUsers)
         })
         .catch(err => console.error(err));
-        setTimeout(this.fetchLobbyUsers, 4000)
     }
 
     setCurrentUser = () => {
@@ -118,7 +115,6 @@ class HostLobby extends Component {
     startGame = () => {
         // this.props.sendData()
         console.log("BUTTON CLICKED!")
-        this.setState({gameStart:true})
         // this.props.history.push("/hostgame")
         // if(this.state.lobbyPlayers.length < 3 ){
         //     console.log(" you need to have more players to ");
