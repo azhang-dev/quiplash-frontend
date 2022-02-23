@@ -13,7 +13,7 @@ class HostRoot extends Component {
         if (res.length === 0){
 
         } else {
-            this.props.history.push(`/host/lobby/${res.id}`)
+            this.props.history.push(`/host/lobby/${res}`)
         }
     }
 

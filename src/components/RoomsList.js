@@ -120,7 +120,7 @@ class RoomsList extends React.Component {
 
 
 
-          <button onClick={() => this.props.routeToLobby(this.state.latestRoom)}>Join</button>
+          <button onClick={() => this.props.routeToLobby(room.id)}>Join</button>
 
 
 
