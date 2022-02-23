@@ -5,7 +5,7 @@ import {Route, Link, HashRouter as Router} from 'react-router-dom';
 import Login from './components/Login'
 import MyProfile from './components/MyProfile'
 import { API_ROOT } from './constants';
-// const Base_URL = 'http://localhost:3000'
+// const API_ROOT = 'http://localhost:3000'
 
 
 export default class App extends React.Component{

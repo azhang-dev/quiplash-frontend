@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Lobby from '../users/Lobby'
 import { API_ROOT, HEADERS } from '../../constants';
 import "./HostLobby.css";
 import axios from 'axios';
@@ -11,15 +10,18 @@ class HostLobby extends Component {
         lobbyPlayers: [],
         currentUsers: [],
         currentLobby: "",
-        host: "",
+        currentUser: "",
+        hostID: ""
     };
 
     componentDidMount(){
+        this.setCurrentUser()
         this.setState({currentLobby: this.props.match.params.id})
+        this.getHostID()
         console.log("")
     }
 
-    setHost = () => {
+    setCurrentUser = () => {
         let token = "Bearer " + localStorage.getItem("jwt");
         const res = axios.get( `${API_ROOT}/users/current`, {
           headers: {
@@ -27,11 +29,20 @@ class HostLobby extends Component {
           }
         })
         .then(res => {
-          this.setState({host: res.data})
+          this.setState({currentUser: res.data})
           console.log("This.state", this.state)
         })
         .catch(err => console.warn(err));
       }
+
+    getHostID = () => {
+        const res = axios.get( `${API_ROOT}/rooms/${this.props.match.params.id}`)
+        .then(res => {
+            this.setState({hostID: res.data.host_id})
+            console.log("getHostID:", res.data.host_id)
+        })
+        .catch(err => console.warn(err));
+    }
 
     playersConnection(){
         let connectedPlayers = [];
@@ -74,8 +85,14 @@ class HostLobby extends Component {
         return (
             <div>
                 <h1>Host lobby {this.state.currentLobby}</h1>
-                <NewQuestionForm />
+                {
+                this.state.currentUser.id === this.state.hostID
+                ?
+                //<NewQuestionForm />
                 <button className ="btn btn-outline-secondary" onClick={this.startGame}>Game Start</button>
+                :
+                <p>Waiting for game to start...</p>
+                }
                 <p>Go to ---URL--- and enter code: "{this.props.match.params.id}" to join </p>
                 <div className = "connected-player">{this.playersConnection()}
 
