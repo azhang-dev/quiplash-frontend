@@ -33,7 +33,7 @@ class JoinGame extends Component {
         return (
             <div>
                 <h2>Lobby page</h2>
-                <label calssName="join-game"> Room Code </label>
+                <label className="join-game"> Room Code </label>
                     <input text="text" onChange={this.roomCode}/>
                 <p>Player {this.props.userName} </p> 
                 <button onClick ={this.handleClick}>Join Game</button>

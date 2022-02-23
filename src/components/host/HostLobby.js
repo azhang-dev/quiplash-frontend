@@ -12,8 +12,10 @@ class HostLobby extends Component {
         currentUsers: [],
         currentLobby: 0,
         currentUser: "",
-        hostID: ""
+        hostID: "",
+        gameStart: false
     };
+
 
     componentDidMount(){
         console.log("HOSTLOBBY HAS BEEN MOUNTED")
@@ -21,6 +23,31 @@ class HostLobby extends Component {
         
         this.getCurrentLobby()
         console.log("this.state", this.state)
+        setTimeout(this.fetchLobbyUsers, 4000)
+
+        if (this.state.currentUsers.length === 8){
+            
+        }
+    }
+
+    fetchLobbyUsers = () => {
+        // console.log("FETCHING")
+        let token = "Bearer " + localStorage.getItem("jwt");
+        const res = axios.get(`${API_ROOT}/rooms/${this.props.match.params.id}`, {
+            headers: {
+                'Authorization' : token
+            }
+        })
+        .then(res => {
+            // console.log(this.state.currentUsers)
+            if (this.state.currentUsers !== res.data.users){
+                this.setState({currentUsers: res.data.users})
+                this.playersConnection()
+            }
+            // console.log(this.state.currentUsers)
+        })
+        .catch(err => console.error(err));
+        setTimeout(this.fetchLobbyUsers, 4000)
     }
 
     setCurrentUser = () => {
@@ -48,22 +75,19 @@ class HostLobby extends Component {
     }
 
     updateUsersInRoom = () => {
-
         const res = axios.put(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
         .then(res => {
             console.log("update", res.data)
             
         })
         .catch(err => console.warn(err));
-        
-
     }
 
     playersConnection(){
         let connectedPlayers = [];
         for (let i = 0; i < 8; i++){
             let lobbyStatus = "connected-players"
-            let players = this.state.lobbyPlayers[i];
+            let players = this.state.currentUsers[i];
             if (!players) {
                 lobbyStatus += "empty-player-slot";
                 players = { id: i, name: "Join Game"}
@@ -94,7 +118,8 @@ class HostLobby extends Component {
     startGame = () => {
         // this.props.sendData()
         console.log("BUTTON CLICKED!")
-        this.props.history.push("/hostgame")
+        this.setState({gameStart:true})
+        // this.props.history.push("/hostgame")
         // if(this.state.lobbyPlayers.length < 3 ){
         //     console.log(" you need to have more players to ");
         // }else{
@@ -127,7 +152,11 @@ class HostLobby extends Component {
                 //<NewQuestionForm />
                 <button className ="btn btn-outline-secondary" onClick={this.startGame}>Game Start</button>
                 :
-                <p>Waiting for game to start...</p>
+                    this.state.gameStart
+                    ?
+                    <p>GAME STARTED</p>
+                    :
+                    <p>Waiting for game to start...</p>
                 }
                 <p>Go to ---URL--- and enter code: "{this.props.match.params.id}" to join </p>
                 <div className = "connected-player">{this.playersConnection()}
