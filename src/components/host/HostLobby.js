@@ -3,6 +3,7 @@ import Lobby from '../users/Lobby'
 import { API_ROOT, HEADERS } from '../../constants';
 import "./HostLobby.css";
 import axios from 'axios';
+import NewQuestionForm from './NewQuestionForm'
 
 class HostLobby extends Component {
 
@@ -88,6 +89,7 @@ class HostLobby extends Component {
                 {
                 this.state.currentUser.id === this.state.hostID
                 ?
+                //<NewQuestionForm />
                 <button className ="btn btn-outline-secondary" onClick={this.startGame}>Game Start</button>
                 :
                 <p>Waiting for game to start...</p>

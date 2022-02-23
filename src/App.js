@@ -4,8 +4,8 @@ import {Route, Link, HashRouter as Router} from 'react-router-dom';
 
 import Login from './components/Login'
 import MyProfile from './components/MyProfile'
-
-const BASE_URL = 'http://localhost:3000'
+import { API_ROOT } from './constants';
+// const API_ROOT = 'http://localhost:3000'
 
 
 export default class App extends React.Component{
@@ -23,7 +23,7 @@ export default class App extends React.Component{
   //function to set the state to the current logged in user
   setCurrentUser = () => {
     let token = "Bearer " + localStorage.getItem("jwt");
-    const res = axios.get( `${BASE_URL}/users/current`, {
+    const res = axios.get( `${API_ROOT}/users/current`, {
       headers: {
         'Authorization' : token
       }
