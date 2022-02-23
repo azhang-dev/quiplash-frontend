@@ -3,13 +3,18 @@ import React from 'react';
 import { API_ROOT, HEADERS } from '../constants';
 
 class NewRoomForm extends React.Component {
-  // state = {
-  //   title: ''
-  // };
+  state = {
+    host_id: ''
+  };
 
   // handleChange = e => {
   //   this.setState({ title: e.target.value });
   // };
+
+  componentDidMount(){
+    this.setState({host_id: this.props.user_id}, () => console.log(this.state.host_id))
+    
+  }
 
   handleSubmit = e => {
     e.preventDefault()
