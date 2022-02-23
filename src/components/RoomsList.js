@@ -86,6 +86,7 @@ class RoomsList extends React.Component {
 
   handleConnectedRoom = (...args) => {
     // console.log("handle connected",args)
+    console.log("CONNECTED")
   }
 
 

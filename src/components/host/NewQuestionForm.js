@@ -15,13 +15,16 @@ export default class NewQuestionForm extends React.Component {
         
     }
 
-    defaultQuestions = () => {
+    loadDefaultQuestions = () => {
         console.log("Default question button clicked")
         const res = axios.get( `${API_ROOT}/questions`)
         .then(res => {
             console.log('fetched default questions',res)
-            
         });
+    }
+
+    customQuestions = () => {
+
     }
 
     render() {
@@ -29,8 +32,10 @@ export default class NewQuestionForm extends React.Component {
         return(
             <div>
                 <h1>Pick your questions:</h1>
-                <button onClick = {this.defaultQuestions}className ="btn btn-outline-secondary" >Default Questions</button>
+                <button onClick = {this.laodDefaultQuestions}className ="btn btn-outline-secondary" >Default Questions</button>
                 <button className ="btn btn-outline-secondary" >Custom Questions</button>
+            
+                
             </div>
 
         )

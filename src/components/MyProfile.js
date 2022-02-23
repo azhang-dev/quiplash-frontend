@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { API_ROOT } from '../constants';
+import NewQuestionbankForm from './NewQuestionbankForm';
 
 // const API_ROOT = 'http://localhost:3000'
 
@@ -32,6 +33,8 @@ export default class MyProfile extends React.Component {
         <h2>Hello {this.state.currentUser.name}<br/>
         Your email is {this.state.currentUser.email}</h2>
         </div>
+
+        <NewQuestionbankForm />
       </div>
     );
   }//render

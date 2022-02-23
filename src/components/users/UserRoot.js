@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Lobby from './JoinGame'
+import Lobby from './Lobby'
 import CurrentQuestion from './CurrentQuestion'
 import CurrentAnswer from './CurrentAnswer'
 
