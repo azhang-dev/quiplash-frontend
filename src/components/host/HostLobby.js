@@ -72,6 +72,17 @@ class HostLobby extends Component {
        
         return (
             <div>
+
+                {/* <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
+
+                channel={{ channel: 'RoomsChannel' }}
+                onReceived={this.handleReceivedRoom}
+                >
+
+                </ActionCableConsumer> */}
+
+
+
                 <h1>Host lobby {this.state.currentLobby}</h1>
                 <button className ="btn btn-outline-secondary" onClick={this.startGame}>Game Start</button>
                 <p>Go to ---URL--- and enter code: "{this.props.match.params.id}" to join </p>

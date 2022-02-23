@@ -24,7 +24,7 @@ class NewRoomForm extends React.Component {
       }
     })
     .then(res => {
-      this.setState({currentUser: res.data})
+      this.setState({host_id: res.data.id})
       console.log("This.state", this.state)
     })
     .catch(err => console.warn(err));
@@ -38,7 +38,12 @@ class NewRoomForm extends React.Component {
       body: JSON.stringify(this.state)
     });
     // this.setState({ title: '' });
-    this.props.goToLobbyPage()
+
+
+    // this.props.goToLobbyPage()
+
+
+    
   };
 
   render = () => {
