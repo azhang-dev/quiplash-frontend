@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
+import { ActionCableConsumer } from 'react-actioncable-provider';
+import axios from 'axios';
+import { API_ROOT } from '../../constants';
 
-
-export default class Login extends React.Component {
+export default class NewQuestionForm extends React.Component {
 
     state = {
-        defaultQuestions: false,
+        defaultQuestions: [],
         customQuestions: [],
 
     }
+    componentDidMount(){
+        console.log("mounted")
+        
+    }
 
-    handleClick = (ev) => {
-
+    defaultQuestions = () => {
+        console.log("Default question button clicked")
+        const res = axios.get( `${API_ROOT}/questions`)
+        .then(res => {
+            console.log('fetched default questions',res)
+            
+        });
     }
 
     render() {
@@ -18,8 +29,8 @@ export default class Login extends React.Component {
         return(
             <div>
                 <h1>Pick your questions:</h1>
-                <button>Default Questions</button>
-                <button>Custom Questions</button>
+                <button onClick = {this.defaultQuestions}className ="btn btn-outline-secondary" >Default Questions</button>
+                <button className ="btn btn-outline-secondary" >Custom Questions</button>
             </div>
 
         )
@@ -29,4 +40,3 @@ export default class Login extends React.Component {
 
 }
 
-export default HostLobby;
