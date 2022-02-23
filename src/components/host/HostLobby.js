@@ -93,9 +93,10 @@ class HostLobby extends Component {
     }
 
     updateUsersInRoom = () => {
-        const res = axios.put(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
+        const res = axios.post(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
         .then(res => {
             console.log("update", res.data)
+            this.getCurrentLobby()
             
         })
         .catch(err => console.warn(err));
