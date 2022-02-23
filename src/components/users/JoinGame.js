@@ -6,7 +6,8 @@ import RoomsList from '../RoomsList';
 class JoinGame extends Component {
     state = {
         game: false,
-        users: []
+        users: [],
+        roomsList: null
     }
     componentDidMount(){
         // this.setState({users: this..name})
@@ -31,7 +32,12 @@ class JoinGame extends Component {
     }
 
     roomCode(e){
-        this.setState({ roomCode: e.target.value})
+        console.log('roomcode', e);
+        // this.setState({ roomCode: e.target.value})
+    }
+
+    handleClick(){
+        console.log('clicked')
     }
 
     render() {
@@ -39,12 +45,12 @@ class JoinGame extends Component {
 
         return (
             <div>
-                <h1>Lobby page (users)</h1>
+                <h1>Lobby page</h1>
                 <label calssName="join-game"> Room Code </label>
                     <input text="text" onChange={this.roomCode}/>
                 <p>Player  </p> 
-                <RoomsList />
-                <button>Join Game</button>
+                <button onClick ={this.handleClick}>Join Game</button>
+                {/* <RoomsList /> */}
 
 
               
