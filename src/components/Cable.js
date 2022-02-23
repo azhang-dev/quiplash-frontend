@@ -17,4 +17,4 @@ const Cable = ({ rooms, handleReceivedGame }) => { // open connection ... onRece
   );
 };
 
-export default Cable;
+export default Cable; 

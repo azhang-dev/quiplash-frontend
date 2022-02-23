@@ -23,12 +23,13 @@ import {HashRouter as Router, Route, Link} from 'react-router-dom'
 class Root extends Component {
     //App state
   state = {
-    currentUser: undefined
+    currentUser: undefined,
   }
 
   //function to run on component mounting
   componentDidMount(){
     this.setCurrentUser();
+    console.log("------------------MOUNTED ROOT PAGE-------------------", this.state)
   }
 
   //function to set the state to the current logged in user
@@ -41,6 +42,7 @@ class Root extends Component {
     })
     .then(res => {
       this.setState({currentUser: res.data})
+      console.log(res)
     })
     .catch(err => console.warn(err));
   }
