@@ -83,7 +83,7 @@ class HostLobby extends Component {
     render() {
        
         return (
-            <div>
+            <div className="hostContainer">
                 <h2>Host lobby {this.state.currentLobby}</h2>
                 {
                 this.state.currentUser.id === this.state.hostID
