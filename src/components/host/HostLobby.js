@@ -9,12 +9,26 @@ class HostLobby extends Component {
         lobbyPlayers: [],
         currentUsers: [],
         currentLobby: "",
+        host: "",
     };
 
     componentDidMount(){
         this.setState({currentLobby: this.props.match.params.id})
         console.log("")
     }
+
+    setHost = () => {
+        let token = "Bearer " + localStorage.getItem("jwt");
+        const res = axios.get( `${BASE_URL}/users/current`, {
+          headers: {
+            'Authorization' : token
+          }
+        })
+        .then(res => {
+          this.setState({host: res.data})
+        })
+        .catch(err => console.warn(err));
+      }
 
     playersConnection(){
         let connectedPlayers = [];
