@@ -48,15 +48,21 @@ class HostLobby extends Component {
     }
 
     updateUsersInRoom = () => {
-
-        const res = axios.put(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
+        const res = axios.post(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
         .then(res => {
             console.log("update", res.data)
+            this.getCurrentLobby()
             
         })
         .catch(err => console.warn(err));
-        
-
+    }
+    doesCurrentUserExistInCurrentLobby = () => {
+        const currentUserString = JSON.stringify(this.state.currentUser)
+        if (currentUserString === "") {
+            return false;
+        }
+        const usersInLobbyString = JSON.stringify(this.state.currentLobby.current_users)
+        return usersInLobbyString.includes(currentUserString)
     }
 
     playersConnection(){
@@ -110,7 +116,15 @@ class HostLobby extends Component {
         return (
             <div className="hostContainer">
                 <h1>Host lobby {this.state.currentLobby.id}</h1>
-                <button onClick = {this.updateUsersInRoom}>UpdateUsersInRoom</button>
+
+                {
+                    this.doesCurrentUserExistInCurrentLobby
+                    ?
+                    <button>Leave Room</button>  
+                    :
+                    <button onClick = {this.updateUsersInRoom}>Join Room</button>
+
+                }
 
                 <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
 
