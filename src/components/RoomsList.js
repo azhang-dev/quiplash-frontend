@@ -19,10 +19,12 @@ class RoomsList extends React.Component {
   state = {
     rooms: [],
     activeRoom: null,
-    latestRoom: []
+    latestRoom: [],
+    currentUser: undefined
   };
 
   componentDidMount = () => {
+    this.setCurrentUser()
     console.log("roomListProps: ",this.props)
     fetch(`${API_ROOT}/rooms`)
       .then(res => res.json())
@@ -38,6 +40,19 @@ class RoomsList extends React.Component {
   getRoomId = (roomsArray, room_id)=>{
     return roomsArray.filter(el => room_id !== el.id)
  }
+
+ setCurrentUser = () => {
+  let token = "Bearer " + localStorage.getItem("jwt");
+  const res = axios.get( `${BASE_URL}/users/current`, {
+    headers: {
+      'Authorization' : token
+    }
+  })
+  .then(res => {
+    this.setState({currentUser: res.data})
+  })
+  .catch(err => console.warn(err));
+}
 
   handleClickDelete = id => {
     fetch(`${API_ROOT}/rooms/${id}`,{
@@ -140,7 +155,7 @@ class RoomsList extends React.Component {
         <ul>
           {this.mapRooms(rooms, this.handleClick, this.handleClickDelete)}</ul>
 
-        <NewRoomForm currentUser={this.props.currentUser} goToLobbyPage={this.goToLobby}/>
+        <NewRoomForm goToLobbyPage={this.goToLobby}/>
 
         {activeRoom 
         ? 

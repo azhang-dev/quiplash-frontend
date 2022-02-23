@@ -4,7 +4,7 @@ import { API_ROOT, HEADERS } from '../constants';
 
 class NewRoomForm extends React.Component {
   state = {
-    host_id: this.props.currentUser
+    host_id: "",
   };
 
   // handleChange = e => {
@@ -12,8 +12,23 @@ class NewRoomForm extends React.Component {
   // };
 
   componentDidMount() {
+    this.setCurrentUser();
     console.log("Checking props", this.props)
   }
+
+  setCurrentUser = () => {
+    let token = "Bearer " + localStorage.getItem("jwt");
+    const res = axios.get( `${BASE_URL}/users/current`, {
+      headers: {
+        'Authorization' : token
+      }
+    })
+    .then(res => {
+      this.setState({currentUser: res.data})
+    })
+    .catch(err => console.warn(err));
+  }
+
   handleSubmit = e => {
     e.preventDefault()
     fetch(`${API_ROOT}/rooms`, {
