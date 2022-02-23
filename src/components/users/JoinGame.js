@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 
 
 
-class Lobby extends Component {
+class JoinGame extends Component {
     state = {
-        game: false
+        game: false,
+        // users: []
     }
     componentDidMount(){
+        // this.setState({users: this.props.match.params.id})
         console.log('MOUNTED!!')
         // this.timer = setInterval(()=> this.getStatus(),1000)
     }
-    componentDidUnmount(){
-        console.log('UNMOUNTED!!')
-    }
+    // componentDidUnmount(){
+    //     console.log('UNMOUNTED!!')
+    // }
 
     getStatus() {
         if (this.state.game === true){
@@ -26,12 +28,22 @@ class Lobby extends Component {
         console.log('game started')
         this.setState({game:true})
     }
+
+    roomCode(e){
+        this.setState({ roomCode: e.target.value})
+    }
+
     render() {
 
 
         return (
             <div>
                 <h1>Lobby page (users)</h1>
+                <label calssName="join-game"> Room Code </label>
+                    <input text="text" onChange={this.roomCode}/>
+                <p>Player  </p> 
+                <button>Join Game</button>
+
 
               
             </div>
@@ -39,4 +51,4 @@ class Lobby extends Component {
     }
 }
 
-export default Lobby;
+export default JoinGame;

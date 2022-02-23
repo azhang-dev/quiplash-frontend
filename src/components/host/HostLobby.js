@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Lobby from '../users/Lobby'
 import { API_ROOT, HEADERS } from '../../constants';
 import "./HostLobby.css";
 
