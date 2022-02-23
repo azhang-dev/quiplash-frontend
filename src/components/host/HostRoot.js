@@ -16,7 +16,7 @@ class HostRoot extends Component {
         return (
             <div>
                 <h1>Quiplash Clone</h1>
-                <RoomsList currentUser = {this.props.currentUser} routeToLobby={this.lobbyRoute}/>
+                <RoomsList routeToLobby={this.lobbyRoute}/>
             </div>
         );
     }
