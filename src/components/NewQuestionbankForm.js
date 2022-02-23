@@ -34,23 +34,23 @@ export default class NewQuestionbankForm extends React.Component {
 
         return (
             <form onSubmit={this.handleSubmit}>
-                <div class="form-input-container">
+                <div className="form-input-container">
                     <label>Questionbank Name</label>
-                    <input type="text" placeholder="Enter Name" />
+                    <input type="text" placeholder="Enter Name" onChange={(e)=>this.setState({name: e.target.value})} />
                 </div>
-                <div class="form-input-container">
+                <div className="form-input-container">
                     <label>Question 1</label>
                     <input type="text" placeholder="Add your question" />
                 </div>
-                <div class="form-input-container">
+                <div className="form-input-container">
                     <label>Question 2</label>
                     <input type="text" placeholder="Add your question" />
                 </div>
-                <div class="form-input-container">
+                <div className="form-input-container">
                     <label>Question 3</label>
                     <input type="text" placeholder="Add your question" />
                 </div>
-                <div class="form-input-container">
+                <div className="form-input-container">
                     <label>Question 4</label>
                     <input type="text" placeholder="Add your question" />
                 </div>
