@@ -13,7 +13,9 @@ class HostLobby extends Component {
         currentLobby: 0,
         currentUser: "",
         hostID: "",
-        gameStart: false
+        gameStart: false,
+        gameInfo:[],
+        checkLobby: ''
     };
 
 
@@ -23,13 +25,19 @@ class HostLobby extends Component {
         
         this.getCurrentLobby()
         console.log("this.state", this.state)
-        setInterval(this.fetchLobbyUsers, 4000)
+        let checkLobby = setInterval(this.fetchLobbyUsers, 4000)
+        this.setState({checkLobby: checkLobby})
+        
     }
-
-
-
+    
+    
+    
     fetchLobbyUsers = () => {
-        // console.log("FETCHING")
+        if (this.state.gameStart === true){
+            clearInterval(this.state.checkLobby)
+        }
+        console.log("FETCHING")
+        console.log(this.state.gameInfo)
         let token = "Bearer " + localStorage.getItem("jwt");
         const res = axios.get(`${API_ROOT}/rooms/${this.props.match.params.id}`, {
             headers: {
@@ -42,9 +50,22 @@ class HostLobby extends Component {
                 this.setState({currentUsers: res.data.users})
                 this.playersConnection()
             }
-            // console.log(this.state.currentUsers)
+            console.log(this.state.currentUsers)
+            if ( JSON.parse(res.data.game_status) === true){
+                console.log("GAME HAS STARTED!!")
+                console.log(this.state.gameStart)
+                this.setState({gameStart: true})
+                console.log(JSON.parse(res.data.game_status))
+            }
         })
         .catch(err => console.error(err));
+        
+        if (this.state.gameInfo.game_status === true){
+            this.setState({gameStart: true})
+        }
+        console.log(this.state.gameStart)
+        console.log("FINISHED FETCH")
+        // clearInterval(this.fetchLobbyUsers())
     }
 
     setCurrentUser = () => {
@@ -125,6 +146,15 @@ class HostLobby extends Component {
 
         // // console.log('this is NOT being called')
         // }
+
+        const res = axios.put(`${API_ROOT}/room/start/${this.props.match.params.id}`)
+        .then(res => {
+            console.log("update", res.data)
+            this.setState({gameInfo: res.data})
+        })
+        .catch(err => console.warn(err));
+
+
     }
     render() {
        
