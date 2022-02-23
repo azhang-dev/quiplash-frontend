@@ -58,9 +58,17 @@ class RoomsList extends React.Component {
 }
 
   handleClickDelete = id => {
-    fetch(`${API_ROOT}/rooms/${id}`,{
-      method: "Delete",
+    // fetch(`${API_ROOT}/rooms/${id}`,{
+    //   method: "Delete",
+    // });
+    let token = "Bearer " + localStorage.getItem("jwt");
+
+    const res = axios.delete( `${API_ROOT}/rooms/${id}`, 
+      {headers: {  'Authorization' : token } })
+    .then(res => {
     })
+    .catch(err => console.warn(err));
+
     const roomsCopy = [...this.state.rooms]
     const roomUpdate = this.getRoomId(roomsCopy, id);
     this.setState({rooms: roomUpdate})

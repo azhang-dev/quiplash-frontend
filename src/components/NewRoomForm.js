@@ -40,10 +40,6 @@ class NewRoomForm extends React.Component {
     let token = "Bearer " + localStorage.getItem("jwt");
 
     const res = axios.post( `${API_ROOT}/rooms`, 
-    
-      // headers: {
-      //   'Authorization' : token
-      // },
       this.state, 
       {headers: {  'Authorization' : token }})
     .then(res => {
