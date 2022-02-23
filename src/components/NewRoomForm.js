@@ -1,5 +1,6 @@
 import React from 'react';
 import { API_ROOT, HEADERS } from '../constants';
+import axios from 'axios';
 
 class NewRoomForm extends React.Component {
   state = {
@@ -17,13 +18,14 @@ class NewRoomForm extends React.Component {
 
   setCurrentUser = () => {
     let token = "Bearer " + localStorage.getItem("jwt");
-    const res = axios.get( `${BASE_URL}/users/current`, {
+    const res = axios.get( `${API_ROOT}/users/current`, {
       headers: {
         'Authorization' : token
       }
     })
     .then(res => {
       this.setState({currentUser: res.data})
+      console.log("This.state", this.state)
     })
     .catch(err => console.warn(err));
   }
