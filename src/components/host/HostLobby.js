@@ -17,9 +17,9 @@ class HostLobby extends Component {
 
     componentDidMount(){
         this.setCurrentUser()
-        this.setState({currentLobby: this.props.match.params.id})
-        this.getHostID()
-        console.log("")
+        this.updateUsersInRoom()
+        this.getCurrentLobby()
+        console.log("this.state", this.state)
     }
 
     setCurrentUser = () => {
@@ -36,13 +36,24 @@ class HostLobby extends Component {
         .catch(err => console.warn(err));
       }
 
-    getHostID = () => {
+    getCurrentLobby = () => {
         const res = axios.get( `${API_ROOT}/rooms/${this.props.match.params.id}`)
         .then(res => {
-            this.setState({hostID: res.data.host_id})
-            console.log("getHostID:", res.data.host_id)
+            this.setState({currentLobby: res.data})
+            console.log("getcurrentLobby:", res.data)
         })
         .catch(err => console.warn(err));
+    }
+
+    updateUsersInRoom = () => {
+
+        const res = axios.put(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
+        .then(res => {
+            console.log("update", res.data)
+        })
+        .catch(err => console.warn(err));
+        
+
     }
 
     playersConnection(){
@@ -85,9 +96,9 @@ class HostLobby extends Component {
        
         return (
             <div>
-                <h1>Host lobby {this.state.currentLobby}</h1>
+                <h1>Host lobby {this.state.currentLobby.id}</h1>
                 {
-                this.state.currentUser.id === this.state.hostID
+                this.state.currentUser.id === this.state.currentLobby.host_id
                 ?
                 //<NewQuestionForm />
                 <button className ="btn btn-outline-secondary" onClick={this.startGame}>Game Start</button>
