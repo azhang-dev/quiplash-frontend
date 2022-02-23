@@ -1,9 +1,9 @@
 
 
 .connected-player {
-  background-color: rgba(214, 224, 245, 0.5);
+  background-color: rgba(247, 221, 232, 0.4);
   max-width: 200px;
-  border: 5px solid rgb(190, 203, 230);
+  border: 5px solid rgb(122, 90, 106);
   border-radius: 100px;
   padding: 40px;
   text-align: center;
@@ -16,8 +16,7 @@
 .connected-players {
   font-size: 30px;
   font-weight: bold;
-  margin: 10px;
-  padding: 50px;
+  color: rgb(116, 58, 58);
 }
 
 .hostContainer {
