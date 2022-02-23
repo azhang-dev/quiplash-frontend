@@ -20,7 +20,6 @@ class HostRoot extends Component {
     render() {
         return (
             <div>
-                <h1>Quiplash Clone</h1>
                 <RoomsList routeToLobby={this.lobbyRoute}/>
             </div>
         );

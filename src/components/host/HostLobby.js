@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Lobby from '../users/Lobby'
 import { API_ROOT, HEADERS } from '../../constants';
 import "./HostLobby.css";
 import axios from 'axios';
@@ -106,9 +105,7 @@ class HostLobby extends Component {
 
                 </ActionCableConsumer>
 
-
-
-                <h1>Host lobby {this.state.currentLobby}</h1>
+                <h2>Host lobby {this.state.currentLobby}</h2>
                 {
                 this.state.currentUser.id === this.state.hostID
                 ?
