@@ -4,6 +4,7 @@ import { API_ROOT } from '../constants';
 import NewRoomForm from './NewRoomForm';
 import GamesArea from './GamesArea';
 import Cable from './Cable';
+import axios from 'axios';
 
 const TestComponent = (props) => {
   const clickHandler = () => {
@@ -43,13 +44,14 @@ class RoomsList extends React.Component {
 
  setCurrentUser = () => {
   let token = "Bearer " + localStorage.getItem("jwt");
-  const res = axios.get( `${BASE_URL}/users/current`, {
+  const res = axios.get( `${API_ROOT}/users/current`, {
     headers: {
       'Authorization' : token
     }
   })
   .then(res => {
     this.setState({currentUser: res.data})
+    console.log("This.state", this.state)
   })
   .catch(err => console.warn(err));
 }

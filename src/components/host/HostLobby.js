@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Lobby from '../users/Lobby'
 import { API_ROOT, HEADERS } from '../../constants';
 import "./HostLobby.css";
+import axios from 'axios';
 
 class HostLobby extends Component {
 
@@ -19,13 +20,14 @@ class HostLobby extends Component {
 
     setHost = () => {
         let token = "Bearer " + localStorage.getItem("jwt");
-        const res = axios.get( `${BASE_URL}/users/current`, {
+        const res = axios.get( `${API_ROOT}/users/current`, {
           headers: {
             'Authorization' : token
           }
         })
         .then(res => {
           this.setState({host: res.data})
+          console.log("This.state", this.state)
         })
         .catch(err => console.warn(err));
       }

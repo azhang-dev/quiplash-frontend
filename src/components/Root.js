@@ -7,6 +7,7 @@ import HostLobby from './host/HostLobby'
 import HostGame from './host/HostGame'
 import HostRoot from './host/HostRoot'
 import RoomsList from './RoomsList'
+import { API_ROOT } from '../constants';
 
 
 import Login from './Login'
@@ -14,7 +15,7 @@ import MyProfile from './MyProfile'
 
 import {HashRouter as Router, Route, Link} from 'react-router-dom'
 
-const BASE_URL = 'http://localhost:3000'
+
 
 class Root extends Component {
     //App state
@@ -30,7 +31,7 @@ class Root extends Component {
   //function to set the state to the current logged in user
   setCurrentUser = () => {
     let token = "Bearer " + localStorage.getItem("jwt");
-    const res = axios.get( `${BASE_URL}/users/current`, {
+    const res = axios.get( `${API_ROOT}/users/current`, {
       headers: {
         'Authorization' : token
       }
