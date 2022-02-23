@@ -130,8 +130,9 @@ class HostLobby extends Component {
        
         return (
             <div className="hostContainer">
-                <h1>Host lobby {this.state.currentLobby.id}</h1>
-                <button onClick = {this.updateUsersInRoom}>UpdateUsersInRoom</button>
+                <h2>Host lobby {this.state.currentLobby.id}</h2>
+                <h3>Go to ---URL--- and enter code: "{this.props.match.params.id}" to join </h3>
+                <button onClick = {this.updateUsersInRoom}>UpdateUsers</button>
 
                 <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
 
@@ -141,12 +142,12 @@ class HostLobby extends Component {
 
                 </ActionCableConsumer>
 
-                <h2>Host lobby {this.state.currentLobby.id}</h2>
+                
                 {
                 this.state.currentUser.id === this.state.currentLobby.host_id
                 ?
                 //<NewQuestionForm />
-                <button className ="btn btn-outline-secondary" onClick={this.startGame}>Game Start</button>
+                <button onClick={this.startGame}>Game Start</button>
                 :
                     this.state.gameStart
                     ?
@@ -154,7 +155,7 @@ class HostLobby extends Component {
                     :
                     <p>Waiting for game to start...</p>
                 }
-                <p>Go to ---URL--- and enter code: "{this.props.match.params.id}" to join </p>
+               <br/>
                 <div className = "connected-player">{this.playersConnection()}
 
 

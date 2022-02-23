@@ -8,7 +8,6 @@ import HostLobby from './host/HostLobby'
 import HostGame from './host/HostGame'
 import HostRoot from './host/HostRoot'
 import RoomsList from './RoomsList'
-import JoinGame from './users/JoinGame'
 import { API_ROOT } from '../constants';
 
 
@@ -91,22 +90,17 @@ class Root extends Component {
                     <h1>Quiplash Clone</h1>
                     <Link to="/">GameStart</Link> |&nbsp; 
                     <Link to="/play">Root player page</Link> |&nbsp; 
-                    <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp; 
+                    {/* <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp;  */}
                     <Link to="/host/lobby" >Host PAGE</Link>|&nbsp; 
                     <Link to="/host/game">Host GAME(test)</Link>
-                    <Link to="/user/join/:id">User Join Game(test)</Link>
 
                     <div className ="body-content">
                     <Route exact path="/play" component={UserRoot}/> 
-                    <Route exact path="/play/lobby/" component={UserRoot}/> 
-                    {/* <Route exact path="/play/lobby/:id" component={Lobby}/>  */}
                     <Route exact path="/host/lobby" component = {HostRoot}/>
                     <Route exact path="/host/game" component={HostGame}/>
                     <Route exact path = '/my_profile' component = {MyProfile}/>
                     <Route exact path="/lobbies" component={RoomsList }/>
-                    {/* <Route exact path="/host/lobby" components={HostRoot}/> */}
                     <Route exact path="/host/lobby/:id" component={HostLobby}/> 
-                    <Route exact path="/user/join/:id" component={()=> <JoinGame userName={this.state.currentUser.name} />} />
                     </div>
                 </Router>
             </div>
