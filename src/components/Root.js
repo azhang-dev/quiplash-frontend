@@ -86,16 +86,16 @@ class Root extends Component {
                     <Link to="/">GameStart</Link> |&nbsp; 
                     <Link to="/play">Root player page</Link> |&nbsp; 
                     <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp; 
-                    <Link to="/host/lobby">Host PAGE</Link>|&nbsp; 
+                    <Link to="/host/lobby" >Host PAGE</Link>|&nbsp; 
                     <Link to="/host/game">Host GAME(test)</Link>
 
                     <Route exact path="/play" component={UserRoot}/> 
                     <Route exact path="/play/lobby/" component={UserRoot}/> 
                     {/* <Route exact path="/play/lobby/:id" component={Lobby}/>  */}
-                    <Route exact path="/host/lobby" component={HostRoot}/>  
+                    <Route exact path="/host/lobby" render = {() => <HostRoot currentUser={this.state.currentUser}/>}/>
                     <Route exact path="/host/game" component={HostGame}/>
                     <Route exact path = '/my_profile' component = {MyProfile}/>
-                    <Route exact path="/lobbies" component={RoomsList}/>
+                    <Route exact path="/lobbies" component={RoomsList }/>
                     {/* <Route exact path="/host/lobby" components={HostRoot}/> */}
                     <Route exact path="/host/lobby/:id" component={HostLobby}/> 
                 </Router>

@@ -23,6 +23,7 @@ class RoomsList extends React.Component {
   };
 
   componentDidMount = () => {
+    console.log("roomListProps: ",this.props)
     fetch(`${API_ROOT}/rooms`)
       .then(res => res.json())
       .then(rooms => this.setState({ rooms }));
@@ -139,7 +140,7 @@ class RoomsList extends React.Component {
         <ul>
           {this.mapRooms(rooms, this.handleClick, this.handleClickDelete)}</ul>
 
-        <NewRoomForm goToLobbyPage={this.goToLobby}/>
+        <NewRoomForm currentUser={this.props.currentUser} goToLobbyPage={this.goToLobby}/>
 
         {activeRoom 
         ? 
