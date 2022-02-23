@@ -3,13 +3,14 @@
 .connected-player {
   background-color: rgba(214, 224, 245, 0.5);
   max-width: 200px;
-  margin: 50px;
   border: 5px solid rgb(190, 203, 230);
   border-radius: 100px;
   padding: 40px;
   text-align: center;
   color: rgb(50, 50, 94);
   line-height: 50px;
+  display: inline-block;
+  /* margin-bottom: 100px; */
 }
   
 .connected-players {
@@ -19,6 +20,9 @@
   padding: 50px;
 }
 
+.hostContainer {
+  /* margin-bottom: 500px */
+}
 
 .empty-player-slot {
   border: 5px dashed gray;

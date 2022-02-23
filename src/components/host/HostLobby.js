@@ -108,7 +108,7 @@ class HostLobby extends Component {
     render() {
        
         return (
-            <div>
+            <div className="hostContainer">
                 <h1>Host lobby {this.state.currentLobby.id}</h1>
                 <button onClick = {this.updateUsersInRoom}>UpdateUsersInRoom</button>
 
