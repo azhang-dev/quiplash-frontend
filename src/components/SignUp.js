@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
+import { API_ROOT } from '../constants';
 
-const BASE_URL = 'http://localhost:3000'
+
 
 export default class Login extends React.Component {
   state = {
@@ -26,7 +27,7 @@ export default class Login extends React.Component {
   handleSubmit = (ev) => {
     const newAccount = {'email': this.state.email, 'password': this.state.password, 'name': this.state.name} // object to be passed through POST
 
-    axios.post(`${BASE_URL}/user`, newAccount)
+    axios.post(`${API_ROOT}/user`, newAccount)
     .then(result => {
       
 
