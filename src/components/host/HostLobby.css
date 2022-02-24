@@ -33,6 +33,7 @@
   height: 300px;
   left: 56vw;
   position: relative;
+  /* border: 1px solid red; */
 }
 .questionArray{
   display: inline-block;
