@@ -249,13 +249,19 @@ class HostLobby extends Component {
                 <br/>
                <br/>
                </div>
-                        {this.state.gameStart 
+                        {this.state.currentUser.id === this.state.currentLobby.host_id
+                        ?
+                        
+                        this.state.gameStart 
                             ?
+                            
                             <UserRoot />
                             :
                             <div className = "connected-player">{this.playersConnection()}
                             </div>
-                            }
+                            :
+                            <p></p>
+                        }
               
             </div>
         )
