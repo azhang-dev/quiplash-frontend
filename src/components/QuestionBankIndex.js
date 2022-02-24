@@ -65,11 +65,11 @@ export default class QuestionBankIndex extends React.Component {
     return(
       <Router>
       <div>
-        <p>Question Bank Index for {this.state.currentUser.name}</p>
+        <p>Location Bank Index for {this.state.currentUser.name}</p>
         {
           loading
           ?
-          <p>Loading Question Banks</p>
+          <p>Loading Location Banks</p>
           :
           <div>
             {
