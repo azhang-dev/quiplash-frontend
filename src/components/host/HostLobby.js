@@ -28,7 +28,7 @@ class HostLobby extends Component {
         
         this.getCurrentLobby()
         console.log("this.state", this.state)
-        let checkLobby = setInterval(this.fetchLobbyUsers, 40000000000)
+        let checkLobby = setInterval(this.fetchLobbyUsers, 700)
         this.setState({checkLobby: checkLobby})
         
     }
