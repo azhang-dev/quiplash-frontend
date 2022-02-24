@@ -93,6 +93,7 @@ class Root extends Component {
                     {/* <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp;  */}
                     <Link to="/host/lobby" >Host PAGE</Link>|&nbsp; 
                     <Link to="/host/game">Host GAME(test)</Link>
+                    {/* <Link to="/user/join/:id">User Join Game(test)</Link> */}
 
                     <div className ="body-content">
                     <Route exact path="/play" component={UserRoot}/> 
