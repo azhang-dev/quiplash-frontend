@@ -16,7 +16,8 @@ class HostLobby extends Component {
         gameStart: false,
         questionFormVisible: false,
         gameInfo:[],
-        checkLobby: ''
+        checkLobby: '',
+        questionArray: []
     };
 
 
@@ -26,7 +27,7 @@ class HostLobby extends Component {
         
         this.getCurrentLobby()
         console.log("this.state", this.state)
-        let checkLobby = setInterval(this.fetchLobbyUsers, 4000)
+        let checkLobby = setInterval(this.fetchLobbyUsers, 40000000000)
         this.setState({checkLobby: checkLobby})
         
     }
@@ -62,7 +63,7 @@ class HostLobby extends Component {
             }
         })
         .catch(err => console.error(err));
-        setTimeout(this.fetchLobbyUsers, 4000000000)
+        // setTimeout(this.fetchLobbyUsers, 4000)
         
         if (this.state.gameInfo.game_status === true){
             this.setState({gameStart: true})
@@ -71,9 +72,6 @@ class HostLobby extends Component {
         console.log("FINISHED FETCH")
         // clearInterval(this.fetchLobbyUsers())
     }
-
-
-
 
     setCurrentUser = () => {
         let token = "Bearer " + localStorage.getItem("jwt");
@@ -142,15 +140,28 @@ class HostLobby extends Component {
 
     // const [questionFormVisible, setquestionFormVisible] = useState(false)
 
-    handleQuestion(){
-        const res = axios.get( `${API_ROOT}/questions`)
+    handleQuestion = () => {
+        let token = "Bearer " + localStorage.getItem("jwt");
+        const res = axios.get( `${API_ROOT}/questionbanks`, {headers: {
+            'Authorization' : token
+          }})
         .then(res => {
-            console.log('fetched default questions',res)
-        });
+            console.log("update", res.data)
+            this.setState({questionArray : res.data})
+            
+        })
+
+        // });
+
+        
         // console.log('clicked');
         // this.setState({questionFormVisible: !this.state.questionFormVisible})
     }
 
+    
+    // questionRend
+
+    // }
     // showQuestion(){
     //     if(this.state.quesionFormVisible === true){
 
@@ -199,26 +210,16 @@ class HostLobby extends Component {
 
                 </ActionCableConsumer>
 
-                
-                <div>
-                <button onClick = {this.handleQuestion}>Create Questions</button>
-                {/* {quesionFormVisible?  <form>
-                            <label></label>
-                            <input></input>
-                            </form> : null } */}
-                        
-                </div>
-                
-            
+                <button onClick = {this.handleQuestion}>Create Questions</button><br/>
                 {
                 this.state.currentUser.id === this.state.currentLobby.host_id
                 ?
                 //<NewQuestionForm />
                     this.state.currentUsers.length > 2
                     ?
-                    <button onClick={this.startGame}>Game Start</button>
+                    <button className="gameStartButton" onClick={this.startGame}>Game Start</button>
                     :
-                    <button disabled={true}>Game Start</button>
+                    <button className="gameStartButton" disabled={true}>Game Start</button>
 
                             :
                             this.state.gameStart
@@ -231,7 +232,16 @@ class HostLobby extends Component {
                             <UserRoot />
                             </div>
                 }
+                <div className="questionContainer">
+                    <div className="questionArray">
+                        {this.state.questionArray.map((question) => {
+                            return <div key={question.name}>{question.name}</div>
+                        })}
+                            
+                    </div>
+                <br/>
                <br/>
+               </div>
               
 
                 <div className = "connected-player">{this.playersConnection()}
