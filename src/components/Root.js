@@ -107,6 +107,8 @@ class Root extends Component {
                     <Route exact path= "/my_profile/questionbank/:id" component={Questionbank} />
                     </div>
                 </Router>
+
+                
             </div>
             
         );

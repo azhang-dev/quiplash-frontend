@@ -43,5 +43,14 @@
   margin-top:-20vh;
 }
 
+.locations-grid{
+  margin-top:-20vh;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:10px;
+}
+.locations-grid  > img{
+  max-width:200px;
+}
 
 
