@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import UserRoot from './users/UserRoot'
 import "./Root.css";
-
+import Lobby from './users/Lobby'
 
 import HostLobby from './host/HostLobby'
 import HostGame from './host/HostGame'
@@ -24,6 +24,7 @@ class Root extends Component {
     //App state
   state = {
     currentUser: undefined,
+    roomId: ''
   }
 
   //function to run on component mounting
@@ -48,6 +49,11 @@ class Root extends Component {
     this.setState({currentUser: undefined})
     localStorage.removeItem("jwt");
     axios.defaults.headers.common['Authorization'] = undefined
+  }
+
+  handleChange = (e) => {
+    this.setState({roomId: e.target.value})
+
   }
 
     render() {
@@ -90,7 +96,7 @@ class Root extends Component {
                     {/* <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp;  */}
                     <Link to="/host/lobby" >Host PAGE</Link>|&nbsp; 
                     {/* <Link to="/host/game">Host GAME(test)</Link>|&nbsp;  */}
-                    {/* <Link to="/user/join/:id">User Join Game(test)</Link> */}
+                    <Link to="/user/join">User Join Game</Link>
                     
         
                   
@@ -103,11 +109,28 @@ class Root extends Component {
                     <Route exact path = "/my_profile" component = {MyProfile}/>
                     <Route exact path="/lobbies" component={RoomsList }/>
                     <Route exact path="/host/lobby/:id" component={HostLobby}/> 
+                    <Route exact path="/user/join" component={Lobby}/> 
   
                     <Route exact path= "/my_profile/questionbank/:id" component={Questionbank} />
                     </div>
+               
+
+                <div>
+                <h2>Please input the room number below</h2>
+
+                <form>
+                    <input type="text" value={this.state.roomId} onChange={this.handleChange}></input>
+                    <Link to={`/host/lobby/${this.state.roomId}`}>
+                    <button>Join</button>
+                    </Link>
+                </form>
+               
+
+                <br/>
+                <br/>
+                </div>
                 </Router>
-            </div>
+                </div>
             
         );
     }
