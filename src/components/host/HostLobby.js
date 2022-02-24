@@ -30,9 +30,9 @@ class HostLobby extends Component {
         
     }
     componentDidUnmoun(){
-        clearInterval((this.state.checkLobby))
+        clearInterval(this.state.checkLobby)
     }
-    
+
     fetchLobbyUsers = () => {
         if (this.state.gameStart === true){
             clearInterval(this.state.checkLobby)
