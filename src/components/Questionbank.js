@@ -57,8 +57,8 @@ export default class Questionbank extends React.Component {
 
         <h2>ADD YOUR QUESTIONS </h2>
       
-        <NewQuestionForm />
-
+        <NewQuestionForm data= {this.state} />
+        
          
       </div>
     );
