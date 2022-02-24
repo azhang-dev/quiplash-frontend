@@ -231,7 +231,10 @@ state = {
                     <div>
 
                         <p>GAME STARTED</p>
+                        {/* Render component for answer and vote forms. both make axios post */}
                         <UserGameArea />
+
+
                     </div>
                     :
                     <div>
