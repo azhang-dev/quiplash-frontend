@@ -4,7 +4,7 @@ import "./HostLobby.css";
 import axios from 'axios';
 import { ActionCableConsumer } from 'react-actioncable-provider';
 import NewQuestionForm from './NewQuestionForm'
-
+import UserRoot from '../users/UserRoot'
 class HostLobby extends Component {
 
     state= {
@@ -14,7 +14,12 @@ class HostLobby extends Component {
         currentUser: "",
         hostID: "",
         gameStart: false,
+<<<<<<< HEAD
         questionFormVisible: false
+=======
+        gameInfo:[],
+        checkLobby: ''
+>>>>>>> e8a6f60ee7f315c7e3eeb868309bd2be1d037127
     };
 
 
@@ -24,15 +29,21 @@ class HostLobby extends Component {
         
         this.getCurrentLobby()
         console.log("this.state", this.state)
-        setTimeout(this.fetchLobbyUsers, 4000)
-
-        if (this.state.currentUsers.length === 8){
-            
-        }
+        let checkLobby = setInterval(this.fetchLobbyUsers, 4000)
+        this.setState({checkLobby: checkLobby})
+        
+    }
+    componentWillUnmount(){
+        console.log("UNMOUNTED")
+        clearInterval(this.state.checkLobby)
     }
 
     fetchLobbyUsers = () => {
-        // console.log("FETCHING")
+        if (this.state.gameStart === true){
+            clearInterval(this.state.checkLobby)
+        }
+        console.log("FETCHING")
+        console.log(this.state.gameInfo)
         let token = "Bearer " + localStorage.getItem("jwt");
         const res = axios.get(`${API_ROOT}/rooms/${this.props.match.params.id}`, {
             headers: {
@@ -45,11 +56,27 @@ class HostLobby extends Component {
                 this.setState({currentUsers: res.data.users})
                 this.playersConnection()
             }
-            // console.log(this.state.currentUsers)
+            console.log(this.state.currentUsers)
+            if ( JSON.parse(res.data.game_status) === true){
+                console.log("GAME HAS STARTED!!")
+                console.log(this.state.gameStart)
+                this.setState({gameStart: true})
+                console.log(JSON.parse(res.data.game_status))
+            }
         })
         .catch(err => console.error(err));
-        // setTimeout(this.fetchLobbyUsers, 4000000000)
+        setTimeout(this.fetchLobbyUsers, 4000000000)
+        
+        if (this.state.gameInfo.game_status === true){
+            this.setState({gameStart: true})
+        }
+        console.log(this.state.gameStart)
+        console.log("FINISHED FETCH")
+        // clearInterval(this.fetchLobbyUsers())
     }
+
+
+
 
     setCurrentUser = () => {
         let token = "Bearer " + localStorage.getItem("jwt");
@@ -79,6 +106,7 @@ class HostLobby extends Component {
         const res = axios.put(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
         .then(res => {
             console.log("update", res.data)
+            this.getCurrentLobby()
             
         })
         .catch(err => console.warn(err));
@@ -135,7 +163,6 @@ class HostLobby extends Component {
     startGame = () => {
         // this.props.sendData()
         console.log("BUTTON CLICKED!")
-        this.setState({gameStart:true})
         // this.props.history.push("/hostgame")
         // if(this.state.lobbyPlayers.length < 3 ){
         //     console.log(" you need to have more players to ");
@@ -146,6 +173,15 @@ class HostLobby extends Component {
 
         // // console.log('this is NOT being called')
         // }
+
+        const res = axios.put(`${API_ROOT}/room/start/${this.props.match.params.id}`)
+        .then(res => {
+            console.log("update", res.data)
+            this.setState({gameInfo: res.data})
+        })
+        .catch(err => console.warn(err));
+
+
     }
     render() {
         // const [quesionFormVisible, setQuesionFormVisible] = React.useState(false)
@@ -155,6 +191,7 @@ class HostLobby extends Component {
             <div className="hostContainer">
                 <h2>Host lobby {this.state.currentLobby.id}</h2>
                 <h3>Go to ---URL--- and enter code: "{this.props.match.params.id}" to join </h3>
+
                 <button onClick = {this.updateUsersInRoom}>UpdateUsers</button>
 
                 <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
@@ -180,13 +217,22 @@ class HostLobby extends Component {
                 this.state.currentUser.id === this.state.currentLobby.host_id
                 ?
                 //<NewQuestionForm />
-                <button onClick={this.startGame}>Game Start</button>
-                :
-                    this.state.gameStart
+                    this.state.currentUsers.length > 2
                     ?
-                    <p>GAME STARTED</p>
+                    <button onClick={this.startGame}>Game Start</button>
                     :
-                    <p>Waiting for game to start...</p>
+                    <button disabled={true}>Game Start</button>
+
+                            :
+                            this.state.gameStart
+                            ?
+                            <p>GAME STARTED</p>
+                            :
+                            <div>
+
+                            <p>Waiting for game to start...</p>
+                            <UserRoot />
+                            </div>
                 }
                <br/>
               

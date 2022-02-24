@@ -1,0 +1,12 @@
+.form-input-container{
+    border: 2px solid red;
+    display:inline-block;
+}
+
+.form_div input{
+   display:block;
+}
+
+label{
+   display:inline-block;
+}
