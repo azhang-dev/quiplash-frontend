@@ -9,7 +9,7 @@ import CurrentAnswer from './CurrentAnswer'
 class UserRoot extends Component {
 
     state = {
-        inLobby: true,
+        inLobby: false,
         questionTime: true,
         roundCounter: 0.5,
         round: 1
@@ -28,9 +28,9 @@ class UserRoot extends Component {
 
 
     timer = () => {
-        if (!this.state.inLobby){
-            this.timer = setInterval( () => this.switchGameState(),1000)
-        }
+        // if (!this.state.inLobby){
+        //     this.timer = setInterval( () => this.switchGameState(),1000)
+        // }
     }
     
     switchGameState = () => {
@@ -54,8 +54,8 @@ class UserRoot extends Component {
     render() {
         return (
             <div>
-                <h1>Root page for users</h1>
-                <h3>we render everything here? instead of routing to each ?</h3>
+                {/* <h1>Root page for users</h1> */}
+                {/* <h3>we render everything here? instead of routing to each ?</h3> */}
 
                 {
                 this.state.inLobby
