@@ -4,20 +4,23 @@ class CurrentQuestion extends Component {
 
     state = {
         question: 1,
+        questionText:'',
         timer: '',
         countdown: 60,
     }
 
     componentDidMount(){
-        console.log("QUESTION MOUNTED")
+        console.log("QUESTION MOUNTED", this.props.currentQuestion)
         let timer = setInterval(this.countdown, 100)
         this.setState({timer: timer})
+
     };
     countdown = () => {
         if (this.state.countdown > 0){
             this.setState({countdown: this.state.countdown - 1})
+            console.log("ANSWER TIME!!!!")
         } else {
-            clearInterval(this.state.countdown)
+            clearInterval(this.state.timer)
         }
     }
 

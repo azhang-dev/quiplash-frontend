@@ -23,11 +23,7 @@ export default class Questionbank extends React.Component {
     try {
       const url = `${API_ROOT}/questionbanks/${this.props.match.params.id}/questions`
       console.log("questionbank fectch url", url)
-      const res = await axios.get(url, {
-        // headers: {
-        //   'Authorization': token
-        // }
-      })
+      const res = await axios.get(url)
       console.log(`questions:`, res.data)
       this.setState({questionbank: res.data, loading: false})
     } catch (err) {
@@ -49,7 +45,7 @@ export default class Questionbank extends React.Component {
           :
           <div>
             {
-              questionbank.questions.map( q => <p>{q.question}</p> )
+              // questionbank.questions.map( q => <p>{q.question}</p> )
               
             }
           </div>
