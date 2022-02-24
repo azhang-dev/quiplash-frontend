@@ -84,12 +84,12 @@ class Root extends Component {
                 </header>
                 <hr/>
                     
-                    <h1>Quiplash Clone</h1>
+                    <h1 className='homeLogo'>SPY-FALL</h1>
                     <Link to="/">GameStart</Link> |&nbsp; 
-                    <Link to="/play">Root player page</Link> |&nbsp; 
+                    {/* <Link to="/play">Root player page</Link> |&nbsp;  */}
                     {/* <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp;  */}
                     <Link to="/host/lobby" >Host PAGE</Link>|&nbsp; 
-                    <Link to="/host/game">Host GAME(test)</Link>|&nbsp; 
+                    {/* <Link to="/host/game">Host GAME(test)</Link>|&nbsp;  */}
                     {/* <Link to="/user/join/:id">User Join Game(test)</Link> */}
                     
         

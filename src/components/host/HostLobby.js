@@ -200,7 +200,7 @@ state = {
         return (
             <div className="hostContainer">
                 <h2>Host lobby {this.state.currentLobby.id}</h2>
-                <h3>Go to ---URL--- and enter code: "{this.props.match.params.id}" to join </h3>
+                <h3>Go to <p className='gameURL'>https://spy-fall-clone.netlify.app/#/</p> and enter code: "{this.props.match.params.id}" to join </h3>
 
                 <button onClick = {this.updateUsersInRoom}>UpdateUsers</button>
 {/* 

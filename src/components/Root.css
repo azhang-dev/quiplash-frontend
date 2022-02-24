@@ -1,14 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Barriecito&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Barriecito&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gruppo&family=Racing+Sans+One&family=Raleway&family=Teko:wght@300&display=swap');
 
 *{
     margin: 0;
     color: white;
-    font-family: 'Barriecito', cursive;
+    font-family: 'Bebas Neue', cursive;
     text-align: center;
 }
 
+.homeLogo{
+    font-family: 'Racing Sans One', cursive;
+}
+
 .container{
-    background-image: url(/public/backgrounds/bac3.jpeg);
+    background-image: url(/public/spyfall-backgrounds/wp2715302-spy-wallpaper.jpg);
     text-align: center;
     min-height: 100vh;
     min-width: 100%;
