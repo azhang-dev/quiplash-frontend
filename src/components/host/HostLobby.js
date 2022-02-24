@@ -27,11 +27,7 @@ class HostLobby extends Component {
         
         this.getCurrentLobby()
         console.log("this.state", this.state)
-<<<<<<< HEAD
-        let checkLobby = setInterval(this.fetchLobbyUsers, 40000000000)
-=======
         let checkLobby = setInterval(this.fetchLobbyUsers, 700)
->>>>>>> e0743ae028efc97697f609015598bead47e286cd
         this.setState({checkLobby: checkLobby})
         
     }
@@ -69,11 +65,7 @@ class HostLobby extends Component {
             }
         })
         .catch(err => console.error(err));
-<<<<<<< HEAD
-        // setTimeout(this.fetchLobbyUsers, 4000)
-=======
         // setTimeout(this.fetchLobbyUsers, 4000000000)
->>>>>>> e0743ae028efc97697f609015598bead47e286cd
         
         if (this.state.gameInfo.game_status === true){
             this.setState({gameStart: true})
