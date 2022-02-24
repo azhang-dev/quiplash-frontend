@@ -18,7 +18,8 @@ class HostLobby extends Component {
         gameInfo:[],
         checkLobby: '',
         round: 0,
-        questionArray: []
+        questionArray: [],
+        selectedQuestion: []
     };
 
 
@@ -140,7 +141,6 @@ class HostLobby extends Component {
         }
     }
 
-    // const [questionFormVisible, setquestionFormVisible] = useState(false)
 
     handleQuestion = () => {
         let token = "Bearer " + localStorage.getItem("jwt");
@@ -152,23 +152,22 @@ class HostLobby extends Component {
             this.setState({questionArray : res.data})
             
         })
-
-        // });
-
-        
-        // console.log('clicked');
-        // this.setState({questionFormVisible: !this.state.questionFormVisible})
     }
 
-    
-    // questionRend
-
-    // }
-    // showQuestion(){
-    //     if(this.state.quesionFormVisible === true){
-
-    //     }
-    // }
+   chooseQuestion = (e) => {
+       console.log('click',  parseInt(e.target.value) );
+       const questionTarget = parseInt(e.target.value)
+       console.log(this.state.questionArray);
+        
+       this.state.questionArray.map((question, index) => {
+           console.log('questionand indes', question, index);
+           if (index === questionTarget){
+               console.log('clicked');
+               this.setState({selectedQuestion: question})
+            }
+       })
+       
+   }
    
     startGame = () => {
         // this.props.sendData()
@@ -241,11 +240,12 @@ class HostLobby extends Component {
                 }
                 <div className="questionContainer">
                     <div className="questionArray">
-                        {this.state.questionArray.map((question) => {
-                            return <div key={question.name}>{question.name}</div>
+                        {this.state.questionArray.map((question, index) => {
+                            return <div key={question.name}>{question.name}<button value={index} onClick={this.chooseQuestion}>Select</button></div>
                         })}
                             
                     </div>
+                    
                 <br/>
                <br/>
                </div>
