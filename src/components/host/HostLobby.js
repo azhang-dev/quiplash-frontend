@@ -14,12 +14,9 @@ class HostLobby extends Component {
         currentUser: "",
         hostID: "",
         gameStart: false,
-<<<<<<< HEAD
-        questionFormVisible: false
-=======
+        questionFormVisible: false,
         gameInfo:[],
         checkLobby: ''
->>>>>>> e8a6f60ee7f315c7e3eeb868309bd2be1d037127
     };
 
 
