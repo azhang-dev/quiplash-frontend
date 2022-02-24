@@ -19,7 +19,7 @@ export default class Questionbank extends React.Component {
   }
 
    fetchQuestionlist = async () => {
-    let token = "Bearer " + localStorage.getItem("jwt");
+    // let token = "Bearer " + localStorage.getItem("jwt");
     try {
       const url = `${API_ROOT}/questionbanks/${this.props.match.params.id}/questions`
       console.log("questionbank fectch url", url)
@@ -45,7 +45,7 @@ export default class Questionbank extends React.Component {
           :
           <div>
             {
-              // questionbank.questions.map( q => <p>{q.question}</p> )
+              questionbank.questions.map( q => <p>{q.question}</p> )
               
             }
           </div>

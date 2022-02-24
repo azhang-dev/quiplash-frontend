@@ -8,7 +8,7 @@ import UserRoot from '../users/UserRoot'
 import Locations from './Locations'
 class HostLobby extends Component {
 
-    state = {
+state = {
         lobbyPlayers: [],
         currentUsers: [],
         currentLobby: 0,
