@@ -29,7 +29,7 @@ export default class Login extends React.Component {
 
     axios.post(`${API_ROOT}/user`, newAccount)
     .then(result => {
-      
+      console.log(result)
 
     })
     .catch(err => {
