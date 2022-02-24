@@ -6,7 +6,8 @@ import { API_ROOT } from '../constants';
 export default class NewQuestionForm extends React.Component {
 
     state = {
-        question1: "",
+        question: '',
+        answer: '',
         // question2: "",
         // question3: "",
         // question4: "",
@@ -40,9 +41,13 @@ export default class NewQuestionForm extends React.Component {
             <form onSubmit={this.handleSubmit}>
               
                 <div className="form-input-container">
-                    <label>Question 1</label>
-                    <input type="text" name="question1" placeholder="Add your question" onChange={this.handleInput}/>
+                    <label>Question</label>
+                    <input type="text" name="question" placeholder="Add your question" onChange={this.handleInput}/>
                 </div>
+                {/* <div className="form-input-container">
+                    <label>Default Answer</label>
+                    <input type="text" name="answer" placeholder="Add a Default Answer" onChange={this.handleInput}/>
+                </div> */}
                 {/* <div className="form-input-container">
                     <label>Question 2</label>
                     <input type="text" name="question2" placeholder="Add your question" onChange={this.handleInput} />
