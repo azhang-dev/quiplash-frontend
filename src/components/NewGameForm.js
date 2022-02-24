@@ -23,7 +23,7 @@ class NewGameForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(e)
+    // console.log(e)
     fetch(`${API_ROOT}/games`, {
       method: 'POST',
       headers: HEADERS,

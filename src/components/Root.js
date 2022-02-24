@@ -29,7 +29,7 @@ class Root extends Component {
   //function to run on component mounting
   componentWillMount(){
     this.setCurrentUser();
-    console.log("------------------MOUNTED ROOT PAGE-------------------", this.state)
+    // console.log("------------------MOUNTED ROOT PAGE-------------------", this.state)
   }
 
   //function to set the state to the current logged in user
@@ -38,7 +38,7 @@ class Root extends Component {
     const res = axios.get( `${API_ROOT}/users/current` )
     .then(res => {
       this.setState({currentUser: res.data})
-      console.log(res)
+      // console.log(res)
     })
     .catch(err => console.warn(err));
   }

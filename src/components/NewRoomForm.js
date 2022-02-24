@@ -13,7 +13,7 @@ class NewRoomForm extends React.Component {
 
   componentDidMount() {
     // this.setCurrentUser();
-    console.log("Checking props", this.props)
+    // console.log("Checking props", this.props)
   }
 
   setCurrentUser = () => {
@@ -25,7 +25,7 @@ class NewRoomForm extends React.Component {
     })
     .then(res => {
       this.setState({host_id: res.data.id})
-      console.log("This.state", this.state)
+      // console.log("This.state", this.state)
     })
     .catch(err => console.warn(err));
   }

@@ -13,20 +13,30 @@ class UserRoot extends Component {
         inLobby: false,
         questionTime: true,
         roundCounter: 0.5,
-        round: 1
+        round: 1,
+        questions: [],
+        currentQuestion: []
     }
 
     componentDidMount(){
         // console.log(this.state.inLobby)
         // console.log('mounted')
         // this.timer()
+        console.log("*****", this.props.passQuestions )
+        this.setState({questions: this.props.passQuestions})
+        if (this.state.currentQuestion.length === 0 ){
+            this.setState({currentQuestion: this.props.passQuestions.questions[0]}, ()=> console.log("!!!!!!!!!!!", this.state))
+        }
     }
 
     switchLobbyState = () => {
 
         this.setState({inLobby: false})
+       
     }
-
+    // passQuestion = () => {
+    //     console.log("GOT IT!!!")
+    // }
 
     timer = () => {
         // if (!this.state.inLobby){
@@ -44,7 +54,9 @@ class UserRoot extends Component {
             //   }, console.log('WHAT ARE THESE????', prevState)));
 
 
-            this.setState({round: this.state.round + 1})
+            this.setState({round: this.state.round + 1 })
+            this.setState({currentQuestion: this.state.questions.questions[this.state.round]})
+            // this.setState({currentQuestion: this.state.questions[1]})
         }
         if (this.state.roundCounter === 3){
             clearInterval(this.timer)
@@ -61,7 +73,7 @@ class UserRoot extends Component {
     
     render() {
         return (
-            <div className="questions">
+            <div>
                 {/* <h1>Root page for users</h1> */}
                 {/* <h3>we render everything here? instead of routing to each ?</h3> */}
 
@@ -72,9 +84,12 @@ class UserRoot extends Component {
                 :
                     this.state.questionTime 
                     ? 
-                    <CurrentQuestion round={ this.state.round } roundCounter={this.roundCounter}/> 
+                    <div>
+                        {this.state.currentQuestion.question}
+                    <CurrentQuestion round={ this.state.round } roundCounter={this.roundCounter} currentQuestion={this.state.currentQuestion}/> 
+                    </div>
                     : 
-                    <CurrentAnswer round={ this.state.round } roundCounter={this.roundCounter}/>
+                    <CurrentAnswer round={ this.state.round } roundCounter={this.roundCounter} currentQuestion={this.state.currentQuestion}/>
                 }
             </div>
         );

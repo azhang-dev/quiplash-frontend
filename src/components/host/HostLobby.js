@@ -5,9 +5,10 @@ import axios from 'axios';
 import { ActionCableConsumer } from 'react-actioncable-provider';
 // import NewQuestionForm from './NewQuestionForm'
 import UserRoot from '../users/UserRoot'
+import Locations from './Locations'
 class HostLobby extends Component {
 
-    state = {
+state = {
         lobbyPlayers: [],
         currentUsers: [],
         currentLobby: 0,
@@ -24,17 +25,17 @@ class HostLobby extends Component {
 
 
     componentDidMount(){
-        console.log("HOSTLOBBY HAS BEEN MOUNTED")
+        // console.log("HOSTLOBBY HAS BEEN MOUNTED")
         this.setCurrentUser()
         
         this.getCurrentLobby()
-        console.log("this.state", this.state)
+        // console.log("this.state", this.state)
         let checkLobby = setInterval(this.fetchLobbyUsers, 1000)
         this.setState({checkLobby: checkLobby})
         
     }
     componentWillUnmount(){
-        console.log("UNMOUNTED")
+        // console.log("UNMOUNTED")
         clearInterval(this.state.checkLobby)
     }
 
@@ -42,8 +43,8 @@ class HostLobby extends Component {
         if (this.state.gameStart === true){
             clearInterval(this.state.checkLobby)
         }
-        console.log("FETCHING")
-        console.log(this.state.gameInfo)
+        // console.log("FETCHING")
+        // console.log(this.state.gameInfo)
         let token = "Bearer " + localStorage.getItem("jwt");
         const res = axios.get(`${API_ROOT}/rooms/${this.props.match.params.id}`, {
             headers: {
@@ -56,7 +57,7 @@ class HostLobby extends Component {
                 this.setState({currentUsers: res.data.users})
                 this.playersConnection()
             }
-            console.log(this.state.currentUsers)
+            // console.log(this.state.currentUsers)
             if ( JSON.parse(res.data.game_status) === true){
                 console.log("GAME HAS STARTED!!")
                 console.log(this.state.gameStart)
@@ -70,8 +71,8 @@ class HostLobby extends Component {
         if (this.state.gameInfo.game_status === true){
             this.setState({gameStart: true})
         }
-        console.log(this.state.gameStart)
-        console.log("FINISHED FETCH")
+        // console.log(this.state.gameStart)
+        // console.log("FINISHED FETCH")
         // clearInterval(this.fetchLobbyUsers())
     }
 
@@ -94,7 +95,7 @@ class HostLobby extends Component {
         const res = axios.get( `${API_ROOT}/rooms/${this.props.match.params.id}`)
         .then(res => {
             this.setState({currentLobby: res.data})
-            console.log("getcurrentLobby:", res.data)
+            // console.log("getcurrentLobby:", res.data)
         })
         .catch(err => console.warn(err));
     }
@@ -102,7 +103,7 @@ class HostLobby extends Component {
     updateUsersInRoom = () => {
         const res = axios.put(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
         .then(res => {
-            console.log("update", res.data)
+            // console.log("update", res.data)
             this.getCurrentLobby()
             
         })
@@ -110,7 +111,7 @@ class HostLobby extends Component {
     }
 
     playersConnection(){
-        console.log(this.state.currentUsers)
+        // console.log(this.state.currentUsers)
         let connectedPlayers = [];
         for (let i = 0; i < 8; i++){
             let lobbyStatus = "connected-players"
@@ -131,13 +132,13 @@ class HostLobby extends Component {
 
     handleReceivedRoom = (res) => {
         let room = this.state.currentLobby
-        console.log("ROOM", room)
-        console.log("RECIEVED", res)
-        console.log("RES.GAME", res.game.room_id)
+        // console.log("ROOM", room)
+        // console.log("RECIEVED", res)
+        // console.log("RES.GAME", res.game.room_id)
         if (res.game.room_id === parseInt(room)){
-            console.log("THIS INFORMATION IS RELEVANT FOR ROOM:", room)
+            // console.log("THIS INFORMATION IS RELEVANT FOR ROOM:", room)
         } else {
-            console.log("THIS INFORMATION IS NOT RELEVANT FOR OUR ROOM")
+            // console.log("THIS INFORMATION IS NOT RELEVANT FOR OUR ROOM")
         }
     }
 
@@ -148,22 +149,22 @@ class HostLobby extends Component {
             'Authorization' : token
           }})
         .then(res => {
-            console.log("update", res.data)
+            // console.log("update", res.data)
             this.setState({questionArray : res.data})
             
         })
     }
 
    chooseQuestion = (e) => {
-       console.log('click',  parseInt(e.target.value) );
+    //    console.log('click',  parseInt(e.target.value) );
        const questionTarget = parseInt(e.target.value)
-       console.log(this.state.questionArray);
+    //    console.log(this.state.questionArray);
         
        this.state.questionArray.map((question, index) => {
-           console.log('questionand indes', question, index);
+        //    console.log('questionand indes', question, index);
            if (index === questionTarget){
-               console.log('clicked');
-               this.setState({selectedQuestion: question})
+            //    console.log('clicked');
+               this.setState({selectedQuestion: question}, () => console.log(this.state.selectedQuestion))
             }
        })
        
@@ -171,7 +172,7 @@ class HostLobby extends Component {
    
     startGame = () => {
         // this.props.sendData()
-        console.log("BUTTON CLICKED!")
+        // console.log("BUTTON CLICKED!")
         // this.props.history.push("/hostgame")
         // if(this.state.lobbyPlayers.length < 3 ){
         //     console.log(" you need to have more players to ");
@@ -185,7 +186,7 @@ class HostLobby extends Component {
 
         const res = axios.put(`${API_ROOT}/room/start/${this.props.match.params.id}`)
         .then(res => {
-            console.log("update", res.data)
+            // console.log("update", res.data)
             this.setState({gameInfo: res.data})
         })
         .catch(err => console.warn(err));
@@ -213,10 +214,10 @@ class HostLobby extends Component {
 
                 <button onClick = {this.handleQuestion}>Create Questions</button><br/>
                 {
-                this.state.currentUser.id === this.state.currentLobby.host_id
-                ?
-                //<NewQuestionForm />
-                <div>
+                    this.state.currentUser.id === this.state.currentLobby.host_id
+                    ?
+                    //<NewQuestionForm />
+                    <div>
 
                     {this.state.currentUsers.length > 2
                     ?
@@ -225,15 +226,27 @@ class HostLobby extends Component {
                     <button className="gameStartButton" disabled={true}>Game Start</button>}
                 </div>
             
-                :
-                    this.state.gameStart
-                    ?
-                    <div>
+            :
+
+                        this.state.gameStart
+                        ?
+                        <div>
 
                         <p>GAME STARTED</p>
-                    </div>
-                    :
-                    <div>
+                        {/* Render component for answer and vote forms. both make axios post */}
+                        {
+                            this.state.currentUser.id === this.state.currentLobby.imposter_id
+                            ?
+                            <h3>YOUR ARE THE IMPOSTER</h3>
+                            :
+                            <p>YOU ARE INNOCENT</p>
+                        }
+
+
+
+                        </div>
+                        :
+                        <div>
 
                         <p>Waiting for game to start...</p>
                     </div>
@@ -254,8 +267,8 @@ class HostLobby extends Component {
                         
                         this.state.gameStart 
                             ?
-                            
-                            <UserRoot />
+                            <Locations />
+                            // <UserRoot passQuestions={this.state.selectedQuestion}/>
                             :
                             <div className = "connected-player">{this.playersConnection()}
                             </div>

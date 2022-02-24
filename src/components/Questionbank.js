@@ -19,19 +19,15 @@ export default class Questionbank extends React.Component {
   }
 
    fetchQuestionlist = async () => {
-    let token = "Bearer " + localStorage.getItem("jwt");
+    // let token = "Bearer " + localStorage.getItem("jwt");
     try {
       const url = `${API_ROOT}/questionbanks/${this.props.match.params.id}/questions`
-      console.log("questionbank fectch url", url)
-      const res = await axios.get(url, {
-        // headers: {
-        //   'Authorization': token
-        // }
-      })
-      console.log(`questions:`, res.data)
+      // console.log("questionbank fectch url", url)
+      const res = await axios.get(url)
+      // console.log(`questions:`, res.data)
       this.setState({questionbank: res.data, loading: false})
     } catch (err) {
-      console.log( "err: ", err)
+      // console.log( "err: ", err)
     };
    
   }

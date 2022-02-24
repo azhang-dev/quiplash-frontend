@@ -10,7 +10,7 @@ import axios from 'axios';
 const TestComponent = (props) => {
   const clickHandler = () => {
     if (props.cable){
-      console.log(props.cable.send)
+      // console.log(props.cable.send)
       // props.cable.send("rooms_channel", {action: "hello"})
       props.cable.send({command: "message", identifier: '{"channel":"RoomsChannel"}',action: "test action name", data: "test data name"})
     }
@@ -27,11 +27,11 @@ class RoomsList extends React.Component {
 
   componentDidMount = () => {
     this.setCurrentUser()
-    console.log("roomListProps: ",this.props)
+    // console.log("roomListProps: ",this.props)
     fetch(`${API_ROOT}/rooms`)
       .then(res => res.json())
       .then(rooms => this.setState({ rooms }));
-      console.log("ROOMS", this.state.rooms)
+      // console.log("ROOMS", this.state.rooms)
   };
 
   handleClick = id => {
@@ -45,13 +45,13 @@ class RoomsList extends React.Component {
 
  setCurrentUser = () => {
   // let token = "Bearer " + localStorage.getItem("jwt");
-  console.log("ROOMS LIST", JSON.stringify(axios.defaults.headers.common))
-  console.log("ROOMS LIST", axios.defaults.headers.common)
+  // console.log("ROOMS LIST", JSON.stringify(axios.defaults.headers.common))
+  // console.log("ROOMS LIST", axios.defaults.headers.common)
   console.dir(axios.defaults.headers.common)
   const res = axios.get( `${API_ROOT}/users/current`)
   .then(res => {
     this.setState({ currentUser: res.data })
-    console.log("This.state", this.state)
+    // console.log("This.state", this.state)
   })
   .catch(err => console.warn(err));
 }
@@ -74,7 +74,7 @@ class RoomsList extends React.Component {
   };
 
   handleReceivedRoom = response => {
-    console.log("A NEW ROOM HAS BEEN CREATED", response)
+    // console.log("A NEW ROOM HAS BEEN CREATED", response)
     const { room } = response;
     this.setState({
       rooms: [...this.state.rooms, room]
@@ -84,20 +84,20 @@ class RoomsList extends React.Component {
 
   handleConnectedRoom = (...args) => {
     // console.log("handle connected",args)
-    console.log("CONNECTED")
+    // console.log("CONNECTED")
   }
 
 
 // !!!!!!!!!!!
   handleReceivedGame = response => {
-    console.log("HANDLING RECEIVED!", response)
+    // console.log("HANDLING RECEIVED!", response)
     const { game } = response;
     // console.log("RESPONSE FROM HANDLE RECEIVED GAME!!", game)
     const rooms = [...this.state.rooms];
     const room = rooms.find(
       room => room.id === game.room_id
       );
-    console.log("THIS IS THE ROOM???", room)
+    // console.log("THIS IS THE ROOM???", room)
     room.games = [...room.games, game];
     this.setState({ rooms });
     
