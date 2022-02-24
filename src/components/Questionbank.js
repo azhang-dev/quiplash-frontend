@@ -24,9 +24,9 @@ export default class Questionbank extends React.Component {
       const url = `${API_ROOT}/questionbanks/${this.props.match.params.id}/questions`
       console.log("questionbank fectch url", url)
       const res = await axios.get(url, {
-        headers: {
-          'Authorization': token
-        }
+        // headers: {
+        //   'Authorization': token
+        // }
       })
       console.log(`questions:`, res.data)
       this.setState({questionbank: res.data, loading: false})
@@ -57,7 +57,7 @@ export default class Questionbank extends React.Component {
 
         <h2>ADD YOUR QUESTIONS </h2>
       
-        <NewQuestionForm />
+        <NewQuestionForm bankid={this.props.match.params.id}/>
 
          
       </div>

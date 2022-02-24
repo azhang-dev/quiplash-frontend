@@ -63,7 +63,7 @@ class Root extends Component {
                         (
                             <ul>
                             <li className="nav-links"> G'day {this.state.currentUser.name} </li>
-                            <li><Link to = 'my_profile' className="nav-links">My Profile</Link> </li>
+                            <li><Link to = '/my_profile' className="nav-links">My Profile</Link> </li>
                             <li><Link onClick = {this.handleLogout} to = '/' className="nav-links">Logout</Link></li>
                             </ul>
                         )

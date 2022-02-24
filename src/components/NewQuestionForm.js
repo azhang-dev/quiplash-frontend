@@ -6,11 +6,18 @@ import { API_ROOT } from '../constants';
 export default class NewQuestionForm extends React.Component {
 
     state = {
-        question: '',
+        new_question: '',
         answer: '',
+        id: '',
+        // id: ''
         // question2: "",
         // question3: "",
         // question4: "",
+    }
+    componentDidMount(){
+        console.log(this.props.bankid)
+        // this.setState({id: this.props.bankid})
+        // this.setState({id: this.props.match.params.id})
     }
 
     handleInput = (e) => {
@@ -26,7 +33,7 @@ export default class NewQuestionForm extends React.Component {
         let token = "Bearer " + localStorage.getItem("jwt");
         console.log('submit clicked');
         try {
-            const res = await axios.post(`${API_ROOT}/questionbanks/createquestions`, this.state,{headers: { 'Authorization' : token }})
+            const res = await axios.post(`${API_ROOT}/questionbanks/${this.props.bankid}/createquestions`, this.state,{headers: { 'Authorization' : token }})
             console.log('post newQuestionbank ', res.data);
         } catch (err) {
             console.log('Error making new question: ', err);
