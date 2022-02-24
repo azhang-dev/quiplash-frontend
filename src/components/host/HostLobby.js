@@ -7,7 +7,7 @@ import { ActionCableConsumer } from 'react-actioncable-provider';
 import UserRoot from '../users/UserRoot'
 class HostLobby extends Component {
 
-    state= {
+    state = {
         lobbyPlayers: [],
         currentUsers: [],
         currentLobby: 0,
@@ -16,7 +16,8 @@ class HostLobby extends Component {
         gameStart: false,
         questionFormVisible: false,
         gameInfo:[],
-        checkLobby: ''
+        checkLobby: '',
+        round: 0
     };
 
 
@@ -73,9 +74,6 @@ class HostLobby extends Component {
         // console.log("FINISHED FETCH")
         // clearInterval(this.fetchLobbyUsers())
     }
-
-
-
 
     setCurrentUser = () => {
         let token = "Bearer " + localStorage.getItem("jwt");
@@ -209,14 +207,14 @@ class HostLobby extends Component {
                 }
 
                 <button onClick = {this.updateUsersInRoom}>UpdateUsers</button>
-
+{/* 
                 <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
 
                 channel={{ channel: 'GamesChannel', room: this.props.match.params.id }}
                 onReceived={this.handleReceivedRoom}
                 >
 
-                </ActionCableConsumer>
+                </ActionCableConsumer> */}
 
                 
                 <div>
@@ -236,14 +234,12 @@ class HostLobby extends Component {
             
                 <div>
 
-                        
-
-                        {
-                        this.state.gameStart
-                        ?
-                        <UserRoot />
-                        :
-                        <div>
+                    {
+                    this.state.gameStart
+                    ?
+                    <UserRoot />
+                    :
+                    <div>
                         {
                         this.state.currentUsers.length > 2
                         ?
@@ -251,13 +247,12 @@ class HostLobby extends Component {
                         :
                         <button disabled={true}>Game Start</button>
                         }
-                            <p>
-                                waiting...
-                            </p> 
-                            <div className = "connected-player">{this.playersConnection()}
-                            </div>
-                        </div>
-                        }
+                        <p>
+                            waiting...
+                        </p> 
+                        <div className = "connected-player">{ this.playersConnection() }</div>
+                    </div>
+                    }
                     
 
                     </div>
@@ -267,7 +262,19 @@ class HostLobby extends Component {
 
                     this.state.gameStart
                     ?
+                    <div>
+
                     <p>GAME STARTED</p>
+                    {
+                        this.state.round > 0
+                        ?
+                        <p>ROUND {this.state.round}</p>
+                        :
+                        <p></p>
+                    }
+                    </div>
+
+                    // INPUT FIELD HERE 
                     :
                     <p>Waiting for game to start...</p>
                 

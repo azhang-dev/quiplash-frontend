@@ -4,15 +4,23 @@ import React, { Component } from 'react';
 class CurrentAnswer extends Component {
 
     state = {
-        answer: 1
+        answer: 1,
+        timer: '',
+        countdown: 60,
     }
 
     componentDidMount(){
-        console.log("Answer MOUNTED")
-
-        // axios get questions 
-
+        console.log("QUESTION MOUNTED")
+        let timer = setInterval(this.countdown, 100)
+        this.setState({timer: timer})
     };
+    countdown = () => {
+        if (this.state.countdown > 0){
+            this.setState({countdown: this.state.countdown - 1})
+        } else {
+            clearInterval(this.state.countdown)
+        }
+    }
 
     componentDidUpdate(prevProps){
         if (this.props.round != prevProps.round ){
@@ -40,7 +48,10 @@ class CurrentAnswer extends Component {
 
     // handle input ? <--- checking which option(button) was chosen
 
-    
+    roundCounter = () => {
+        console.log("ROUND COUNTER HAS BEEN CALLED!!")
+        this.props.roundCounter()
+    }
     // axios post onSubmit... how can we tell if blank? 
     // HOST SIDE: 
         // Axios get answers ... 
@@ -48,9 +59,24 @@ class CurrentAnswer extends Component {
     render() {
         return (
             <div>
-                <h1>CURRENT ANSWER GOES HERE?</h1>
-                <h2>This is ANSWER {this.props.round}</h2>
+                {/* <h1>CURRENT QUESTION GOES HERE</h1> */}
+                <h2>{this.state.countdown}</h2>
 
+                {
+                this.state.countdown === 0
+                ?
+                <div>
+
+                <h2>TIME'S UP!!</h2>
+                {
+                    this.roundCounter()
+                }
+                </div>
+                :
+                <p></p>
+                }
+
+                <h2>This is ANSWER {this.props.round} </h2>
             </div>
         );
     }
