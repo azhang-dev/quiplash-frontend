@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { API_ROOT, HEADERS } from '../../constants';
 import "./HostLobby.css";
 import axios from 'axios';
@@ -13,7 +13,8 @@ class HostLobby extends Component {
         currentLobby: 0,
         currentUser: "",
         hostID: "",
-        gameStart: false
+        gameStart: false,
+        questionFormVisible: false
     };
 
 
@@ -47,7 +48,7 @@ class HostLobby extends Component {
             // console.log(this.state.currentUsers)
         })
         .catch(err => console.error(err));
-        setTimeout(this.fetchLobbyUsers, 4000)
+        // setTimeout(this.fetchLobbyUsers, 4000000000)
     }
 
     setCurrentUser = () => {
@@ -114,6 +115,22 @@ class HostLobby extends Component {
         }
     }
 
+    // const [questionFormVisible, setquestionFormVisible] = useState(false)
+
+    handleQuestion(){
+        const res = axios.get( `${API_ROOT}/questions`)
+        .then(res => {
+            console.log('fetched default questions',res)
+        });
+        // console.log('clicked');
+        // this.setState({questionFormVisible: !this.state.questionFormVisible})
+    }
+
+    // showQuestion(){
+    //     if(this.state.quesionFormVisible === true){
+
+    //     }
+    // }
    
     startGame = () => {
         // this.props.sendData()
@@ -131,7 +148,9 @@ class HostLobby extends Component {
         // }
     }
     render() {
-       
+        // const [quesionFormVisible, setQuesionFormVisible] = React.useState(false)
+        // const onClick = () => setQuesionFormVisible(true)
+        
         return (
             <div className="hostContainer">
                 <h2>Host lobby {this.state.currentLobby.id}</h2>
@@ -147,6 +166,16 @@ class HostLobby extends Component {
                 </ActionCableConsumer>
 
                 
+                <div>
+                <button onClick = {this.handleQuestion}>Create Questions</button>
+                {/* {quesionFormVisible?  <form>
+                            <label></label>
+                            <input></input>
+                            </form> : null } */}
+                        
+                </div>
+                
+            
                 {
                 this.state.currentUser.id === this.state.currentLobby.host_id
                 ?
@@ -160,6 +189,8 @@ class HostLobby extends Component {
                     <p>Waiting for game to start...</p>
                 }
                <br/>
+              
+
                 <div className = "connected-player">{this.playersConnection()}
 
 
