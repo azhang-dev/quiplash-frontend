@@ -48,6 +48,7 @@ class HostLobby extends Component {
             // console.log(this.state.currentUsers)
             if (this.state.currentUsers !== res.data.users){
                 this.setState({currentUsers: res.data.users})
+                //console.log("---------------------RES.DATA.USERS----", res.data.users)
                 this.playersConnection()
             }
             console.log(this.state.currentUsers)
@@ -81,7 +82,7 @@ class HostLobby extends Component {
           
         })
         .catch(err => console.warn(err));
-      }
+    }
 
     getCurrentLobby = () => {
         const res = axios.get( `${API_ROOT}/rooms/${this.props.match.params.id}`)
@@ -96,7 +97,7 @@ class HostLobby extends Component {
         const res = axios.post(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
         .then(res => {
             console.log("update", res.data)
-            this.getCurrentLobby()
+            //this.getCurrentLobby()
             
         })
         .catch(err => console.warn(err));
