@@ -13,7 +13,7 @@ export default class App extends React.Component{
   //App state
   state = {
     currentUser: undefined
-  }
+  } 
 
   //function to run on component mounting
   componentDidMount(){
