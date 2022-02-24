@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { ActionCableConsumer } from 'react-actioncable-provider';
+
 import axios from 'axios';
-import { API_ROOT } from '../../constants';
+import { API_ROOT } from '../constants';
 
 export default class NewQuestionForm extends React.Component {
 

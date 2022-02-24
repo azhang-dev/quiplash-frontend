@@ -8,10 +8,10 @@ export default class NewQuestionbankForm extends React.Component {
     state = {
         name: '',
         // questions: [],
-        question1: "",
-        question2: "",
-        question3: "",
-        question4: "",
+        // question1: "",
+        // question2: "",
+        // question3: "",
+        // question4: "",
 
 
     }
@@ -19,17 +19,18 @@ export default class NewQuestionbankForm extends React.Component {
     handleInput = (e) => {
 
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value 
         });
+        console.log(this.state.name);
     }
 
     handleSubmit= async (e) =>{
         e.preventDefault()
+        let token = "Bearer " + localStorage.getItem("jwt");
         console.log('submit clicked');
-    
         try {
-            const res = await axios.post(API_ROOT,)
-            console.log('post newQuestionbank ' );
+            const res = await axios.post(`${API_ROOT}/questionbanks/createquestions`, this.state,{headers: {  'Authorization' : token }})
+            console.log('post newQuestionbank ', res);
         } catch (err) {
             console.log('Error making new question: ', err);
         }
