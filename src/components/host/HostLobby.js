@@ -231,6 +231,10 @@ class HostLobby extends Component {
                     <div>
 
                         <p>GAME STARTED</p>
+                        {/* Render component for answer and vote forms. both make axios post */}
+
+
+
                     </div>
                     :
                     <div>
