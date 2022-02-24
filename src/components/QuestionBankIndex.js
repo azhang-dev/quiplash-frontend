@@ -18,9 +18,9 @@ export default class QuestionBankIndex extends React.Component {
     let token = "Bearer " + localStorage.getItem("jwt");
     try {
       const res = await axios.get(`${API_ROOT}/user/${this.state.currentUser.id}/questionbanks`, {
-        headers: {
-          'Authorization': token
-        }
+        // headers: {
+        //   'Authorization': token
+        // }
       })
       this.setState({questionbanks: res.data, loading: false})
       console.log(`${this.state.currentUser.name}'s question banks:`, this.state.questionbanks)

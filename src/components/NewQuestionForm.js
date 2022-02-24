@@ -6,11 +6,23 @@ import { API_ROOT } from '../constants';
 export default class NewQuestionForm extends React.Component {
 
     state = {
+<<<<<<< HEAD
         question: '',
         // answer: '',
+=======
+        new_question: '',
+        answer: '',
+        id: '',
+        // id: ''
+>>>>>>> 4f601e01ff9e527208a24a271020b27cde3130e7
         // question2: "",
         // question3: "",
         // question4: "",
+    }
+    componentDidMount(){
+        console.log(this.props.bankid)
+        // this.setState({id: this.props.bankid})
+        // this.setState({id: this.props.match.params.id})
     }
 
     
@@ -32,8 +44,13 @@ export default class NewQuestionForm extends React.Component {
         console.log(this.props.data);
         console.log(this.props.data.questionbank.id);
         try {
+<<<<<<< HEAD
             const res = await axios.post(`${API_ROOT}/questionbanks/${this.props.data.questionbank.id}/createquestions`, {question: this.state.question})
             console.log('post newQuestion', res.data);
+=======
+            const res = await axios.post(`${API_ROOT}/questionbanks/${this.props.bankid}/createquestions`, this.state,{headers: { 'Authorization' : token }})
+            console.log('post newQuestionbank ', res.data);
+>>>>>>> 4f601e01ff9e527208a24a271020b27cde3130e7
         } catch (err) {
             console.log('Error making new question: ', err);
         }

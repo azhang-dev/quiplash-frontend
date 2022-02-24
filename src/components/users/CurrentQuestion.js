@@ -56,7 +56,7 @@ class CurrentQuestion extends Component {
         return (
             <div>
                 {/* <h1>CURRENT QUESTION GOES HERE</h1> */}
-                <h2>{this.state.countdown}</h2>
+                    <h2>{this.state.countdown}</h2>
 
                 {
                 this.state.countdown === 0

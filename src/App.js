@@ -53,7 +53,7 @@ export default class App extends React.Component{
               (
                 <ul>
                   <li> G'day {this.state.currentUser.name} |</li>
-                  <li><Link to = 'my_profile'>My Profile</Link></li>
+                  <li><Link to = '/my_profile'>My Profile</Link></li>
                   <li><Link onClick = {this.handleLogout} to = '/'>Logout</Link></li>
                 </ul>
               )
