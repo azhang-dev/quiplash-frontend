@@ -17,10 +17,10 @@ class CurrentQuestion extends Component {
         };
     };
 
-    componentDidUnmount(){
-        // console.log("QUESTION UNMOUNTED")
-        console.log("AFTER UNMOUNT!!!!", this.props.round);
-    };
+    // componentDidUnmount(){
+    //     // console.log("QUESTION UNMOUNTED")
+    //     console.log("AFTER UNMOUNT!!!!", this.props.round);
+    // };
 
     changeQuestionState = () => {
         let currentRound = this.props.round;
@@ -44,7 +44,7 @@ class CurrentQuestion extends Component {
     render() {
         return (
             <div>
-                <h1>CURRENT QUESTION GOES HERE?</h1>
+                <h1>CURRENT QUESTION GOES HERE</h1>
                 <h2>This is QUESTION {this.props.round} </h2>
             
             </div>

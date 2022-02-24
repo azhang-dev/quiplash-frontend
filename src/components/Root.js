@@ -26,19 +26,15 @@ class Root extends Component {
   }
 
   //function to run on component mounting
-  componentDidMount(){
+  componentWillMount(){
     this.setCurrentUser();
     console.log("------------------MOUNTED ROOT PAGE-------------------", this.state)
   }
 
   //function to set the state to the current logged in user
   setCurrentUser = () => {
-    let token = "Bearer " + localStorage.getItem("jwt");
-    const res = axios.get( `${API_ROOT}/users/current`, {
-      headers: {
-        'Authorization' : token
-      }
-    })
+    
+    const res = axios.get( `${API_ROOT}/users/current` )
     .then(res => {
       this.setState({currentUser: res.data})
       console.log(res)
