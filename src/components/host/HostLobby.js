@@ -63,7 +63,7 @@ class HostLobby extends Component {
             }
         })
         .catch(err => console.error(err));
-        setTimeout(this.fetchLobbyUsers, 4000000000)
+        // setTimeout(this.fetchLobbyUsers, 4000000000)
         
         if (this.state.gameInfo.game_status === true){
             this.setState({gameStart: true})
