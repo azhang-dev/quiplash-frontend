@@ -42,8 +42,8 @@ export default class NewQuestionForm extends React.Component {
             <form onSubmit={this.handleSubmit}>
               
                 <div className="form-input-container">
-                    <label>Question</label>
-                    <input type="text" name="question" placeholder="Add your question" onChange={this.handleInput}/>
+                    <label>Location</label>
+                    <input type="text" name="question" placeholder="Add new location" onChange={this.handleInput}/>
                 </div>
                 {/* <div className="form-input-container">
                     <label>Default Answer</label>

@@ -17,18 +17,20 @@ class JoinGame extends Component {
     //     console.log('UNMOUNTED!!')
     // }
 
-    getStatus() {
-        if (this.state.game === true){
-            console.log('YO')
-        } else {
-            console.log('game')
-        }
-    }
+    // getStatus() {
+    //     if (this.state.game === true){
+    //         console.log('YO')
+    //     } else {
+    //         console.log('game')
+    //     }
+    // }
 
-    startGame = () => {
-        console.log('game started')
-        this.setState({game:true})
-    }
+    // startGame = () => {
+    //     console.log('game started')
+    //     this.setState({game:true})
+    // }
+
+   
 
    
 
@@ -37,7 +39,7 @@ class JoinGame extends Component {
 
         return (
             <div>
-                <h2>Lobby page</h2>
+                
                
 
 
