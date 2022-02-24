@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { API_ROOT } from '../constants';
 import NewQuestionbankForm from './NewQuestionbankForm';
+import QuestionBankIndex from './QuestionBankIndex';
 
 // const API_ROOT = 'http://localhost:3000'
 
@@ -22,19 +23,30 @@ export default class MyProfile extends React.Component {
     })
     .then(res => {
       this.setState({currentUser: res.data})
+      console.log('MyProfile state = ', this.state)
+      this.fetchQuestionBank()
+      
     })
-    .catch(err => console.warn(err))
+    .catch(err => console.warn(err));
   }
+
+  
+
 
   render(){
     return(
       <div className="myProfile">
         <div className="myProfileDetail">
-        <h2>Hello {this.state.currentUser.name}<br/>
-        Your email is {this.state.currentUser.email}</h2>
+          <h2>Hello {this.state.currentUser.name}<br/>
+          Your email is {this.state.currentUser.email}</h2>
         </div>
+        <div>
+          <NewQuestionbankForm />
+          <hr />
+          <QuestionBankIndex/>
+          <br />
 
-        <NewQuestionbankForm />
+        </div>
       </div>
     );
   }//render

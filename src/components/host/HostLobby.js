@@ -3,7 +3,7 @@ import { API_ROOT, HEADERS } from '../../constants';
 import "./HostLobby.css";
 import axios from 'axios';
 import { ActionCableConsumer } from 'react-actioncable-provider';
-import NewQuestionForm from './NewQuestionForm'
+
 import UserRoot from '../users/UserRoot'
 class HostLobby extends Component {
 
@@ -232,7 +232,7 @@ class HostLobby extends Component {
                 {
                 this.state.currentUser.id === this.state.currentLobby.host_id
                 ?
-                //<NewQuestionForm />
+               
             
                 <div>
 
