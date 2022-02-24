@@ -91,7 +91,7 @@ class Root extends Component {
                     <Link to="/host/lobby" >Host PAGE</Link>|&nbsp; 
                     <Link to="/host/game">Host GAME(test)</Link>|&nbsp; 
                     {/* <Link to="/user/join/:id">User Join Game(test)</Link> */}
-                    {/* <Link to= "/my_profile/questionbank"> Questionbank:ID </Link> */}
+                    
         
                   
                   

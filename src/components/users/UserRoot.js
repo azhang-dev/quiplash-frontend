@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Lobby from './Lobby'
 import CurrentQuestion from './CurrentQuestion'
 import CurrentAnswer from './CurrentAnswer'
+import "../host/HostLobby.css";
 
 // NOTES:
     // 
@@ -60,7 +61,7 @@ class UserRoot extends Component {
     
     render() {
         return (
-            <div>
+            <div className="questions">
                 {/* <h1>Root page for users</h1> */}
                 {/* <h3>we render everything here? instead of routing to each ?</h3> */}
 

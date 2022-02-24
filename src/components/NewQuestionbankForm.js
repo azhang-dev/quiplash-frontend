@@ -24,14 +24,16 @@ export default class NewQuestionbankForm extends React.Component {
         console.log(this.state.name);
     }
 
-    handleSubmit=  (e, id) =>{
+    handleSubmit= async (e) =>{
         e.preventDefault()
-        
-        axios.post(`${API_ROOT}/questionbanks/${id}/createquestions`)
-        .then(res => {
-            this.setState({question: res.data})
-        })
-        
+        let token = "Bearer " + localStorage.getItem("jwt");
+        console.log('submit clicked');
+        try {
+            const res = await axios.post(`${API_ROOT}/questionbanks`, this.state,{headers: {  'Authorization' : token }})
+            console.log('post newQuestionbank ', res);
+        } catch (err) {
+            console.log('Error making new question: ', err);
+        }
 
     }
 
