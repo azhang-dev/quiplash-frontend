@@ -29,7 +29,8 @@ class HostLobby extends Component {
         this.setState({checkLobby: checkLobby})
         
     }
-    componentDidUnmoun(){
+    componentWillUnmount(){
+        console.log("UNMOUNTED")
         clearInterval(this.state.checkLobby)
     }
 
