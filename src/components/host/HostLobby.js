@@ -245,6 +245,9 @@ class HostLobby extends Component {
                         })}
                             
                     </div>
+                    <div>
+                        {this.state.gameStart? this.state.questionArray : null }
+                    </div>
                     
                 <br/>
                <br/>
