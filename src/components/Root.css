@@ -1,14 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Barriecito&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Barriecito&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gruppo&family=Racing+Sans+One&family=Raleway&family=Teko:wght@300&display=swap');
 
 *{
     margin: 0;
     color: white;
-    font-family: 'Barriecito', cursive;
+    font-family: 'Bebas Neue', cursive;
     text-align: center;
 }
 
+.homeLogo{
+    font-family: 'Racing Sans One', cursive;
+}
+
 .container{
-    background-image: url(/public/backgrounds/bac3.jpeg);
+    background-image: url(/public/spyfall-backgrounds/wp2715302-spy-wallpaper.jpg);
     text-align: center;
     min-height: 100vh;
     min-width: 100%;
@@ -43,13 +48,19 @@ li {
 
 
 }
-.nav-links{
+
+.nav-links-header{
     text-decoration: none;
     color: white;
     margin-left: auto;
     
 }
-
+.nav-links{
+    text-decoration: none;
+    color: rgb(175, 14, 14);
+    margin-left: auto;
+    
+}
 
 h1{
     color:white;
@@ -65,9 +76,10 @@ button{
 }
 
 .myProfile {
-    background-image: url(/public/backgrounds/emptyMessage.png);
+    
     width: 40%;
     height: 500px;
+   
     display: inline-block;
     background-size:contain;
     background-repeat: no-repeat;
@@ -77,12 +89,19 @@ button{
 }
 
 .myProfileDetail h2{
-    padding-top: 120px;
-    color: black !important;
+    
+    color: white !important;
+     margin: 50px;
 
 
 }
 
 input {
     color: black
+}
+
+
+.join-game-form{
+    margin:20px;
+    padding-bottom: 30px;
 }

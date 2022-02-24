@@ -32,7 +32,6 @@ export default class Login extends React.Component {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + result.data.jwt;
       this.props.setCurrentUser();
       this.props.history.push('/');
-
     })
     .catch(err => {
       console.warn(err)
