@@ -18,7 +18,7 @@ class UserRoot extends Component {
     componentDidMount(){
         // console.log(this.state.inLobby)
         // console.log('mounted')
-        this.timer()
+        // this.timer()
     }
 
     switchLobbyState = () => {
@@ -50,6 +50,13 @@ class UserRoot extends Component {
             // console.log('STATE :(', this.state.round)
         }
     }
+    roundCounter = () => {
+        console.log("USER ROOT: ROUNDCOUNTER")
+        if (this.state.roundCounter < 3){
+            this.switchGameState()
+
+        }
+    }
     
     render() {
         return (
@@ -64,9 +71,9 @@ class UserRoot extends Component {
                 :
                     this.state.questionTime 
                     ? 
-                    <CurrentQuestion round={ this.state.round }/> 
+                    <CurrentQuestion round={ this.state.round } roundCounter={this.roundCounter}/> 
                     : 
-                    <CurrentAnswer round={ this.state.round }/>
+                    <CurrentAnswer round={ this.state.round } roundCounter={this.roundCounter}/>
                 }
             </div>
         );

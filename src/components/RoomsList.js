@@ -50,7 +50,7 @@ class RoomsList extends React.Component {
   console.dir(axios.defaults.headers.common)
   const res = axios.get( `${API_ROOT}/users/current`)
   .then(res => {
-    this.setState({currentUser: res.data})
+    this.setState({ currentUser: res.data })
     console.log("This.state", this.state)
   })
   .catch(err => console.warn(err));
