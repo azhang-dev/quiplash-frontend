@@ -63,6 +63,7 @@ export default class QuestionBankIndex extends React.Component {
   render(){
     const { loading, questionbanks } = this.state;
     return(
+      <Router>
       <div>
         <p>Question Bank Index for {this.state.currentUser.name}</p>
         {
@@ -77,6 +78,7 @@ export default class QuestionBankIndex extends React.Component {
           </div>
         }
       </div>
+      </Router>
     );
   }//render
 }
