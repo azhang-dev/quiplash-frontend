@@ -29,7 +29,7 @@ export default class NewQuestionbankForm extends React.Component {
         let token = "Bearer " + localStorage.getItem("jwt");
         console.log('submit clicked');
         try {
-            const res = await axios.post(`${API_ROOT}/questionbanks/createquestions`, this.state,{headers: {  'Authorization' : token }})
+            const res = await axios.post(`${API_ROOT}/questionbanks`, this.state,{headers: {  'Authorization' : token }})
             console.log('post newQuestionbank ', res);
         } catch (err) {
             console.log('Error making new question: ', err);
@@ -46,7 +46,7 @@ export default class NewQuestionbankForm extends React.Component {
                     <label>Questionbank Name</label>
                     <input type="text" name="name" placeholder="Enter Name" onChange={this.handleInput}/>
                 </div>
-                <div className="form-input-container">
+                {/* <div className="form-input-container">
                     <label>Question 1</label>
                     <input type="text" name="question1" placeholder="Add your question" onChange={this.handleInput}/>
                 </div>
@@ -62,10 +62,7 @@ export default class NewQuestionbankForm extends React.Component {
                     <label>Question 4</label>
                     <input type="text" name="question4" placeholder="Add your question" onChange={this.handleInput} />
                 </div>
-                
-                
-                
-                {/* <button onClick={this.addQuestions}>Add Another Question</button> */}
+              */}
                 <button>Create</button>
             
             </form>

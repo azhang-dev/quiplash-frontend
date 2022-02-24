@@ -6,42 +6,60 @@ import { API_ROOT } from '../constants';
 export default class NewQuestionForm extends React.Component {
 
     state = {
-        defaultQuestions: [],
-        customQuestions: [],
-
-    }
-    componentDidMount(){
-        console.log("mounted")
-        
+        question1: "",
+        // question2: "",
+        // question3: "",
+        // question4: "",
     }
 
-    loadDefaultQuestions = () => {
-        console.log("Default question button clicked")
-        const res = axios.get( `${API_ROOT}/questions`)
-        .then(res => {
-            console.log('fetched default questions',res)
+    handleInput = (e) => {
+
+        this.setState({
+            [e.target.name]: e.target.value 
         });
+        console.log(this.state.name);
     }
 
-    customQuestions = () => {
+    handleSubmit= async (e) =>{
+        e.preventDefault()
+        let token = "Bearer " + localStorage.getItem("jwt");
+        console.log('submit clicked');
+        try {
+            const res = await axios.post(`${API_ROOT}/questionbanks/createquestions`, this.state,{headers: {  'Authorization' : token }})
+            console.log('post newQuestionbank ', res);
+        } catch (err) {
+            console.log('Error making new question: ', err);
+        }
 
     }
 
-    render() {
+    
+    render (){
 
-        return(
-            <div>
-                <h1>Pick your questions:</h1>
-                <button onClick = {this.laodDefaultQuestions}className ="btn btn-outline-secondary" >Default Questions</button>
-                <button className ="btn btn-outline-secondary" >Custom Questions</button>
+        return (
+            <form onSubmit={this.handleSubmit}>
+              
+                <div className="form-input-container">
+                    <label>Question 1</label>
+                    <input type="text" name="question1" placeholder="Add your question" onChange={this.handleInput}/>
+                </div>
+                {/* <div className="form-input-container">
+                    <label>Question 2</label>
+                    <input type="text" name="question2" placeholder="Add your question" onChange={this.handleInput} />
+                </div>
+                <div className="form-input-container">
+                    <label>Question 3</label>
+                    <input type="text" name="question3" placeholder="Add your question" onChange={this.handleInput}  />
+                </div>
+                <div className="form-input-container">
+                    <label>Question 4</label>
+                    <input type="text" name="question4" placeholder="Add your question" onChange={this.handleInput} />
+                </div>
+                 */}
+                <button>Create</button>
             
-                
-            </div>
-
+            </form>
         )
-    };
-
-
+    }
 
 }
-
