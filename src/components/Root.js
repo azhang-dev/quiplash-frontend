@@ -15,6 +15,7 @@ import Login from './Login'
 import SignUp from './SignUp'
 
 import MyProfile from './MyProfile'
+import Questionbank from './Questionbank'
 
 import {HashRouter as Router, Route, Link} from 'react-router-dom'
 
@@ -92,8 +93,12 @@ class Root extends Component {
                     <Link to="/play">Root player page</Link> |&nbsp; 
                     {/* <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp;  */}
                     <Link to="/host/lobby" >Host PAGE</Link>|&nbsp; 
-                    <Link to="/host/game">Host GAME(test)</Link>
+                    <Link to="/host/game">Host GAME(test)</Link>|&nbsp; 
                     {/* <Link to="/user/join/:id">User Join Game(test)</Link> */}
+                    <Link to= "/my_profile/questionbank"> Questionbank:ID </Link>
+        
+                  
+                  
 
                     <div className ="body-content">
                     <Route exact path="/play" component={UserRoot}/> 
@@ -102,6 +107,7 @@ class Root extends Component {
                     <Route exact path = '/my_profile' component = {MyProfile}/>
                     <Route exact path="/lobbies" component={RoomsList }/>
                     <Route exact path="/host/lobby/:id" component={HostLobby}/> 
+                    <Route exact path= "/my_profile/questionbank" component={Questionbank} />
                     </div>
                 </Router>
             </div>
