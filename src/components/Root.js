@@ -15,6 +15,7 @@ import Login from './Login'
 import SignUp from './SignUp'
 
 import MyProfile from './MyProfile'
+import Questionbank from './Questionbank'
 
 import {HashRouter as Router, Route, Link} from 'react-router-dom'
 
@@ -62,7 +63,7 @@ class Root extends Component {
                         (
                             <ul>
                             <li className="nav-links"> G'day {this.state.currentUser.name} </li>
-                            <li><Link to = 'my_profile' className="nav-links">My Profile</Link> </li>
+                            <li><Link to = '/my_profile' className="nav-links">My Profile</Link> </li>
                             <li><Link onClick = {this.handleLogout} to = '/' className="nav-links">Logout</Link></li>
                             </ul>
                         )
@@ -88,16 +89,22 @@ class Root extends Component {
                     <Link to="/play">Root player page</Link> |&nbsp; 
                     {/* <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp;  */}
                     <Link to="/host/lobby" >Host PAGE</Link>|&nbsp; 
-                    <Link to="/host/game">Host GAME(test)</Link>
+                    <Link to="/host/game">Host GAME(test)</Link>|&nbsp; 
                     {/* <Link to="/user/join/:id">User Join Game(test)</Link> */}
+                    <Link to= "/my_profile/questionbank"> Questionbank:ID </Link>
+        
+                  
+                  
 
                     <div className ="body-content">
                     <Route exact path="/play" component={UserRoot}/> 
                     <Route exact path="/host/lobby" component = {HostRoot}/>
                     <Route exact path="/host/game" component={HostGame}/>
-                    <Route exact path = '/my_profile' component = {MyProfile}/>
+                    <Route exact path = "/my_profile" component = {MyProfile}/>
                     <Route exact path="/lobbies" component={RoomsList }/>
                     <Route exact path="/host/lobby/:id" component={HostLobby}/> 
+  
+                    <Route exact path= "/my_profile/questionbank/:id" component={Questionbank} />
                     </div>
                 </Router>
             </div>

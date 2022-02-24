@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Lobby from './Lobby'
 import CurrentQuestion from './CurrentQuestion'
 import CurrentAnswer from './CurrentAnswer'
+import "../host/HostLobby.css";
 
 // NOTES:
     // 
@@ -18,7 +19,7 @@ class UserRoot extends Component {
     componentDidMount(){
         // console.log(this.state.inLobby)
         // console.log('mounted')
-        this.timer()
+        // this.timer()
     }
 
     switchLobbyState = () => {
@@ -50,10 +51,17 @@ class UserRoot extends Component {
             // console.log('STATE :(', this.state.round)
         }
     }
+    roundCounter = () => {
+        console.log("USER ROOT: ROUNDCOUNTER")
+        if (this.state.roundCounter < 3){
+            this.switchGameState()
+
+        }
+    }
     
     render() {
         return (
-            <div>
+            <div className="questions">
                 {/* <h1>Root page for users</h1> */}
                 {/* <h3>we render everything here? instead of routing to each ?</h3> */}
 
@@ -64,9 +72,9 @@ class UserRoot extends Component {
                 :
                     this.state.questionTime 
                     ? 
-                    <CurrentQuestion round={ this.state.round }/> 
+                    <CurrentQuestion round={ this.state.round } roundCounter={this.roundCounter}/> 
                     : 
-                    <CurrentAnswer round={ this.state.round }/>
+                    <CurrentAnswer round={ this.state.round } roundCounter={this.roundCounter}/>
                 }
             </div>
         );

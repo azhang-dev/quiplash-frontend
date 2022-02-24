@@ -1,4 +1,6 @@
-
+/* .hostContainer {
+  display:flex;
+} */
 
 .connected-player {
   background-color: rgba(247, 221, 232, 0.4);
@@ -10,7 +12,8 @@
   color: rgb(50, 50, 94);
   line-height: 50px;
   display: inline-block;
-  margin-top: 30px;
+  margin-top: -250px;
+
 }
   
 .connected-players {
@@ -19,11 +22,25 @@
   color: rgb(116, 58, 58);
 }
 
-.hostContainer {
-  /* margin-bottom: 500px */
-}
-
 .empty-player-slot {
   border: 5px dashed gray;
   color: yellow;
 }
+
+.questionContainer{
+ 
+  width:200px;
+  height: 300px;
+  left: 56vw;
+  position: relative;
+}
+.questionArray{
+  display: inline-block;
+}
+
+.questions{
+  margin-top:-30vh;
+}
+
+
+
