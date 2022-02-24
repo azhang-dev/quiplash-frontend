@@ -25,17 +25,17 @@ state = {
 
 
     componentDidMount(){
-        console.log("HOSTLOBBY HAS BEEN MOUNTED")
+        // console.log("HOSTLOBBY HAS BEEN MOUNTED")
         this.setCurrentUser()
         
         this.getCurrentLobby()
-        console.log("this.state", this.state)
+        // console.log("this.state", this.state)
         let checkLobby = setInterval(this.fetchLobbyUsers, 1000)
         this.setState({checkLobby: checkLobby})
         
     }
     componentWillUnmount(){
-        console.log("UNMOUNTED")
+        // console.log("UNMOUNTED")
         clearInterval(this.state.checkLobby)
     }
 
@@ -95,7 +95,7 @@ state = {
         const res = axios.get( `${API_ROOT}/rooms/${this.props.match.params.id}`)
         .then(res => {
             this.setState({currentLobby: res.data})
-            console.log("getcurrentLobby:", res.data)
+            // console.log("getcurrentLobby:", res.data)
         })
         .catch(err => console.warn(err));
     }
@@ -103,7 +103,7 @@ state = {
     updateUsersInRoom = () => {
         const res = axios.put(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
         .then(res => {
-            console.log("update", res.data)
+            // console.log("update", res.data)
             this.getCurrentLobby()
             
         })
@@ -132,13 +132,13 @@ state = {
 
     handleReceivedRoom = (res) => {
         let room = this.state.currentLobby
-        console.log("ROOM", room)
-        console.log("RECIEVED", res)
-        console.log("RES.GAME", res.game.room_id)
+        // console.log("ROOM", room)
+        // console.log("RECIEVED", res)
+        // console.log("RES.GAME", res.game.room_id)
         if (res.game.room_id === parseInt(room)){
-            console.log("THIS INFORMATION IS RELEVANT FOR ROOM:", room)
+            // console.log("THIS INFORMATION IS RELEVANT FOR ROOM:", room)
         } else {
-            console.log("THIS INFORMATION IS NOT RELEVANT FOR OUR ROOM")
+            // console.log("THIS INFORMATION IS NOT RELEVANT FOR OUR ROOM")
         }
     }
 
@@ -149,21 +149,21 @@ state = {
             'Authorization' : token
           }})
         .then(res => {
-            console.log("update", res.data)
+            // console.log("update", res.data)
             this.setState({questionArray : res.data})
             
         })
     }
 
    chooseQuestion = (e) => {
-       console.log('click',  parseInt(e.target.value) );
+    //    console.log('click',  parseInt(e.target.value) );
        const questionTarget = parseInt(e.target.value)
     //    console.log(this.state.questionArray);
         
        this.state.questionArray.map((question, index) => {
         //    console.log('questionand indes', question, index);
            if (index === questionTarget){
-               console.log('clicked');
+            //    console.log('clicked');
                this.setState({selectedQuestion: question}, () => console.log(this.state.selectedQuestion))
             }
        })
@@ -172,7 +172,7 @@ state = {
    
     startGame = () => {
         // this.props.sendData()
-        console.log("BUTTON CLICKED!")
+        // console.log("BUTTON CLICKED!")
         // this.props.history.push("/hostgame")
         // if(this.state.lobbyPlayers.length < 3 ){
         //     console.log(" you need to have more players to ");
@@ -186,7 +186,7 @@ state = {
 
         const res = axios.put(`${API_ROOT}/room/start/${this.props.match.params.id}`)
         .then(res => {
-            console.log("update", res.data)
+            // console.log("update", res.data)
             this.setState({gameInfo: res.data})
         })
         .catch(err => console.warn(err));

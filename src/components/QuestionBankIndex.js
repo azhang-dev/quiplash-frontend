@@ -23,9 +23,9 @@ export default class QuestionBankIndex extends React.Component {
         // }
       })
       this.setState({questionbanks: res.data, loading: false})
-      console.log(`${this.state.currentUser.name}'s question banks:`, this.state.questionbanks)
+      // console.log(`${this.state.currentUser.name}'s question banks:`, this.state.questionbanks)
     } catch (err) {
-      console.log( "err: ", err)
+      // console.log( "err: ", err)
     };
     // let token = "Bearer " + localStorage.getItem("jwt");
     // const res = axios.get(`${API_ROOT}/user/${this.state.currentUser.id}/questionbanks`, {
