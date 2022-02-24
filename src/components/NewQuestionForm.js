@@ -13,7 +13,7 @@ export default class NewQuestionForm extends React.Component {
         // question4: "",
     }
     componentDidMount(){
-        console.log(this.props.bankid)
+        // console.log(this.props.bankid)
         // this.setState({id: this.props.bankid})
         // this.setState({id: this.props.match.params.id})
     }
@@ -24,7 +24,7 @@ export default class NewQuestionForm extends React.Component {
         this.setState({
             [e.target.name]: e.target.value 
         });
-        console.log(this.state.question);
+        // console.log(this.state.question);
     }
 
    
@@ -33,14 +33,14 @@ export default class NewQuestionForm extends React.Component {
     handleSubmit= async (e) =>{
         e.preventDefault()
         // let token = "Beare/questionbanks/createquestions
-        console.log('submit clicked');
-        console.log(this.props.data);
-        console.log(this.props.data.questionbank.id);
+        // console.log('submit clicked');
+        // console.log(this.props.data);
+        // console.log(this.props.data.questionbank.id);
         try {
             const res = await axios.post(`${API_ROOT}/questionbanks/${this.props.data.questionbank.id}/createquestions`, {question: this.state.question})
-            console.log('post newQuestion', res.data);
+            // console.log('post newQuestion', res.data);
         } catch (err) {
-            console.log('Error making new question: ', err);
+            // console.log('Error making new question: ', err);
         }
 
     }

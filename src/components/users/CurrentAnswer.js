@@ -7,6 +7,7 @@ class CurrentAnswer extends Component {
         answer: 1,
         timer: '',
         countdown: 60,
+        
     }
 
     componentDidMount(){
@@ -47,6 +48,7 @@ class CurrentAnswer extends Component {
 
 
     // handle input ? <--- checking which option(button) was chosen
+    
 
     roundCounter = () => {
         console.log("ROUND COUNTER HAS BEEN CALLED!!")
@@ -59,6 +61,7 @@ class CurrentAnswer extends Component {
     render() {
         return (
             <div>
+               
                 {/* <h1>CURRENT QUESTION GOES HERE</h1> */}
                 <h2>{this.state.countdown}</h2>
 

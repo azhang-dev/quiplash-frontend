@@ -73,7 +73,7 @@ class UserRoot extends Component {
     
     render() {
         return (
-            <div className="questions">
+            <div>
                 {/* <h1>Root page for users</h1> */}
                 {/* <h3>we render everything here? instead of routing to each ?</h3> */}
 
