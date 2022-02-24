@@ -63,6 +63,7 @@ export default class QuestionBankIndex extends React.Component {
   render(){
     const { loading, questionbanks } = this.state;
     return(
+      <Router>
       <div>
         <p>Question Bank Index for {this.state.currentUser.name}</p>
         {
@@ -73,11 +74,12 @@ export default class QuestionBankIndex extends React.Component {
           <div>
             {
               
-              questionbanks.map( qb => <Link to={`/my_profile/questionbank/${qb.id}`} >{qb.name}</Link>)
+              questionbanks.map( qb => <Link to={`/my_profile/questionbank/${qb.id}`} ><p>{qb.name}</p></Link>)
             }
           </div>
         }
       </div>
+      </Router>
     );
   }//render
 }
