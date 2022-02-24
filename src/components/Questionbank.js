@@ -45,7 +45,7 @@ export default class Questionbank extends React.Component {
           :
           <div>
             {
-              // questionbank.questions.map( q => <p>{q.question}</p> )
+              questionbank.questions.map( q => <p>{q.question}</p> )
               
             }
           </div>

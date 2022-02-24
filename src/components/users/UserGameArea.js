@@ -59,7 +59,7 @@ export default class UserGameArea extends React.Component {
         return(
             <div>
 
-{/* 
+
                 {
                 this.state.inLobby
                 ?
@@ -72,8 +72,8 @@ export default class UserGameArea extends React.Component {
                     : 
                     <CurrentAnswer round={ this.state.round } roundCounter={this.roundCounter}/>
                     
-                } */}
-                <UserRoot />
+                }
+                {/* <UserRoot /> */}
 
                 <UserAnswer />
 
