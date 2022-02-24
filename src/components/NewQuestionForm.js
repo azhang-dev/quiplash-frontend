@@ -27,14 +27,14 @@ export default class NewQuestionForm extends React.Component {
         console.log('submit clicked');
         try {
             const res = await axios.post(`${API_ROOT}/questionbanks/createquestions`, this.state,{headers: { 'Authorization' : token }})
-            console.log('post newQuestionbank ', res);
+            console.log('post newQuestionbank ', res.data);
         } catch (err) {
             console.log('Error making new question: ', err);
         }
 
     }
-
-    
+   
+  
     render (){
 
         return (
