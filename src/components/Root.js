@@ -100,10 +100,11 @@ class Root extends Component {
                     <Route exact path="/play" component={UserRoot}/> 
                     <Route exact path="/host/lobby" component = {HostRoot}/>
                     <Route exact path="/host/game" component={HostGame}/>
-                    <Route exact path = '/my_profile' component = {MyProfile}/>
+                    <Route exact path = "/my_profile" component = {MyProfile}/>
                     <Route exact path="/lobbies" component={RoomsList }/>
                     <Route exact path="/host/lobby/:id" component={HostLobby}/> 
-                    <Route exact path= "/my_profile/questionbank" component={Questionbank} />
+  
+                    <Route exact path= "/my_profile/questionbank/:id" component={Questionbank} />
                     </div>
                 </Router>
             </div>

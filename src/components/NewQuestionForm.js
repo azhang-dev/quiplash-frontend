@@ -7,11 +7,9 @@ export default class NewQuestionForm extends React.Component {
 
     state = {
         question1: "",
-        question2: "",
-        question3: "",
-        question4: "",
-
-
+        // question2: "",
+        // question3: "",
+        // question4: "",
     }
 
     handleInput = (e) => {
@@ -45,7 +43,7 @@ export default class NewQuestionForm extends React.Component {
                     <label>Question 1</label>
                     <input type="text" name="question1" placeholder="Add your question" onChange={this.handleInput}/>
                 </div>
-                <div className="form-input-container">
+                {/* <div className="form-input-container">
                     <label>Question 2</label>
                     <input type="text" name="question2" placeholder="Add your question" onChange={this.handleInput} />
                 </div>
@@ -57,7 +55,7 @@ export default class NewQuestionForm extends React.Component {
                     <label>Question 4</label>
                     <input type="text" name="question4" placeholder="Add your question" onChange={this.handleInput} />
                 </div>
-                
+                 */}
                 <button>Create</button>
             
             </form>
