@@ -33,6 +33,7 @@ class HostLobby extends Component {
     componentWillUnmount(){
         console.log("UNMOUNTED")
         clearInterval(this.state.checkLobby)
+        // remove player from lobby on unmount?? 
     }
 
     fetchLobbyUsers = () => {
@@ -179,6 +180,11 @@ class HostLobby extends Component {
         })
         .catch(err => console.warn(err));
 
+
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        // axios get for questions goes here! ! ! ! ! 
+        // pass props to the component/s ! ! ! ! ! 
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     }
     render() {
