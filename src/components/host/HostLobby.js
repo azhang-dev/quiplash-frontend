@@ -29,8 +29,9 @@ class HostLobby extends Component {
         this.setState({checkLobby: checkLobby})
         
     }
-    
-    
+    componentDidUnmoun(){
+        clearInterval((this.state.checkLobby))
+    }
     
     fetchLobbyUsers = () => {
         if (this.state.gameStart === true){
@@ -69,7 +70,7 @@ class HostLobby extends Component {
     }
 
 
-    
+
 
     setCurrentUser = () => {
         let token = "Bearer " + localStorage.getItem("jwt");
