@@ -46,23 +46,7 @@ export default class NewQuestionbankForm extends React.Component {
                     <label>Questionbank Name</label>
                     <input type="text" name="name" placeholder="Enter Name" onChange={this.handleInput}/>
                 </div>
-                {/* <div className="form-input-container">
-                    <label>Question 1</label>
-                    <input type="text" name="question1" placeholder="Add your question" onChange={this.handleInput}/>
-                </div>
-                <div className="form-input-container">
-                    <label>Question 2</label>
-                    <input type="text" name="question2" placeholder="Add your question" onChange={this.handleInput} />
-                </div>
-                <div className="form-input-container">
-                    <label>Question 3</label>
-                    <input type="text" name="question3" placeholder="Add your question" onChange={this.handleInput}  />
-                </div>
-                <div className="form-input-container">
-                    <label>Question 4</label>
-                    <input type="text" name="question4" placeholder="Add your question" onChange={this.handleInput} />
-                </div>
-              */}
+              
                 <button>Create</button>
             
             </form>
