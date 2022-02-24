@@ -6,8 +6,11 @@ import App from './App'
 import Test from './Test'
 import { ActionCableProvider } from 'react-actioncable-provider';
 import { API_WS_ROOT } from './constants';
+import axios from 'axios'
 
-
+let token = localStorage.getItem("jwt");
+console.log("CURRENT USER", token)
+axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
 ReactDOM.render(
     

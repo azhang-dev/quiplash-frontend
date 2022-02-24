@@ -12,7 +12,7 @@ class NewRoomForm extends React.Component {
   // };
 
   componentDidMount() {
-    this.setCurrentUser();
+    // this.setCurrentUser();
     console.log("Checking props", this.props)
   }
 

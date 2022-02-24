@@ -44,12 +44,11 @@ class RoomsList extends React.Component {
  }
 
  setCurrentUser = () => {
-  let token = "Bearer " + localStorage.getItem("jwt");
-  const res = axios.get( `${API_ROOT}/users/current`, {
-    headers: {
-      'Authorization' : token
-    }
-  })
+  // let token = "Bearer " + localStorage.getItem("jwt");
+  console.log("ROOMS LIST", JSON.stringify(axios.defaults.headers.common))
+  console.log("ROOMS LIST", axios.defaults.headers.common)
+  console.dir(axios.defaults.headers.common)
+  const res = axios.get( `${API_ROOT}/users/current`)
   .then(res => {
     this.setState({currentUser: res.data})
     console.log("This.state", this.state)
@@ -61,10 +60,9 @@ class RoomsList extends React.Component {
     // fetch(`${API_ROOT}/rooms/${id}`,{
     //   method: "Delete",
     // });
-    let token = "Bearer " + localStorage.getItem("jwt");
+    // let token = "Bearer " + localStorage.getItem("jwt");
 
-    const res = axios.delete( `${API_ROOT}/rooms/${id}`, 
-      {headers: {  'Authorization' : token } })
+    const res = axios.delete( `${API_ROOT}/rooms/${id}` )
     .then(res => {
     })
     .catch(err => console.warn(err));
