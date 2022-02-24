@@ -74,7 +74,7 @@ export default class QuestionBankIndex extends React.Component {
           <div>
             {
               
-              questionbanks.map( qb => <Link to={`/my_profile/questionbank/${qb.id}`} >{qb.name}</Link>)
+              questionbanks.map( qb => <Link to={`/my_profile/questionbank/${qb.id}`} ><p>{qb.name}</p></Link>)
             }
           </div>
         }

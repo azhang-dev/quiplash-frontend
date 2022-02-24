@@ -24,7 +24,6 @@ export default class MyProfile extends React.Component {
     .then(res => {
       this.setState({currentUser: res.data})
       console.log('MyProfile state = ', this.state)
-      this.fetchQuestionBank()
       
     })
     .catch(err => console.warn(err));
