@@ -4,7 +4,7 @@ import "./HostLobby.css";
 import axios from 'axios';
 import { ActionCableConsumer } from 'react-actioncable-provider';
 import NewQuestionForm from './NewQuestionForm'
-
+import UserRoot from '../users/UserRoot'
 class HostLobby extends Component {
 
     state= {
@@ -29,9 +29,11 @@ class HostLobby extends Component {
         this.setState({checkLobby: checkLobby})
         
     }
-    
-    
-    
+    componentWillUnmount(){
+        console.log("UNMOUNTED")
+        clearInterval(this.state.checkLobby)
+    }
+
     fetchLobbyUsers = () => {
         if (this.state.gameStart === true){
             clearInterval(this.state.checkLobby)
@@ -69,7 +71,7 @@ class HostLobby extends Component {
     }
 
 
-    
+
 
     setCurrentUser = () => {
         let token = "Bearer " + localStorage.getItem("jwt");
@@ -96,7 +98,7 @@ class HostLobby extends Component {
     }
 
     updateUsersInRoom = () => {
-        const res = axios.post(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
+        const res = axios.put(`${API_ROOT}/room/edit/${this.props.match.params.id}`)
         .then(res => {
             console.log("update", res.data)
             this.getCurrentLobby()
@@ -166,6 +168,7 @@ class HostLobby extends Component {
             <div className="hostContainer">
                 <h2>Host lobby {this.state.currentLobby.id}</h2>
                 <h3>Go to ---URL--- and enter code: "{this.props.match.params.id}" to join </h3>
+
                 <button onClick = {this.updateUsersInRoom}>UpdateUsers</button>
 
                 <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
@@ -181,13 +184,22 @@ class HostLobby extends Component {
                 this.state.currentUser.id === this.state.currentLobby.host_id
                 ?
                 //<NewQuestionForm />
-                <button onClick={this.startGame}>Game Start</button>
-                :
-                    this.state.gameStart
+                    this.state.currentUsers.length > 2
                     ?
-                    <p>GAME STARTED</p>
+                    <button onClick={this.startGame}>Game Start</button>
                     :
-                    <p>Waiting for game to start...</p>
+                    <button disabled={true}>Game Start</button>
+
+                            :
+                            this.state.gameStart
+                            ?
+                            <p>GAME STARTED</p>
+                            :
+                            <div>
+
+                            <p>Waiting for game to start...</p>
+                            <UserRoot />
+                            </div>
                 }
                <br/>
                 <div className = "connected-player">{this.playersConnection()}
