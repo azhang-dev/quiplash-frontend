@@ -63,7 +63,7 @@ class Root extends Component {
                         (
                             <ul>
                             <li className="nav-links"> G'day {this.state.currentUser.name} </li>
-                            <li><Link to = 'my_profile' className="nav-links">My Profile</Link> </li>
+                            <li><Link to = '/my_profile' className="nav-links">My Profile</Link> </li>
                             <li><Link onClick = {this.handleLogout} to = '/' className="nav-links">Logout</Link></li>
                             </ul>
                         )
@@ -91,7 +91,7 @@ class Root extends Component {
                     <Link to="/host/lobby" >Host PAGE</Link>|&nbsp; 
                     <Link to="/host/game">Host GAME(test)</Link>|&nbsp; 
                     {/* <Link to="/user/join/:id">User Join Game(test)</Link> */}
-                    <Link to= "/my_profile/questionbank"> Questionbank:ID </Link>
+                    {/* <Link to= "/my_profile/questionbank"> Questionbank:ID </Link> */}
         
                   
                   

@@ -7,7 +7,7 @@ import { ActionCableConsumer } from 'react-actioncable-provider';
 import UserRoot from '../users/UserRoot'
 class HostLobby extends Component {
 
-    state= {
+    state = {
         lobbyPlayers: [],
         currentUsers: [],
         currentLobby: 0,
@@ -17,6 +17,7 @@ class HostLobby extends Component {
         questionFormVisible: false,
         gameInfo:[],
         checkLobby: '',
+        round: 0,
         questionArray: [],
         selectedQuestion: []
     };
@@ -28,7 +29,7 @@ class HostLobby extends Component {
         
         this.getCurrentLobby()
         console.log("this.state", this.state)
-        let checkLobby = setInterval(this.fetchLobbyUsers, 700)
+        let checkLobby = setInterval(this.fetchLobbyUsers, 1000)
         this.setState({checkLobby: checkLobby})
         
     }
@@ -109,6 +110,7 @@ class HostLobby extends Component {
     }
 
     playersConnection(){
+        console.log(this.state.currentUsers)
         let connectedPlayers = [];
         for (let i = 0; i < 8; i++){
             let lobbyStatus = "connected-players"
@@ -200,36 +202,41 @@ class HostLobby extends Component {
                 <h3>Go to ---URL--- and enter code: "{this.props.match.params.id}" to join </h3>
 
                 <button onClick = {this.updateUsersInRoom}>UpdateUsers</button>
-
+{/* 
                 <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
 
                 channel={{ channel: 'GamesChannel', room: this.props.match.params.id }}
                 onReceived={this.handleReceivedRoom}
                 >
 
-                </ActionCableConsumer>
+                </ActionCableConsumer> */}
 
                 <button onClick = {this.handleQuestion}>Create Questions</button><br/>
                 {
                 this.state.currentUser.id === this.state.currentLobby.host_id
                 ?
                 //<NewQuestionForm />
-                    this.state.currentUsers.length > 2
+                <div>
+
+                    {this.state.currentUsers.length > 2
                     ?
                     <button className="gameStartButton" onClick={this.startGame}>Game Start</button>
                     :
-                    <button className="gameStartButton" disabled={true}>Game Start</button>
+                    <button className="gameStartButton" disabled={true}>Game Start</button>}
+                </div>
+            
+                :
+                    this.state.gameStart
+                    ?
+                    <div>
 
-                            :
-                            this.state.gameStart
-                            ?
-                            <p>GAME STARTED</p>
-                            :
-                            <div>
+                        <p>GAME STARTED</p>
+                    </div>
+                    :
+                    <div>
 
-                            <p>Waiting for game to start...</p>
-                            <UserRoot />
-                            </div>
+                        <p>Waiting for game to start...</p>
+                    </div>
                 }
                 <div className="questionContainer">
                     <div className="questionArray">
@@ -242,12 +249,14 @@ class HostLobby extends Component {
                 <br/>
                <br/>
                </div>
+                        {this.state.gameStart 
+                            ?
+                            <UserRoot />
+                            :
+                            <div className = "connected-player">{this.playersConnection()}
+                            </div>
+                            }
               
-
-                <div className = "connected-player">{this.playersConnection()}
-
-
-                </div>
             </div>
         )
     };
