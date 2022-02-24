@@ -28,7 +28,7 @@ export default class NewQuestionbankForm extends React.Component {
         console.log('submit clicked');
     
         try {
-            // const res = await axios.post(API_ROOT, newQuestionbank)
+            const res = await axios.post(API_ROOT,)
             console.log('post newQuestionbank ' );
         } catch (err) {
             console.log('Error making new question: ', err);
