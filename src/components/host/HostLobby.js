@@ -5,6 +5,7 @@ import axios from 'axios';
 import { ActionCableConsumer } from 'react-actioncable-provider';
 // import NewQuestionForm from './NewQuestionForm'
 import UserRoot from '../users/UserRoot'
+import Locations from './Locations'
 class HostLobby extends Component {
 
     state = {
@@ -213,10 +214,10 @@ class HostLobby extends Component {
 
                 <button onClick = {this.handleQuestion}>Create Questions</button><br/>
                 {
-                this.state.currentUser.id === this.state.currentLobby.host_id
-                ?
-                //<NewQuestionForm />
-                <div>
+                    this.state.currentUser.id === this.state.currentLobby.host_id
+                    ?
+                    //<NewQuestionForm />
+                    <div>
 
                     {this.state.currentUsers.length > 2
                     ?
@@ -225,19 +226,27 @@ class HostLobby extends Component {
                     <button className="gameStartButton" disabled={true}>Game Start</button>}
                 </div>
             
-                :
-                    this.state.gameStart
-                    ?
-                    <div>
+            :
+
+                        this.state.gameStart
+                        ?
+                        <div>
 
                         <p>GAME STARTED</p>
                         {/* Render component for answer and vote forms. both make axios post */}
+                        {
+                            this.state.currentUser.id === this.state.currentLobby.imposter_id
+                            ?
+                            <h3>YOUR ARE THE IMPOSTER</h3>
+                            :
+                            <p>YOU ARE INNOCENT</p>
+                        }
 
 
 
-                    </div>
-                    :
-                    <div>
+                        </div>
+                        :
+                        <div>
 
                         <p>Waiting for game to start...</p>
                     </div>
@@ -258,8 +267,8 @@ class HostLobby extends Component {
                         
                         this.state.gameStart 
                             ?
-                            
-                            <UserRoot passQuestions={this.state.selectedQuestion}/>
+                            <Locations />
+                            // <UserRoot passQuestions={this.state.selectedQuestion}/>
                             :
                             <div className = "connected-player">{this.playersConnection()}
                             </div>
