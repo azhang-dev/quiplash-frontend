@@ -42,8 +42,8 @@ class HostLobby extends Component {
         if (this.state.gameStart === true){
             clearInterval(this.state.checkLobby)
         }
-        console.log("FETCHING")
-        console.log(this.state.gameInfo)
+        // console.log("FETCHING")
+        // console.log(this.state.gameInfo)
         let token = "Bearer " + localStorage.getItem("jwt");
         const res = axios.get(`${API_ROOT}/rooms/${this.props.match.params.id}`, {
             headers: {
@@ -56,7 +56,7 @@ class HostLobby extends Component {
                 this.setState({currentUsers: res.data.users})
                 this.playersConnection()
             }
-            console.log(this.state.currentUsers)
+            // console.log(this.state.currentUsers)
             if ( JSON.parse(res.data.game_status) === true){
                 console.log("GAME HAS STARTED!!")
                 console.log(this.state.gameStart)
@@ -70,8 +70,8 @@ class HostLobby extends Component {
         if (this.state.gameInfo.game_status === true){
             this.setState({gameStart: true})
         }
-        console.log(this.state.gameStart)
-        console.log("FINISHED FETCH")
+        // console.log(this.state.gameStart)
+        // console.log("FINISHED FETCH")
         // clearInterval(this.fetchLobbyUsers())
     }
 
@@ -110,7 +110,7 @@ class HostLobby extends Component {
     }
 
     playersConnection(){
-        console.log(this.state.currentUsers)
+        // console.log(this.state.currentUsers)
         let connectedPlayers = [];
         for (let i = 0; i < 8; i++){
             let lobbyStatus = "connected-players"
@@ -157,13 +157,13 @@ class HostLobby extends Component {
    chooseQuestion = (e) => {
        console.log('click',  parseInt(e.target.value) );
        const questionTarget = parseInt(e.target.value)
-       console.log(this.state.questionArray);
+    //    console.log(this.state.questionArray);
         
        this.state.questionArray.map((question, index) => {
-           console.log('questionand indes', question, index);
+        //    console.log('questionand indes', question, index);
            if (index === questionTarget){
                console.log('clicked');
-               this.setState({selectedQuestion: question})
+               this.setState({selectedQuestion: question}, () => console.log(this.state.selectedQuestion))
             }
        })
        
@@ -255,7 +255,7 @@ class HostLobby extends Component {
                         this.state.gameStart 
                             ?
                             
-                            <UserRoot />
+                            <UserRoot passQuestions={this.state.selectedQuestion}/>
                             :
                             <div className = "connected-player">{this.playersConnection()}
                             </div>

@@ -10,7 +10,7 @@ class CurrentAnswer extends Component {
     }
 
     componentDidMount(){
-        console.log("QUESTION MOUNTED")
+        console.log("Answer MOUNTED")
         let timer = setInterval(this.countdown, 100)
         this.setState({timer: timer})
     };
@@ -18,7 +18,7 @@ class CurrentAnswer extends Component {
         if (this.state.countdown > 0){
             this.setState({countdown: this.state.countdown - 1})
         } else {
-            clearInterval(this.state.countdown)
+            clearInterval(this.state.timer)
         }
     }
 
