@@ -102,12 +102,9 @@ class Root extends Component {
                 <hr/>
                     
                     <h1 className='homeLogo'>SPY-FALL</h1>
-                    <Link to="/" className="nav-links">GameStart</Link> |&nbsp; 
-                    {/* <Link to="/play">Root player page</Link> |&nbsp;  */}
-                    {/* <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp;  */}
-                    <Link to="/host/game" className="nav-links">Host GAME(test)</Link>|&nbsp; 
+                    <Link to="/" className="nav-links">GameStart</Link> |&nbsp;
                     <Link to="/host/lobby" className="nav-links">Host PAGE</Link>|&nbsp; 
-                    {/* <Link to="/host/game">Host GAME(test)</Link>|&nbsp;  */}
+                   
                     
         
                   

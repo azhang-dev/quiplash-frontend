@@ -58,3 +58,8 @@
   color:rgb(131, 16, 16);
 }
 
+.spy-image{
+width: 500px;
+height:auto;
+object-fit: contain;
+}

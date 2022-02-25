@@ -248,7 +248,10 @@ state = {
                         {
                             this.state.currentUser.id === this.state.currentLobby.imposter_id
                             ?
-                            <h3>YOUR ARE THE IMPOSTER</h3>
+                            <div>
+                                <h3>YOU ARE THE IMPOSTER</h3>
+                                <img src="/spyfall-backgrounds/spy.jpeg" alt="spy" className="spy-image" />
+                            </div>
                             :
                             <p>YOU ARE INNOCENT</p>
                         }
