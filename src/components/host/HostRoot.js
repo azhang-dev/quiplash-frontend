@@ -20,7 +20,7 @@ class HostRoot extends Component {
     render() {
         return (
             <div>
-                <RoomsList routeToLobby={this.lobbyRoute}/>
+                <RoomsList routeToLobby={this.lobbyRoute} setRoomId={this.props.setRoomId}/>
             </div>
         );
     }

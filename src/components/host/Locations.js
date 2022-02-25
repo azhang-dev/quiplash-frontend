@@ -9,7 +9,7 @@ class locations extends Component {
     }
 
     componentDidMount(){
-        console.log("MOUNTED!!", this.props.passLocations)
+        console.log("MOUNTED!!", this.props)
         this.setState({locations: this.props.passLocations.questions})
     }
     render() {

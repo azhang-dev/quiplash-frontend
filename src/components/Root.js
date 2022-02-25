@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import UserRoot from './users/UserRoot'
 import "./Root.css";
-import Lobby from './users/Lobby'
 
 import HostLobby from './host/HostLobby'
 import HostGame from './host/HostGame'
@@ -44,6 +43,12 @@ class Root extends Component {
     .catch(err => console.warn(err));
   }
 
+
+  setRoomId = (id) => {
+    console.log('root component', id);
+  }
+
+
   //function to log the user out.
   handleLogout = () => {
     this.setState({currentUser: undefined})
@@ -53,6 +58,7 @@ class Root extends Component {
 
   handleChange = (e) => {
     this.setState({roomId: e.target.value})
+    // if (this.state.roomId !== 
 
   }
 
@@ -97,9 +103,9 @@ class Root extends Component {
                     <Link to="/" className="nav-links">GameStart</Link> |&nbsp; 
                     {/* <Link to="/play">Root player page</Link> |&nbsp;  */}
                     {/* <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp;  */}
+                    <Link to="/host/game" className="nav-links">Host GAME(test)</Link>|&nbsp; 
                     <Link to="/host/lobby" className="nav-links">Host PAGE</Link>|&nbsp; 
                     {/* <Link to="/host/game">Host GAME(test)</Link>|&nbsp;  */}
-                    <Link to="/user/join"className="nav-links">User Join Game</Link>
                     
         
                   
@@ -107,12 +113,14 @@ class Root extends Component {
 
                     <div className ="body-content">
                     <Route exact path="/play" component={UserRoot}/> 
-                    <Route exact path="/host/lobby" component = {HostRoot}/>
+                    <Route 
+                        exact path = '/host/lobby' 
+                        render={(props) => <HostRoot setRoomId = {this.setRoomId}{...props}/>}
+                        />
                     <Route exact path="/host/game" component={HostGame}/>
                     <Route exact path = "/my_profile" component = {MyProfile}/>
                     <Route exact path="/lobbies" component={RoomsList }/>
                     <Route exact path="/host/lobby/:id" component={HostLobby}/> 
-                    <Route exact path="/user/join" component={Lobby}/> 
   
                     <Route exact path= "/my_profile/questionbank/:id" component={Questionbank} />
                     </div>
