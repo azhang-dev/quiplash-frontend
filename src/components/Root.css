@@ -105,3 +105,8 @@ input {
     margin:20px;
     padding-bottom: 30px;
 }
+
+.how-to-play{
+    text-align: center;
+    max-width: 50;
+}

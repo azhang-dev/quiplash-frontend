@@ -12,6 +12,8 @@ import { API_ROOT } from '../constants';
 
 import Login from './Login'
 import SignUp from './SignUp'
+import HowToPlay from './HowToPlay'
+
 
 import MyProfile from './MyProfile'
 import Questionbank from './Questionbank'
@@ -139,6 +141,7 @@ class Root extends Component {
 
                 <br/>
                 <br/>
+                <HowToPlay/>
                 </div>
                 </Router>
                 </div>
