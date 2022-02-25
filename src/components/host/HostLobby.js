@@ -251,7 +251,7 @@ state = {
                             ?
                             <div>
                                 <h3>YOU ARE THE IMPOSTER</h3>
-                                <img src="https://mcdn.wallpapersafari.com/medium/81/11/sanLoT.jpg" alt="spy" className="spy-image"></img>
+                                {/* <img src="https://mcdn.wallpapersafari.com/medium/81/11/sanLoT.jpg" alt="spy" className="spy-image"></img> */}
                                 
                             </div>
                             :
