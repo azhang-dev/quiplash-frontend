@@ -74,16 +74,16 @@ class Root extends Component {
                         ?
                         (
                             <ul>
-                            <li className="nav-links"> G'day {this.state.currentUser.name} </li>
-                            <li><Link to = '/my_profile' className="nav-links">My Profile</Link> </li>
+                            <li className="nav-links-header"> G'day {this.state.currentUser.name} </li>
+                            <li><Link to = '/my_profile' className="nav-links-header">My Profile</Link> </li>
                             <li><Link onClick = {this.handleLogout} to = '/' className="nav-links">Logout</Link></li>
                             </ul>
                         )
                         :
                         (
                             <ul>
-                            <li><Link to = '/login' className="nav-links">Log In</Link></li>
-                            <li><Link to = '/signup' className="nav-links" >Sign Up</Link></li>
+                            <li><Link to = '/login' className="nav-links-header">Log In</Link></li>
+                            <li><Link to = '/signup' className="nav-links-header" >Sign Up</Link></li>
                             </ul>
                         )
                         }
@@ -91,17 +91,21 @@ class Root extends Component {
                         exact path = '/login' 
                         render={(props) => <Login setCurrentUser = {this.setCurrentUser}{...props}/>}
                         />
-                        <Route exact path="/signup" component={SignUp}/> 
+                        <Route 
+                        exact path = '/signup' 
+                        render={(props) => <SignUp setCurrentUser = {this.setCurrentUser}{...props}/>}
+                        />
                   </nav>
                 </header>
                 <hr/>
                     
-                    <h1>Quiplash Clone</h1>
-                    <Link to="/">GameStart</Link> |&nbsp; 
-                    <Link to="/play">Root player page</Link> |&nbsp; 
+                    <h1 className='homeLogo'>SPY-FALL</h1>
+                    <Link to="/" className="nav-links">GameStart</Link> |&nbsp; 
+                    {/* <Link to="/play">Root player page</Link> |&nbsp;  */}
                     {/* <Link to="/play/lobby">LOBBY PAGE</Link> |&nbsp;  */}
-                    <Link to="/host/lobby" >Host PAGE</Link>|&nbsp; 
-                    <Link to="/host/game">Host GAME(test)</Link>|&nbsp; 
+                    <Link to="/host/game" className="nav-links">Host GAME(test)</Link>|&nbsp; 
+                    <Link to="/host/lobby" className="nav-links">Host PAGE</Link>|&nbsp; 
+                    {/* <Link to="/host/game">Host GAME(test)</Link>|&nbsp;  */}
                     
         
                   
@@ -125,7 +129,7 @@ class Root extends Component {
                 <div>
                 <h2>Please input the room number below</h2>
 
-                <form>
+                <form className='join-game-form'>
                     <input type="text" value={this.state.roomId} onChange={this.handleChange}></input>
                     <Link to={`/host/lobby/${this.state.roomId}`}>
                     <button>Join</button>
