@@ -43,11 +43,11 @@ export default class NewQuestionbankForm extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="form-input-container">
-                    <label>Location Bannk Name</label>
+                    <label>Location Bank Name</label>
                     <input type="text" name="name" placeholder="Enter Name" onChange={this.handleInput}/>
                 </div>
               
-                <button>Create</button>
+                <button type="button" class="btn btn-danger btn-sm">Create</button>
             
             </form>
         )
