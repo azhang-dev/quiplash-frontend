@@ -264,23 +264,21 @@ state = {
                 <div className="questionContainer">
                     <div className="questionArray">
                         {this.state.questionArray.map((question, index) => {
-                            return <div key={question.name}>{question.name}<button value={index} onClick={this.chooseQuestion}>Select</button></div>
+                            return <div key={question.id}>{question.name}<button value={index} onClick={this.chooseQuestion}>Select</button></div>
                         })}
                             
                     </div>
-                    <div>
-                        {this.state.gameStart? this.state.questionArray : null }
-                    </div>
+                
                     
                 <br/>
                <br/>
                </div>
                         {this.state.currentUser.id === this.state.currentLobby.host_id
                         ?
-                        
                         this.state.gameStart 
                             ?
                             <Locations passLocations={this.state.selectedQuestion} />
+                            // <p>UNCOMMENT 282</p>
                             // <UserRoot passQuestions={this.state.selectedQuestion}/>
                             :
                             <div className = "connected-player">{this.playersConnection()}
