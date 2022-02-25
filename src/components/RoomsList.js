@@ -145,6 +145,7 @@ class RoomsList extends React.Component {
       <div className="roomsList">
 
 
+
         {/* <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
 
           channel={{ channel: 'RoomsChannel' }}
@@ -163,13 +164,12 @@ class RoomsList extends React.Component {
         {this.state.rooms.length ? (
 
           // !!!!!!!!!!!!!!!!!!!
-          <Cable
-            rooms={rooms}
-            handleReceivedGame={this.handleReceivedGame}
-          >
 
-          </Cable>
-        ) : null}
+          
+          <p>
+
+          </p>
+        ) : <p></p>}
           {/* !!!!!!!!!!!!!!!!!!!!!!!!!! */}
 
 
