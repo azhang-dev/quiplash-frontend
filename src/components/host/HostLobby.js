@@ -224,11 +224,9 @@ state = {
                 <button onClick = {this.updateUsersInRoom}>UpdateUsers</button>
 {/* 
                 <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
-
                 channel={{ channel: 'GamesChannel', room: this.props.match.params.id }}
                 onReceived={this.handleReceivedRoom}
                 >
-
                 </ActionCableConsumer> */}
 
                 <button onClick = {this.handleQuestion}>Create Questions</button><br/>
