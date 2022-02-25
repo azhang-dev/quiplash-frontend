@@ -145,7 +145,8 @@ class RoomsList extends React.Component {
       <div className="roomsList">
 
 
-        <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
+
+        {/* <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
 
           channel={{ channel: 'RoomsChannel' }}
           onReceived={this.handleReceivedRoom}
@@ -156,20 +157,19 @@ class RoomsList extends React.Component {
           
           <TestComponent cable={this.actionControllerObj?.props?.cable}/> 
           
-        </ActionCableConsumer>
+        </ActionCableConsumer> */}
 
 
         
         {this.state.rooms.length ? (
 
           // !!!!!!!!!!!!!!!!!!!
-          <Cable
-            rooms={rooms}
-            handleReceivedGame={this.handleReceivedGame}
-          >
 
-          </Cable>
-        ) : null}
+          
+          <p>
+
+          </p>
+        ) : <p></p>}
           {/* !!!!!!!!!!!!!!!!!!!!!!!!!! */}
 
 
