@@ -6,6 +6,7 @@ import { ActionCableConsumer } from 'react-actioncable-provider';
 // import NewQuestionForm from './NewQuestionForm'
 import UserRoot from '../users/UserRoot'
 import Locations from './Locations'
+import spy from '../../assets/spy.jpeg'
 class HostLobby extends Component {
 
 state = {
@@ -250,7 +251,8 @@ state = {
                             ?
                             <div>
                                 <h3>YOU ARE THE IMPOSTER</h3>
-                                <img src="/spyfall-backgrounds/spy.jpeg" alt="spy" className="spy-image" />
+                                <img src={spy} alt="spy" className="spy-image"></img>
+                                
                             </div>
                             :
                             <p>YOU ARE INNOCENT</p>
