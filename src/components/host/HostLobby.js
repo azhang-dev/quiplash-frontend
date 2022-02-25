@@ -20,7 +20,9 @@ state = {
         checkLobby: '',
         round: 0,
         questionArray: [],
-        selectedQuestion: []
+        selectedQuestion: [],
+        errorMessage: '',
+        defaultLocation: "https://i.imgur.com/AY72Skh.png"
     };
 
 
@@ -94,10 +96,14 @@ state = {
     getCurrentLobby = () => {
         const res = axios.get( `${API_ROOT}/rooms/${this.props.match.params.id}`)
         .then(res => {
-            this.setState({currentLobby: res.data})
-            // console.log("getcurrentLobby:", res.data)
+            this.setState({ currentLobby: res.data })
+            console.log("getcurrentLobby:", res.data)
         })
-        .catch(err => console.warn(err));
+        .catch(err => {
+            console.warn(err)
+            this.setState({errorMessage: 'Room not found' })
+        });
+
     }
 
     updateUsersInRoom = () => {
@@ -196,7 +202,14 @@ state = {
     render() {
         // const [quesionFormVisible, setQuesionFormVisible] = React.useState(false)
         // const onClick = () => setQuesionFormVisible(true)
-        
+        if (this.state.errorMessage !== ''){
+            return (
+                <div className="hostContainer">
+                    <h2>Error: {this.state.errorMessage}</h2>
+                </div>
+            )
+        } 
+
         return (
             <div className="hostContainer">
                 <h2>Host lobby {this.state.currentLobby.id}</h2>
@@ -254,24 +267,22 @@ state = {
                 <div className="questionContainer">
                     <div className="questionArray">
                         {this.state.questionArray.map((question, index) => {
-                            return <div key={question.name}>{question.name}<button value={index} onClick={this.chooseQuestion}>Select</button></div>
+                            return <div key={question.id}>{question.name}<button value={index} onClick={this.chooseQuestion}>Select</button></div>
                         })}
                             
                     </div>
-                    <div>
-                        {this.state.gameStart? this.state.questionArray : null }
-                    </div>
+                
                     
                 <br/>
                <br/>
                </div>
                         {this.state.currentUser.id === this.state.currentLobby.host_id
                         ?
-                        
                         this.state.gameStart 
                             ?
-                            <Locations passQuestions={this.state.selectedQuestion} />
-                            // <UserRoot />
+                            <Locations passLocations={this.state.selectedQuestion} />
+                            // <p>UNCOMMENT 282</p>
+                            // <UserRoot passQuestions={this.state.selectedQuestion}/>
                             :
                             <div className = "connected-player">{this.playersConnection()}
                             </div>
