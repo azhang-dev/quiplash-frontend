@@ -139,9 +139,9 @@ class Root extends Component {
                 </form>
                
 
-                <br/>
-                <br/>
                 <HowToPlay/>
+                <br/>
+                <br/>
                 </div>
                 </Router>
                 </div>
