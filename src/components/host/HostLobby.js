@@ -20,8 +20,7 @@ state = {
         checkLobby: '',
         round: 0,
         questionArray: [],
-        selectedQuestion: [],
-        defaultLocation: "https://i.imgur.com/AY72Skh.png"
+        selectedQuestion: []
     };
 
 
@@ -33,9 +32,6 @@ state = {
         // console.log("this.state", this.state)
         let checkLobby = setInterval(this.fetchLobbyUsers, 1000)
         this.setState({checkLobby: checkLobby})
-        if (this.state.gameStart === true){
-            console.log("GAME IN PROCESS")
-        }
         
     }
     componentWillUnmount(){
@@ -63,9 +59,7 @@ state = {
             }
             // console.log(this.state.currentUsers)
             if ( JSON.parse(res.data.game_status) === true){
-                console.log("THIS IS THE DATA", res.data)
                 console.log("GAME HAS STARTED!!")
-                this.setState({currentLobby: res.data})
                 console.log(this.state.gameStart)
                 this.setState({gameStart: true})
                 console.log(JSON.parse(res.data.game_status))
@@ -75,7 +69,6 @@ state = {
         // setTimeout(this.fetchLobbyUsers, 4000)
         
         if (this.state.gameInfo.game_status === true){
-            // this.setState({imposter: this.state.checkLobby.imposter_id})
             this.setState({gameStart: true})
         }
         // console.log(this.state.gameStart)
@@ -244,12 +237,9 @@ state = {
                         {
                             this.state.currentUser.id === this.state.currentLobby.imposter_id
                             ?
-                            <h3>YOU ARE THE IMPOSTER</h3>
+                            <h3>YOUR ARE THE IMPOSTER</h3>
                             :
-                            <div>
-                                <p>YOU ARE INNOCENT</p>
-                                <img src={this.state.defaultLocation} />
-                            </div>
+                            <p>YOU ARE INNOCENT</p>
                         }
 
 
@@ -280,8 +270,8 @@ state = {
                         
                         this.state.gameStart 
                             ?
-                            <Locations passLocations={this.state.selectedQuestion} />
-                            // <UserRoot passQuestions={this.state.selectedQuestion}/>
+                            <Locations passQuestions={this.state.selectedQuestion} />
+                            // <UserRoot />
                             :
                             <div className = "connected-player">{this.playersConnection()}
                             </div>
