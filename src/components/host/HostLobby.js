@@ -20,7 +20,8 @@ state = {
         checkLobby: '',
         round: 0,
         questionArray: [],
-        selectedQuestion: []
+        selectedQuestion: [],
+        errorMessage: ''
     };
 
 
@@ -30,8 +31,8 @@ state = {
         
         this.getCurrentLobby()
         // console.log("this.state", this.state)
-        let checkLobby = setInterval(this.fetchLobbyUsers, 1000)
-        this.setState({checkLobby: checkLobby})
+        // let checkLobby = setInterval(this.fetchLobbyUsers, 1000)
+        // this.setState({checkLobby: checkLobby})
         
     }
     componentWillUnmount(){
@@ -94,10 +95,15 @@ state = {
     getCurrentLobby = () => {
         const res = axios.get( `${API_ROOT}/rooms/${this.props.match.params.id}`)
         .then(res => {
-            this.setState({currentLobby: res.data})
+            let checkLobby = setInterval(this.fetchLobbyUsers, 1000)
+            this.setState({checkLobby: checkLobby, currentLobby: res.data })
             // console.log("getcurrentLobby:", res.data)
         })
-        .catch(err => console.warn(err));
+        .catch(err => {
+            console.warn(err)
+            this.setState({errorMessage: 'Room not found' })
+        });
+
     }
 
     updateUsersInRoom = () => {
@@ -196,7 +202,14 @@ state = {
     render() {
         // const [quesionFormVisible, setQuesionFormVisible] = React.useState(false)
         // const onClick = () => setQuesionFormVisible(true)
-        
+        if (this.state.errorMessage !== ''){
+            return (
+                <div className="hostContainer">
+                    <h2>Error: {this.state.errorMessage}</h2>
+                </div>
+            )
+        } 
+
         return (
             <div className="hostContainer">
                 <h2>Host lobby {this.state.currentLobby.id}</h2>
