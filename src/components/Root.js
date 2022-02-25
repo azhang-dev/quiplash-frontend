@@ -85,7 +85,10 @@ class Root extends Component {
                         exact path = '/login' 
                         render={(props) => <Login setCurrentUser = {this.setCurrentUser}{...props}/>}
                         />
-                        <Route exact path="/signup" component={SignUp}/> 
+                        <Route 
+                        exact path = '/signup' 
+                        render={(props) => <SignUp setCurrentUser = {this.setCurrentUser}{...props}/>}
+                        />
                   </nav>
                 </header>
                 <hr/>

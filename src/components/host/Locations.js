@@ -3,12 +3,21 @@ import './HostLobby.css'
 
 
 class locations extends Component {
+
+    state = {
+        locations:[]
+    }
+
+    componentDidMount(){
+        console.log("MOUNTED!!", this.props.passLocations)
+        this.setState({locations: this.props.passLocations.questions})
+    }
     render() {
         return (
-            <div className="questions">
-               <h2>
-                LOCATIONS GO HERE  
-                </h2> 
+            <div className="locations-grid">
+                {this.state.locations.map((location,index) => {
+                    return  <img src={location.image}/>
+                })}
             </div>
         );
     }

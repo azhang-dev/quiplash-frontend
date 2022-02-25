@@ -4,10 +4,11 @@ import { API_ROOT } from '../constants';
 
 
 
-export default class Login extends React.Component {
+export default class SignUp extends React.Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    name: ''
   }
 
   // This function will set the state to be what is typed in the form
@@ -27,13 +28,30 @@ export default class Login extends React.Component {
   handleSubmit = (ev) => {
     const newAccount = {'email': this.state.email, 'password': this.state.password, 'name': this.state.name} // object to be passed through POST
 
-    axios.post(`${API_ROOT}/user`, newAccount)
+    axios.post(`${API_ROOT}/user/create`, newAccount)
     .then(result => {
-      // console.log(result)
+      console.log("result", result.data);
+      this.login();
 
     })
     .catch(err => {
-      
+      console.warn(err)
+    })
+    ev.preventDefault();
+  }
+
+  login = (ev) => {
+    const request = {'email': this.state.email, 'password': this.state.password} // object to be passed through POST
+
+    axios.post(`${API_ROOT}/user_token`, {auth: request})
+    .then(result => {
+      localStorage.setItem("jwt", result.data.jwt)
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + result.data.jwt;
+      this.props.setCurrentUser();
+      this.props.history.push('/');
+    })
+    .catch(err => {
+      console.warn(err)
     })
     ev.preventDefault();
   }
@@ -61,7 +79,7 @@ export default class Login extends React.Component {
           placeholder = 'Password:' 
         />
         <br />
-        <button>Login</button>
+        <button>Sign Up!</button>
       </form>
     )
   }
