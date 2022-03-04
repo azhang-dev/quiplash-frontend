@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# README
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ~~Quiplash~~ spy-fall clone
 
-## Available Scripts
+## front-end: https://spy-fall-clone.netlify.app/#/
+## back-end: https://quiplash-clone-app.herokuapp.com/ 
 
-In the project directory, you can run:
+### About this project:  
+Completed as project 2 for General Assembly class SEI-50
+This project is a recreation of the online multiplayer game, "Spy-fall". A host shares their screen and creates a lobby. Multiple users can join that lobby with the id supplied by a host. A random player in the lobby is randomly selected as an imposter, and through conversation, players must find who that imposted is. As evident in the code and the final product, many intended features (websocket enabled chat and live updates) did not end up making it in the the final product. Even though as a group, we faced many problems and setbacks, we managed to stay focused and adapt our work into something presentable and interactable.
 
-### `npm start`
+### Notable Features 
+- **Lobby:** Users can create, delete, and join lobbies (by given id)
+- **User:** Users can be created
+- **Game:** Games can be created within a lobby. Game information is saved in the backend and controls a lot of the game state data 
+- **Player classes:** There are three player types. Host, Imposter, Innocent. Imposter and Innocent are randomly selected in the backend on game start.
+- **Polling:** As an alternative to websockets, we had to use polling to update the users on whether they've joined the lobby or not.  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Known bugs and unintended features:  
+- Location is always the beach
+- Users can join lobby multiple times / users don't get added to lobby if they join 
+- Users can't leave a lobby 
+- Since all info is saved in state (and not the backend), if the host refreshes their page, a white page will show (information is being requested that isn't stored by default in state) 
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Wishlist and housekeeping 
+- Use different react package for action cable to enable live updates and chat function (to replace polling) **ALTERNATIVELY** Recreate backend in node.js ... lol 
+- Clean up CSS and component rendering errors (join lobby) 
+- Make user join lobby automatically when mounting the component (instead of having to click 'update user')
+- Remove all unusued components <-- and refactor repeated code 
+- Create a room code instead of using the room_id. Would be able to add authentication this way. 
+- Clean up backend models 
 
-### `npm run build`
+### Summary: 
+Overall, this project was quite disappointing for all of us. We had high hopes of getting websockets working, but had countless errors after fixing conflicting erros with Knock. We worked quite well together and worked hard to complete the tasks we set for ourselves and eachother. Even though there were some conflicts in communication and drastic last minute decisions, we managed to use our existing components and models to present something interactive and usable.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# project 2 

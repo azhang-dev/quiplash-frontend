@@ -108,9 +108,6 @@ class RoomsList extends React.Component {
 
 
   goToLobby = () => {
-    // let lastIndex = this.state.rooms[this.state.rooms.length - 1]
-    // console.log(lastIndex.id )
-    // let newIndex = lastIndex.id + 1
 
     this.props.routeToLobby(this.state.latestRoom)
   }
@@ -120,9 +117,7 @@ class RoomsList extends React.Component {
       return (
         <li key={room.id}>
           
-          {/*  <p>{room.title}</p>
-           <Link className="btn btn-primary" to={`/lobby/${room.id}`} onClick={() => handleClick(room.id)}>Go to lobby</Link> 
-           <button className="btn btn-primary" onClick={() => handleClickDelete(room.id)}>Delete</button> */}
+
           <p onClick={() => handleClick(room.id)}>Lobby {room.id} </p>
 
 
@@ -144,33 +139,6 @@ class RoomsList extends React.Component {
     return (
       <div className="roomsList">
 
-
-        <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
-
-          channel={{ channel: 'RoomsChannel' }}
-          onReceived={this.handleReceivedRoom}
-          onConnected={this.handleConnectedRoom}
-          onInitialized={this.handleConnectedRoom}
-          ref={ (obj) => this.actionControllerObj = obj }
-          > 
-          
-          <TestComponent cable={this.actionControllerObj?.props?.cable}/> 
-          
-        </ActionCableConsumer>
-
-
-        
-        {this.state.rooms.length ? (
-
-          // !!!!!!!!!!!!!!!!!!!
-          <Cable
-            rooms={rooms}
-            handleReceivedGame={this.handleReceivedGame}
-          >
-
-          </Cable>
-        ) : null}
-          {/* !!!!!!!!!!!!!!!!!!!!!!!!!! */}
 
 
         <h2>Rooms</h2>

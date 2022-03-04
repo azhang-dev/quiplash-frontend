@@ -2,7 +2,7 @@ import React, { Component, useState } from 'react';
 import { API_ROOT, HEADERS } from '../../constants';
 import "./HostLobby.css";
 import axios from 'axios';
-import { ActionCableConsumer } from 'react-actioncable-provider';
+
 // import NewQuestionForm from './NewQuestionForm'
 import UserRoot from '../users/UserRoot'
 import Locations from './Locations'
@@ -219,17 +219,9 @@ state = {
         return (
             <div className="hostContainer">
                 <h2>Host lobby {this.state.currentLobby.id}</h2>
-                <h3>Go to <p className='gameURL'>https://spy-fall-clone.netlify.app/#/</p> and enter code: "{this.props.match.params.id}" to join </h3>
+                <h3>Go to <p className='gameURL'>https://spy-fall-clone.netlify.app/#/</p> and enter code: <p className={"room-code"}>{this.props.match.params.id}</p> to join </h3>
 
                 <button onClick = {this.updateUsersInRoom}>UpdateUsers</button>
-{/* 
-                <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
-
-                channel={{ channel: 'GamesChannel', room: this.props.match.params.id }}
-                onReceived={this.handleReceivedRoom}
-                >
-
-                </ActionCableConsumer> */}
 
                 <button onClick = {this.handleQuestion}>Create Questions</button><br/>
                 {

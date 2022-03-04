@@ -10,9 +10,9 @@ export default class Login extends React.Component {
     password: ''
   }
 
-  // This function will set the state to be what is typed in the form
+
   handleInput = (ev) => {
-    // determines which part of the form sets what part of the state
+
     if (ev.target.name === 'email') {
       this.setState({email: ev.target.value})
       

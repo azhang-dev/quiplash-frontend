@@ -31,18 +31,11 @@ export default class UserGameArea extends React.Component {
     switchGameState = () => {
         this.setState({questionTime: !this.state.questionTime, roundCounter: this.state.roundCounter+=0.5})
         if (this.state.roundCounter % 1){
-            // console.log('STATE :)', this.state.round)
-
-            // this.setState((prevState, props) => ({
-            //     round: prevState.round + 1
-            //   }, console.log('WHAT ARE THESE????', prevState)));
-
 
             this.setState({round: this.state.round + 1})
         }
         if (this.state.roundCounter === 3){
             clearInterval(this.timer)
-            // console.log('STATE :(', this.state.round)
         }
     }
     roundCounter = () => {
@@ -73,7 +66,6 @@ export default class UserGameArea extends React.Component {
                     <CurrentAnswer round={ this.state.round } roundCounter={this.roundCounter}/>
                     
                 }
-                {/* <UserRoot /> */}
 
                 <UserAnswer />
 
