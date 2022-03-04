@@ -141,6 +141,33 @@ class RoomsList extends React.Component {
 
 
 
+        {/* <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
+
+          channel={{ channel: 'RoomsChannel' }}
+          onReceived={this.handleReceivedRoom}
+          onConnected={this.handleConnectedRoom}
+          onInitialized={this.handleConnectedRoom}
+          ref={ (obj) => this.actionControllerObj = obj }
+          > 
+          
+          <TestComponent cable={this.actionControllerObj?.props?.cable}/> 
+          
+        </ActionCableConsumer> */}
+
+
+        
+        {this.state.rooms.length ? (
+
+          // !!!!!!!!!!!!!!!!!!!
+
+          
+          <p>
+
+          </p>
+        ) : <p></p>}
+          {/* !!!!!!!!!!!!!!!!!!!!!!!!!! */}
+
+
         <h2>Rooms</h2>
         <ul>
           {this.mapRooms(rooms, this.handleClick, this.handleClickDelete)}</ul>

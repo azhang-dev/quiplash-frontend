@@ -222,6 +222,12 @@ state = {
                 <h3>Go to <p className='gameURL'>https://spy-fall-clone.netlify.app/#/</p> and enter code: <p className={"room-code"}>{this.props.match.params.id}</p> to join </h3>
 
                 <button onClick = {this.updateUsersInRoom}>UpdateUsers</button>
+{/* 
+                <ActionCableConsumer // THIS IS CHECKING FOR NEW ROOMS 
+                channel={{ channel: 'GamesChannel', room: this.props.match.params.id }}
+                onReceived={this.handleReceivedRoom}
+                >
+                </ActionCableConsumer> */}
 
                 <button onClick = {this.handleQuestion}>Create Questions</button><br/>
                 {

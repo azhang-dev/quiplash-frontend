@@ -61,3 +61,10 @@
   color:orange;
 }
 
+.spy-image{
+width: 500px;
+height:auto;
+object-fit: contain;
+background-image: url(/public/spyfall-backgrounds/spy.jpeg) ;
+}
+
