@@ -10,7 +10,7 @@ class CurrentQuestion extends Component {
     }
 
     componentDidMount(){
-        console.log("QUESTION MOUNTED", this.props.currentQuestion)
+        // console.log("QUESTION MOUNTED", this.props.currentQuestion)
         let timer = setInterval(this.countdown, 100)
         this.setState({timer: timer})
 
@@ -18,7 +18,7 @@ class CurrentQuestion extends Component {
     countdown = () => {
         if (this.state.countdown > 0){
             this.setState({countdown: this.state.countdown - 1})
-            console.log("ANSWER TIME!!!!")
+            // console.log("ANSWER TIME!!!!")
         } else {
             clearInterval(this.state.timer)
         }
@@ -44,11 +44,11 @@ class CurrentQuestion extends Component {
     };
 
     loggingForChangeOfQuestionState = () => {
-        console.log("QUESTION STATE HAS BEEN CHANGED TO", this.state.question);
+        // console.log("QUESTION STATE HAS BEEN CHANGED TO", this.state.question);
     };
 
     roundCounter = () => {
-        console.log("ROUND COUNTER HAS BEEN CALLED!!")
+        // console.log("ROUND COUNTER HAS BEEN CALLED!!")
         this.props.roundCounter()
     }
     // handle input ? 

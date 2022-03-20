@@ -64,12 +64,12 @@ state = {
             }
             // console.log(this.state.currentUsers)
             if ( JSON.parse(res.data.game_status) === true){
-                console.log("THIS IS THE DATA", res.data)
-                console.log("GAME HAS STARTED!!")
+                // console.log("THIS IS THE DATA", res.data)
+                // console.log("GAME HAS STARTED!!")
                 this.setState({currentLobby: res.data})
-                console.log(this.state.gameStart)
+                // console.log(this.state.gameStart)
                 this.setState({gameStart: true})
-                console.log(JSON.parse(res.data.game_status))
+                // console.log(JSON.parse(res.data.game_status))
             }
         })
         .catch(err => console.error(err));
@@ -93,7 +93,7 @@ state = {
         })
         .then(res => {
           this.setState({currentUser: res.data})
-          console.log("This.state", this.state)
+        //   console.log("This.state", this.state)
           
         })
         .catch(err => console.warn(err));
@@ -103,7 +103,7 @@ state = {
         const res = axios.get( `${API_ROOT}/rooms/${this.props.match.params.id}`)
         .then(res => {
             this.setState({ currentLobby: res.data })
-            console.log("getcurrentLobby:", res.data)
+            // console.log("getcurrentLobby:", res.data)
         })
         .catch(err => {
             console.warn(err)

@@ -9,7 +9,7 @@ import { API_WS_ROOT } from './constants';
 import axios from 'axios'
 
 let token = localStorage.getItem("jwt");
-console.log("CURRENT USER", token)
+// console.log("CURRENT USER", token)
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
 ReactDOM.render(

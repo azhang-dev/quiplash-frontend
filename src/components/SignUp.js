@@ -30,7 +30,7 @@ export default class SignUp extends React.Component {
 
     axios.post(`${API_ROOT}/user/create`, newAccount)
     .then(result => {
-      console.log("result", result.data);
+      // console.log("result", result.data);
       this.login();
 
     })

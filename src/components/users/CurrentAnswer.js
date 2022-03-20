@@ -11,7 +11,7 @@ class CurrentAnswer extends Component {
     }
 
     componentDidMount(){
-        console.log("Answer MOUNTED")
+        // console.log("Answer MOUNTED")
         let timer = setInterval(this.countdown, 100)
         this.setState({timer: timer})
     };
@@ -31,7 +31,7 @@ class CurrentAnswer extends Component {
 
     componentDidUnmount(){
         // console.log("Answer UNMOUNTED")
-        console.log("AFTER UNMOUNT!!!!", this.props.round);
+        // console.log("AFTER UNMOUNT!!!!", this.props.round);
     };
 
     changeQuestionState = () => {
@@ -43,7 +43,7 @@ class CurrentAnswer extends Component {
     };
 
     loggingForChangeOfAnswerState = () => {
-        console.log("ANSWER STATE HAS BEEN CHANGED TO", this.state.answer);
+        // console.log("ANSWER STATE HAS BEEN CHANGED TO", this.state.answer);
     };
 
 
@@ -51,7 +51,7 @@ class CurrentAnswer extends Component {
     
 
     roundCounter = () => {
-        console.log("ROUND COUNTER HAS BEEN CALLED!!")
+        // console.log("ROUND COUNTER HAS BEEN CALLED!!")
         this.props.roundCounter()
     }
     // axios post onSubmit... how can we tell if blank? 

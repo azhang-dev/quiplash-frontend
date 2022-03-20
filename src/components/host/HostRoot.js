@@ -9,7 +9,7 @@ class HostRoot extends Component {
 
 
     lobbyRoute = (res) => {
-        console.log("THIS IS OUR RESPONSE!!!!!!!!!!!!!!!!!!",res)
+        // console.log("THIS IS OUR RESPONSE!!!!!!!!!!!!!!!!!!",res)
         if (res.length === 0){
 
         } else {
